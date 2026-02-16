@@ -1,0 +1,14 @@
+:root {
+  --panel-left: 496.245;
+  --panel-top: 123.401;
+  --panel-width: 640;
+  --panel-height: 440;
+  --panel-a: 0.96751719;
+  --panel-b: -0.02016406;
+  --panel-c: -0.02981818;
+  --panel-d: 0.86727045;
+  --panel-before-left: 8;
+  --panel-before-top: 6;
+  --panel-before-border-alpha: 0.16;
+  --panel-before-shadow-alpha: 0.11;
+}

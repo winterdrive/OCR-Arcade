@@ -1,0 +1,24 @@
+{
+  "version": 1,
+  "generated_from": "tools/og-template/panel-geometry.baseline.json",
+  "panel": {
+    "left": 496.245,
+    "top": 123.401,
+    "width": 640,
+    "height": 440,
+    "matrix": {
+      "a": 0.96751719,
+      "b": -0.02016406,
+      "c": -0.02981818,
+      "d": 0.86727045,
+      "tx": 0,
+      "ty": 0
+    }
+  },
+  "shadow": {
+    "dx": 8,
+    "dy": 6,
+    "border_alpha": 0.16,
+    "shadow_alpha": 0.11
+  }
+}
