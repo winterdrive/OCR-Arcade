@@ -1,0 +1,343 @@
+{
+  "brand": "OCR Arcade",
+  "language": {
+    "label": "言語",
+    "zh": "繁体中国語",
+    "en": "English",
+    "zhCN": "簡体中国語",
+    "es": "スペイン語",
+    "ar": "アラビア語",
+    "ptBR": "ポルトガル語（ブラジル）",
+    "fr": "フランス語",
+    "ja": "日本語",
+    "de": "ドイツ語",
+    "ru": "ロシア語"
+  },
+  "pets": {
+    "show": "動物を表示",
+    "hide": "動物を非表示",
+    "greeting": "こんにちは！{{name}}です"
+  },
+  "dropzone": {
+    "heroTitle": "QAI画像の文字をくっきりさせる",
+    "heroSubtitle": "画像をワンクリックでスライドに",
+    "heroHint": "OCRで画像をテキスト化、コーディング不要",
+    "cta": "画像をアップロード",
+    "action": "画像ファイルをここにドラッグ＆ドロップ、またはクリックして選択",
+    "footer": "ローカル処理。データはブラウザ外に出ません。",
+    "onlyPdfImage": "PDFと画像ファイルのみ対応しています。"
+  },
+  "howItWorks": {
+    "title": "使い方",
+    "step1": "スキャンや画像をアップロード",
+    "step2": "OCRで文字を抽出",
+    "step3": "編集して書き出し"
+  },
+  "resultPreview": {
+    "title": "結果プレビュー",
+    "desc": "書き出す前に結果を確認",
+    "before": "前",
+    "after": "後"
+  },
+  "upload": {
+    "demoTitle": "デモギャラリー",
+    "demoSubtitle": "サンプルを選んでOCR結果をすぐ確認",
+    "loadCta": "読み込み →",
+    "labels": {
+      "image": "画像",
+      "pdf": "PDF"
+    }
+  },
+  "demos": {
+    "scan1": {
+      "label": "スキャンサンプル 1",
+      "desc": "高密度テキスト、OCR精度のテストに最適"
+    },
+    "scan2": {
+      "label": "スキャンサンプル 2",
+      "desc": "複雑なレイアウト、行/段落分割のテストに最適"
+    },
+    "simple": {
+      "label": "シンプルサンプル",
+      "desc": "クリアなテキストで高速"
+    },
+    "collaboration": {
+      "label": "コラボレポート（PDF）",
+      "desc": "複数ページPDFで変換をテスト"
+    }
+  },
+  "messages": {
+    "loadingFile": "ファイルを読み込み中...",
+    "loadingPdf": "PDFを読み込み中 ({{current}}/{{total}})...",
+    "loadingLabel": "{{label}}を読み込み中...",
+    "loadingLabelProgress": "{{label}}を読み込み中 ({{current}}/{{total}})...",
+    "errorLoadingFile": "ファイルの読み込みに失敗しました",
+    "errorLoadingDemo": "デモ画像の読み込みに失敗しました"
+  },
+  "theme": {
+    "toLight": "ライトモードへ切り替え",
+    "toDark": "ダークモードへ切り替え",
+    "toggle": "テーマを切り替える"
+  },
+  "firstTimeGuide": {
+    "title": "OCR Arcadeへようこそ",
+    "description": "OCR Arcadeは画像から編集可能なテキストを作成できる強力なOCRツールです。",
+    "uploadTitle": "画像をアップロード",
+    "uploadDesc": "画像ファイルをここにドラッグ＆ドロップ、またはクリックして選択。PDFと一般的な画像形式（PNG、JPG）に対応。",
+    "ocrTitle": "OCR実行",
+    "ocrDesc": "アップロード後、OCRボタンで文字を抽出します。自動検出します。",
+    "editTitle": "文字を編集",
+    "editDesc": "キャンバス上の文字枠を編集、移動・リサイズ、右パネルで調整できます。",
+    "exportTitle": "結果をエクスポート",
+    "exportDesc": "ツールバーのエクスポートからPowerPointまたは画像で保存。",
+    "close": "ガイドを閉じる",
+    "prev": "前へ",
+    "next": "次へ",
+    "done": "完了",
+    "skip": "すべてスキップ"
+  },
+  "toolbar": {
+    "undo": "元に戻す (⌘Z)",
+    "redo": "やり直す (⌘⇧Z)",
+    "page": "ページ",
+    "export": "エクスポート",
+    "exporting": "エクスポート中...",
+    "exportMenu": "エクスポート形式メニュー",
+    "exportTitle": "エクスポート（PowerPoint / PNG）",
+    "exportingAria": "エクスポート中...",
+    "exportOptionsAria": "エクスポートオプション"
+  },
+  "exportFormats": {
+    "pptxEditable": {
+      "label": "PowerPoint（編集可能）",
+      "desc": "編集可能なテキストと図形"
+    },
+    "pptxImage": {
+      "label": "PowerPoint（画像）",
+      "desc": "画像＋文字レイヤー"
+    },
+    "png": {
+      "label": "PNG画像",
+      "desc": "高品質の画像ファイル"
+    }
+  },
+  "ocr": {
+    "label": "OCR",
+    "processing": "処理中...",
+    "completed": "OCR完了",
+    "error": "OCRエラー",
+    "progress": "OCR処理中、{{progress}}%",
+    "tooltipCompleted": "OCR完了。再実行するにはクリック。",
+    "tooltipError": "OCR失敗。再試行するにはクリック。",
+    "tooltipStart": "OCR文字認識を開始",
+    "controls": "OCR操作",
+    "selectLanguage": "OCR言語を選択",
+    "languageShort": {
+      "chi_tra": "繁",
+      "chi_sim": "簡",
+      "eng": "英",
+      "jpn": "日",
+      "kor": "韓",
+      "fra": "仏",
+      "deu": "独",
+      "spa": "西",
+      "ita": "伊",
+      "por": "葡",
+      "rus": "露",
+      "ara": "阿",
+      "tha": "泰",
+      "vie": "越"
+    },
+    "languageLabel": {
+      "chi_tra": "繁体中国語 (chi_tra)",
+      "chi_sim": "簡体中国語 (chi_sim)",
+      "eng": "英語 (eng)",
+      "jpn": "日本語 (jpn)",
+      "kor": "韓国語 (kor)",
+      "fra": "フランス語 (fra)",
+      "deu": "ドイツ語 (deu)",
+      "spa": "スペイン語 (spa)",
+      "ita": "イタリア語 (ita)",
+      "por": "ポルトガル語 (por)",
+      "rus": "ロシア語 (rus)",
+      "ara": "アラビア語 (ara)",
+      "tha": "タイ語 (tha)",
+      "vie": "ベトナム語 (vie)"
+    }
+  },
+  "sidebar": {
+    "pages": "ページ",
+    "pageAlt": "{{index}}ページ",
+    "processing": "処理中...",
+    "recognize": "認識",
+    "recognizeAll": "すべて認識"
+  },
+  "toasts": {
+    "pageOcrDone": "✓ {{page}}ページのOCRが完了",
+    "ocrFailed": "⚠ OCRに失敗しました",
+    "allPagesDone": "すべてのページのOCRが完了",
+    "recognizeAll": "全ページOCRを実行中...",
+    "recognizePage": "{{current}}/{{total}}ページをOCR中...",
+    "allDone": "✓ OCR完了（{{count}}ページ）",
+    "needLoadImage": "先に画像を読み込んでください",
+    "waitForService": "OCRサービスの初期化をお待ちください",
+    "confirmReocr": "このページにはOCR結果があります。再実行しますか？",
+    "startOcr": "OCRを開始...",
+    "ocrSuccess": "OCR完了！{{count}}件の文字領域を検出",
+    "ocrFail": "OCR処理に失敗",
+    "nothingToExport": "エクスポートする内容がありません",
+    "startExport": "エクスポート開始...",
+    "pngExportSuccess": "PNGエクスポート成功",
+    "pptxExportSuccess": "PowerPointエクスポート成功",
+    "exportFail": "エクスポート失敗",
+    "loadProjectsFailed": "プロジェクト一覧の読み込みに失敗",
+    "projectLoaded": "プロジェクト「{{name}}」を読み込みました",
+    "loadProjectFailed": "プロジェクトの読み込みに失敗",
+    "confirmDeleteProject": "このプロジェクトを削除しますか？元に戻せません。",
+    "projectDeleted": "プロジェクトを削除しました",
+    "projectExported": "プロジェクトをエクスポートしました",
+    "projectExportFailed": "プロジェクトのエクスポートに失敗",
+    "projectImported": "プロジェクト「{{name}}」をインポートしました",
+    "projectImportFailed": "インポートに失敗しました。形式を確認してください"
+  },
+  "properties": {
+    "title": "プロパティ",
+    "expand": "プロパティパネルを展開",
+    "deleteTextBox": "テキストボックスを削除",
+    "collapse": "プロパティパネルを折りたたむ",
+    "seoGeo": "SEO+GEO 二重最適化",
+    "textContent": "テキスト内容",
+    "textFormat": "テキスト形式",
+    "bold": "太字",
+    "italic": "斜体",
+    "alignLeft": "左揃え",
+    "alignCenter": "中央揃え",
+    "alignRight": "右揃え",
+    "alignTop": "上揃え",
+    "alignMiddle": "垂直中央",
+    "alignBottom": "下揃え",
+    "fontSize": "フォントサイズ",
+    "textColor": "文字色",
+    "fontFamily": "フォント",
+    "fontPlaceholder": "フォントを選択",
+    "fontInter": "Inter（既定）",
+    "fontJhengHei": "Microsoft JhengHei",
+    "fontKaiTi": "KaiTi",
+    "fontPMingLiU": "PMingLiU",
+    "pageInfo": "ページ情報",
+    "currentPage": "現在のページ",
+    "ocrStatus": "OCR状態",
+    "ocrDone": "認識済み",
+    "ocrNotDone": "未認識",
+    "quickActions": "クイック操作",
+    "actionOcrTitle": "OCRボタンをクリック",
+    "actionOcrDesc": "画像内の文字を抽出",
+    "actionSelectTitle": "テキストボックスを選択",
+    "actionSelectDesc": "キャンバス上のテキストボックスをクリックして編集",
+    "actionAdjustTitle": "プロパティを調整",
+    "actionAdjustDesc": "ここで内容とスタイルを編集",
+    "shortcuts": "ショートカット",
+    "undo": "元に戻す",
+    "redo": "やり直す",
+    "deleteText": "テキストボックスを削除",
+    "specialSymbols": "特殊記号ツール",
+    "tipTitle": "ヒント",
+    "tipBody": "キャンバス上のテキストボックスを選択すると、ここで編集できます。",
+    "editableHint": "直接編集可",
+    "textPlaceholderEditable": "ここで文字を編集すると、キャンバスに即時反映されます。",
+    "moreTools": "その他ツール",
+    "multiSelectHint": "Shift / Ctrl / Cmd で複数選択できます",
+    "alignStatusNeedTwo": "{{count}}個選択中。整列には2個以上必要です。",
+    "alignStatusAlignOnly": "{{count}}個選択中。整列が利用できます。",
+    "alignStatusAlignAndDistribute": "{{count}}個選択中。整列と均等配置が利用できます。",
+    "alignmentExpand": "整列ツールを展開",
+    "alignmentCollapse": "整列ツールを折りたたむ",
+    "alignmentCollapsedSummary": "{{count}}個選択中",
+    "mixed": "混在"
+  },
+  "exportFile": {
+    "author": "OCR Arcade",
+    "title": "OCR Arcade スライド",
+    "pptxName": "OCR_Arcade_Export_{{mode}}.pptx",
+    "pngName": "ocr-arcade-export.png",
+    "pageName": "ocr-arcade-page-{{index}}.png"
+  },
+  "textOverlay": {
+    "selectedCount": "{{count}} 個のテキストボックスを選択",
+    "fontSize": "フォントサイズ",
+    "textColor": "文字色",
+    "backgroundColor": "背景色"
+  },
+  "confidence": {
+    "high": "高信頼度 ({{percentage}}%) - 結果は信頼できます",
+    "medium": "中信頼度 ({{percentage}}%) - 確認を推奨",
+    "low": "低信頼度 ({{percentage}}%) - 手動確認が必要",
+    "title": "信頼度サマリー",
+    "average": "平均信頼度:",
+    "highLabel": "高 ({{count}})",
+    "mediumLabel": "中 ({{count}})",
+    "lowLabel": "低 ({{count}})"
+  },
+  "undoRedo": {
+    "canvasEdit": "キャンバス編集 #{{index}}",
+    "textEdit": "テキスト編集 #{{index}}",
+    "justNow": "たった今",
+    "minutesAgo": "{{minutes}} 分前",
+    "hoursAgo": "{{hours}} 時間前",
+    "history": "履歴",
+    "historyTitle": "操作履歴",
+    "latest": "最新",
+    "specific": "特定",
+    "undoCanvas": "キャンバス編集を元に戻す",
+    "undoText": "テキスト編集を元に戻す",
+    "toastUndoText": "テキスト編集を元に戻しました",
+    "toastUndo": "元に戻しました",
+    "toastRedoText": "テキスト編集をやり直しました",
+    "toastRedo": "やり直しました"
+  },
+  "canvas": {
+    "zoomOut": "縮小 (-)",
+    "zoomReset": "ズームをリセット (100%)",
+    "zoomIn": "拡大 (+)",
+    "fitScreen": "画面に合わせる"
+  },
+  "projects": {
+    "title": "プロジェクト管理",
+    "load": "プロジェクトを読み込む",
+    "import": "プロジェクトをインポート",
+    "savedTitle": "保存済みプロジェクト",
+    "close": "閉じる",
+    "empty": "保存済みプロジェクトはありません",
+    "pages": "{{count}} ページ",
+    "loadAction": "読み込む"
+  },
+  "petsData": {
+    "leopard_cat": "ベンガルヤマネコ",
+    "black_bear": "ツキノワグマ（台湾）",
+    "salamander": "台湾サンショウウオ",
+    "hare": "台湾ノウサギ",
+    "muntjac": "キョン"
+  },
+  "ocrPrompt": {
+    "title": "文字を抽出しますか？",
+    "description": "このページの文字をOCRで検出します。",
+    "cta": "OCR開始",
+    "dismiss": "閉じる"
+  },
+  "alignment": {
+    "sectionTitle": "整列",
+    "guides": "ガイド",
+    "snap": "スナップ",
+    "smartSpacing": "等間隔ガイド",
+    "alignLeft": "左揃え",
+    "alignCenterX": "水平中央",
+    "alignRight": "右揃え",
+    "alignTop": "上揃え",
+    "alignCenterY": "垂直中央",
+    "alignBottom": "下揃え",
+    "distributeHorizontally": "水平分布",
+    "distributeVertically": "垂直分布",
+    "altToDisableSnap": "Altでスナップを一時無効",
+    "smartAlign": "スマート整列"
+  }
+}

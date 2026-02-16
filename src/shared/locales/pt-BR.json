@@ -1,0 +1,343 @@
+{
+  "brand": "OCR Arcade",
+  "language": {
+    "label": "Idioma",
+    "zh": "Chinês tradicional",
+    "en": "English",
+    "zhCN": "Chinês simplificado",
+    "es": "Espanhol",
+    "ar": "Árabe",
+    "ptBR": "Português (Brasil)",
+    "fr": "Francês",
+    "ja": "Japonês",
+    "de": "Alemão",
+    "ru": "Russo"
+  },
+  "pets": {
+    "show": "Mostrar animais",
+    "hide": "Ocultar animais",
+    "greeting": "Oi! Eu sou {{name}}"
+  },
+  "dropzone": {
+    "heroTitle": "Deixe o texto das imagens de IA mais nítido",
+    "heroSubtitle": "Transforme imagens em slides com um clique",
+    "heroHint": "OCR transforma imagens em texto, sem programar",
+    "cta": "Enviar imagem",
+    "action": "Arraste arquivos de imagem aqui ou clique para selecionar",
+    "footer": "Processamento local. Seus arquivos não saem do navegador.",
+    "onlyPdfImage": "Apenas PDFs e imagens são suportados."
+  },
+  "howItWorks": {
+    "title": "Como funciona",
+    "step1": "Envie um scan ou imagem",
+    "step2": "Execute OCR para extrair texto",
+    "step3": "Edite e exporte slides"
+  },
+  "resultPreview": {
+    "title": "Prévia do resultado",
+    "desc": "Veja o resultado antes de exportar",
+    "before": "Antes",
+    "after": "Depois"
+  },
+  "upload": {
+    "demoTitle": "Galeria de demos",
+    "demoSubtitle": "Escolha um exemplo para ver o OCR rapidamente",
+    "loadCta": "Carregar →",
+    "labels": {
+      "image": "Imagem",
+      "pdf": "PDF"
+    }
+  },
+  "demos": {
+    "scan1": {
+      "label": "Amostra de scan 1",
+      "desc": "Texto denso, bom para precisão do OCR"
+    },
+    "scan2": {
+      "label": "Amostra de scan 2",
+      "desc": "Layout complexo, bom para linhas/parágrafos"
+    },
+    "simple": {
+      "label": "Amostra simples",
+      "desc": "Texto limpo, resultados rápidos"
+    },
+    "collaboration": {
+      "label": "Relatório colaborativo (PDF)",
+      "desc": "PDF multipáginas para testar rasterização"
+    }
+  },
+  "messages": {
+    "loadingFile": "Carregando arquivo...",
+    "loadingPdf": "Carregando PDF ({{current}}/{{total}})...",
+    "loadingLabel": "Carregando {{label}}...",
+    "loadingLabelProgress": "Carregando {{label}} ({{current}}/{{total}})...",
+    "errorLoadingFile": "Erro ao carregar arquivo",
+    "errorLoadingDemo": "Falha ao carregar imagem demo"
+  },
+  "theme": {
+    "toLight": "Mudar para modo claro",
+    "toDark": "Mudar para modo escuro",
+    "toggle": "Alternar tema"
+  },
+  "firstTimeGuide": {
+    "title": "Bem-vindo ao OCR Arcade",
+    "description": "OCR Arcade é um editor OCR poderoso para transformar imagens em texto editável.",
+    "uploadTitle": "Enviar imagens",
+    "uploadDesc": "Arraste arquivos de imagem aqui ou clique para selecionar. Suporta PDF e formatos de imagem comuns (PNG, JPG).",
+    "ocrTitle": "Executar OCR",
+    "ocrDesc": "Após enviar, clique em OCR para extrair texto. O sistema detecta automaticamente.",
+    "editTitle": "Editar texto",
+    "editDesc": "Edite caixas de texto no canvas, mova e redimensione, ou ajuste no painel direito.",
+    "exportTitle": "Exportar resultados",
+    "exportDesc": "Clique em Exportar para salvar como PowerPoint ou imagem.",
+    "close": "Fechar guia",
+    "prev": "Anterior",
+    "next": "Próximo",
+    "done": "Concluir",
+    "skip": "Pular tudo"
+  },
+  "toolbar": {
+    "undo": "Desfazer (⌘Z)",
+    "redo": "Refazer (⌘⇧Z)",
+    "page": "Pág",
+    "export": "Exportar",
+    "exporting": "Exportando...",
+    "exportMenu": "Menu de formatos de exportação",
+    "exportTitle": "Exportar (PowerPoint ou PNG)",
+    "exportingAria": "Exportando...",
+    "exportOptionsAria": "Opções de exportação"
+  },
+  "exportFormats": {
+    "pptxEditable": {
+      "label": "PowerPoint (Editável)",
+      "desc": "Texto e formas editáveis"
+    },
+    "pptxImage": {
+      "label": "PowerPoint (Imagem)",
+      "desc": "Imagem com camada de texto"
+    },
+    "png": {
+      "label": "Imagem PNG",
+      "desc": "Arquivo de imagem de alta qualidade"
+    }
+  },
+  "ocr": {
+    "label": "OCR",
+    "processing": "Processando...",
+    "completed": "OCR concluído",
+    "error": "Erro de OCR",
+    "progress": "Executando OCR, {{progress}}%",
+    "tooltipCompleted": "OCR concluído. Clique para executar novamente.",
+    "tooltipError": "OCR falhou. Clique para tentar novamente.",
+    "tooltipStart": "Iniciar reconhecimento OCR",
+    "controls": "Controles de OCR",
+    "selectLanguage": "Selecionar idioma do OCR",
+    "languageShort": {
+      "chi_tra": "ZH-TW",
+      "chi_sim": "ZH",
+      "eng": "EN",
+      "jpn": "JP",
+      "kor": "KR",
+      "fra": "FR",
+      "deu": "DE",
+      "spa": "ES",
+      "ita": "IT",
+      "por": "PT",
+      "rus": "RU",
+      "ara": "AR",
+      "tha": "TH",
+      "vie": "VI"
+    },
+    "languageLabel": {
+      "chi_tra": "Chinês tradicional (chi_tra)",
+      "chi_sim": "Chinês simplificado (chi_sim)",
+      "eng": "Inglês (eng)",
+      "jpn": "Japonês (jpn)",
+      "kor": "Coreano (kor)",
+      "fra": "Francês (fra)",
+      "deu": "Alemão (deu)",
+      "spa": "Espanhol (spa)",
+      "ita": "Italiano (ita)",
+      "por": "Português (por)",
+      "rus": "Russo (rus)",
+      "ara": "Árabe (ara)",
+      "tha": "Tailandês (tha)",
+      "vie": "Vietnamita (vie)"
+    }
+  },
+  "sidebar": {
+    "pages": "Páginas",
+    "pageAlt": "Página {{index}}",
+    "processing": "Processando...",
+    "recognize": "OCR",
+    "recognizeAll": "OCR tudo"
+  },
+  "toasts": {
+    "pageOcrDone": "✓ OCR concluído na página {{page}}",
+    "ocrFailed": "⚠ OCR falhou",
+    "allPagesDone": "OCR concluído em todas as páginas",
+    "recognizeAll": "Executando OCR em todas as páginas...",
+    "recognizePage": "OCR página {{current}}/{{total}}...",
+    "allDone": "✓ OCR concluído ({{count}} páginas)",
+    "needLoadImage": "Carregue uma imagem primeiro",
+    "waitForService": "Aguarde a inicialização do OCR",
+    "confirmReocr": "Esta página já tem OCR. Reexecutar?",
+    "startOcr": "Iniciando OCR...",
+    "ocrSuccess": "OCR concluído! {{count}} regiões encontradas",
+    "ocrFail": "OCR falhou",
+    "nothingToExport": "Nada para exportar",
+    "startExport": "Exportando...",
+    "pngExportSuccess": "Exportação PNG concluída",
+    "pptxExportSuccess": "Exportação PowerPoint concluída",
+    "exportFail": "Falha na exportação",
+    "loadProjectsFailed": "Falha ao carregar projetos",
+    "projectLoaded": "Projeto \"{{name}}\" carregado",
+    "loadProjectFailed": "Falha ao carregar o projeto",
+    "confirmDeleteProject": "Excluir este projeto? Não é possível desfazer.",
+    "projectDeleted": "Projeto excluído",
+    "projectExported": "Projeto exportado",
+    "projectExportFailed": "Falha ao exportar projeto",
+    "projectImported": "Projeto \"{{name}}\" importado",
+    "projectImportFailed": "Falha na importação. Verifique o formato."
+  },
+  "properties": {
+    "title": "Propriedades",
+    "expand": "Expandir painel de propriedades",
+    "deleteTextBox": "Excluir caixa de texto",
+    "collapse": "Recolher painel de propriedades",
+    "seoGeo": "Otimização dupla SEO+GEO",
+    "textContent": "Conteúdo do texto",
+    "textFormat": "Formatação do texto",
+    "bold": "Negrito",
+    "italic": "Itálico",
+    "alignLeft": "Alinhar à esquerda",
+    "alignCenter": "Centralizar",
+    "alignRight": "Alinhar à direita",
+    "alignTop": "Alinhar ao topo",
+    "alignMiddle": "Centralizar vertical",
+    "alignBottom": "Alinhar embaixo",
+    "fontSize": "Tamanho da fonte",
+    "textColor": "Cor do texto",
+    "fontFamily": "Fonte",
+    "fontPlaceholder": "Escolher fonte",
+    "fontInter": "Inter (padrão)",
+    "fontJhengHei": "Microsoft JhengHei",
+    "fontKaiTi": "KaiTi",
+    "fontPMingLiU": "PMingLiU",
+    "pageInfo": "Informações da página",
+    "currentPage": "Página atual",
+    "ocrStatus": "Status do OCR",
+    "ocrDone": "Reconhecido",
+    "ocrNotDone": "Não reconhecido",
+    "quickActions": "Ações rápidas",
+    "actionOcrTitle": "Clique em OCR",
+    "actionOcrDesc": "Extrair texto das imagens",
+    "actionSelectTitle": "Selecionar caixa de texto",
+    "actionSelectDesc": "Clique em uma caixa no canvas para editar",
+    "actionAdjustTitle": "Ajustar propriedades",
+    "actionAdjustDesc": "Edite conteúdo e estilo aqui",
+    "shortcuts": "Atalhos",
+    "undo": "Desfazer",
+    "redo": "Refazer",
+    "deleteText": "Excluir caixa de texto",
+    "specialSymbols": "Símbolos Especiais",
+    "tipTitle": "Dica",
+    "tipBody": "Selecione uma caixa de texto no canvas para editar aqui.",
+    "editableHint": "Editavel",
+    "textPlaceholderEditable": "Edite o texto aqui e ele sera sincronizado com o canvas.",
+    "moreTools": "Mais ferramentas",
+    "multiSelectHint": "Use Shift / Ctrl / Cmd para selecao multipla",
+    "alignStatusNeedTwo": "{{count}} selecionado(s). Sao necessarios pelo menos 2 objetos para alinhar.",
+    "alignStatusAlignOnly": "{{count}} selecionado(s). O alinhamento esta disponivel.",
+    "alignStatusAlignAndDistribute": "{{count}} selecionado(s). Alinhamento e distribuicao disponiveis.",
+    "alignmentExpand": "Expandir ferramentas de alinhamento",
+    "alignmentCollapse": "Recolher ferramentas de alinhamento",
+    "alignmentCollapsedSummary": "{{count}} item(ns) selecionado(s)",
+    "mixed": "Misto"
+  },
+  "exportFile": {
+    "author": "OCR Arcade",
+    "title": "Slides OCR Arcade",
+    "pptxName": "OCR_Arcade_Export_{{mode}}.pptx",
+    "pngName": "ocr-arcade-export.png",
+    "pageName": "ocr-arcade-page-{{index}}.png"
+  },
+  "textOverlay": {
+    "selectedCount": "{{count}} caixas de texto selecionadas",
+    "fontSize": "Tamanho da fonte",
+    "textColor": "Cor do texto",
+    "backgroundColor": "Cor de fundo"
+  },
+  "confidence": {
+    "high": "Alta confiança ({{percentage}}%) - Resultado confiável",
+    "medium": "Confiança média ({{percentage}}%) - Revisão recomendada",
+    "low": "Baixa confiança ({{percentage}}%) - Verificação manual",
+    "title": "Resumo de confiança",
+    "average": "Confiança média:",
+    "highLabel": "Alta ({{count}})",
+    "mediumLabel": "Média ({{count}})",
+    "lowLabel": "Baixa ({{count}})"
+  },
+  "undoRedo": {
+    "canvasEdit": "Edição de canvas #{{index}}",
+    "textEdit": "Edição de texto #{{index}}",
+    "justNow": "Agora",
+    "minutesAgo": "há {{minutes}} min",
+    "hoursAgo": "há {{hours}} h",
+    "history": "Histórico",
+    "historyTitle": "Histórico de edição",
+    "latest": "Mais recente",
+    "specific": "Específico",
+    "undoCanvas": "Desfazer edição de canvas",
+    "undoText": "Desfazer edição de texto",
+    "toastUndoText": "Edição de texto desfeita",
+    "toastUndo": "Desfazer concluído",
+    "toastRedoText": "Edição de texto refeita",
+    "toastRedo": "Refazer concluído"
+  },
+  "canvas": {
+    "zoomOut": "Reduzir (-)",
+    "zoomReset": "Redefinir zoom (100%)",
+    "zoomIn": "Ampliar (+)",
+    "fitScreen": "Ajustar à tela"
+  },
+  "projects": {
+    "title": "Gerenciador de projetos",
+    "load": "Carregar projeto",
+    "import": "Importar projeto",
+    "savedTitle": "Projetos salvos",
+    "close": "Fechar",
+    "empty": "Ainda não há projetos salvos",
+    "pages": "{{count}} páginas",
+    "loadAction": "Carregar"
+  },
+  "petsData": {
+    "leopard_cat": "Gato-leopardo",
+    "black_bear": "Urso-negro de Formosa",
+    "salamander": "Salamandra de Formosa",
+    "hare": "Lebre de Formosa",
+    "muntjac": "Muntjac de Reeves"
+  },
+  "ocrPrompt": {
+    "title": "Pronto para extrair texto?",
+    "description": "Clique em OCR para detectar o texto desta página.",
+    "cta": "Iniciar OCR",
+    "dismiss": "Fechar"
+  },
+  "alignment": {
+    "sectionTitle": "Alinhamento",
+    "guides": "Guias",
+    "snap": "Encaixe",
+    "smartSpacing": "Espacamento inteligente",
+    "alignLeft": "Esquerda",
+    "alignCenterX": "Centralizar horizontal",
+    "alignRight": "Direita",
+    "alignTop": "Topo",
+    "alignCenterY": "Centralizar vertical",
+    "alignBottom": "Base",
+    "distributeHorizontally": "Distribuir horizontal",
+    "distributeVertically": "Distribuir vertical",
+    "altToDisableSnap": "Segure Alt para desativar o encaixe",
+    "smartAlign": "Alinhamento inteligente"
+  }
+}

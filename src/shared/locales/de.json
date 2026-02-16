@@ -1,0 +1,343 @@
+{
+  "brand": "OCR Arcade",
+  "language": {
+    "label": "Sprache",
+    "zh": "Traditionelles Chinesisch",
+    "en": "English",
+    "zhCN": "Vereinfachtes Chinesisch",
+    "es": "Spanisch",
+    "ar": "Arabisch",
+    "ptBR": "Portugiesisch (Brasilien)",
+    "fr": "Französisch",
+    "ja": "Japanisch",
+    "de": "Deutsch",
+    "ru": "Russisch"
+  },
+  "pets": {
+    "show": "Tiere anzeigen",
+    "hide": "Tiere ausblenden",
+    "greeting": "Hallo! Ich bin {{name}}"
+  },
+  "dropzone": {
+    "heroTitle": "Mache den Text in KI-Bildern klarer",
+    "heroSubtitle": "Bilder mit einem Klick in Folien",
+    "heroHint": "OCR macht aus Bildern Text, ohne Programmierung",
+    "cta": "Bild hochladen",
+    "action": "Bilddateien hierher ziehen oder klicken, um Dateien auszuwählen",
+    "footer": "Lokale Verarbeitung. Dateien verlassen den Browser nicht.",
+    "onlyPdfImage": "Nur PDF- und Bilddateien werden unterstützt."
+  },
+  "howItWorks": {
+    "title": "So funktioniert's",
+    "step1": "Scan oder Bild hochladen",
+    "step2": "OCR ausführen und Text extrahieren",
+    "step3": "Folien bearbeiten und exportieren"
+  },
+  "resultPreview": {
+    "title": "Ergebnisvorschau",
+    "desc": "Ergebnis ansehen, bevor Sie exportieren",
+    "before": "Vorher",
+    "after": "Nachher"
+  },
+  "upload": {
+    "demoTitle": "Demo-Galerie",
+    "demoSubtitle": "Beispiel auswählen und OCR schnell testen",
+    "loadCta": "Laden →",
+    "labels": {
+      "image": "Bild",
+      "pdf": "PDF"
+    }
+  },
+  "demos": {
+    "scan1": {
+      "label": "Scan-Beispiel 1",
+      "desc": "Dichter Text, ideal für OCR-Genauigkeit"
+    },
+    "scan2": {
+      "label": "Scan-Beispiel 2",
+      "desc": "Komplexes Layout, gut für Zeilen/Absätze"
+    },
+    "simple": {
+      "label": "Einfaches Beispiel",
+      "desc": "Klarer Text, schnelle Ergebnisse"
+    },
+    "collaboration": {
+      "label": "Kollaborationsbericht (PDF)",
+      "desc": "Mehrseitiges PDF zum Testen der Rasterung"
+    }
+  },
+  "messages": {
+    "loadingFile": "Datei wird geladen...",
+    "loadingPdf": "PDF wird geladen ({{current}}/{{total}})...",
+    "loadingLabel": "{{label}} wird geladen...",
+    "loadingLabelProgress": "{{label}} wird geladen ({{current}}/{{total}})...",
+    "errorLoadingFile": "Fehler beim Laden der Datei",
+    "errorLoadingDemo": "Demo-Bild konnte nicht geladen werden"
+  },
+  "theme": {
+    "toLight": "Zum Hellmodus wechseln",
+    "toDark": "Zum Dunkelmodus wechseln",
+    "toggle": "Thema wechseln"
+  },
+  "firstTimeGuide": {
+    "title": "Willkommen bei OCR Arcade",
+    "description": "OCR Arcade ist ein leistungsstarker OCR-Editor, der Bilder in editierbaren Text verwandelt.",
+    "uploadTitle": "Bilder hochladen",
+    "uploadDesc": "Ziehen Sie Bilddateien hierher oder klicken Sie zur Auswahl. Unterstützt PDF und gängige Bildformate (PNG, JPG).",
+    "ocrTitle": "OCR ausführen",
+    "ocrDesc": "Nach dem Upload OCR klicken, Text wird automatisch erkannt.",
+    "editTitle": "Text bearbeiten",
+    "editDesc": "Textfelder auf dem Canvas bearbeiten, verschieben, skalieren oder rechts feinjustieren.",
+    "exportTitle": "Ergebnisse exportieren",
+    "exportDesc": "Export im Toolbar anklicken, als PowerPoint oder Bild speichern.",
+    "close": "Guide schließen",
+    "prev": "Zurück",
+    "next": "Weiter",
+    "done": "Fertig",
+    "skip": "Alles überspringen"
+  },
+  "toolbar": {
+    "undo": "Rückgängig (⌘Z)",
+    "redo": "Wiederholen (⌘⇧Z)",
+    "page": "S.",
+    "export": "Exportieren",
+    "exporting": "Export läuft...",
+    "exportMenu": "Exportformate",
+    "exportTitle": "Export (PowerPoint oder PNG)",
+    "exportingAria": "Export läuft...",
+    "exportOptionsAria": "Exportoptionen"
+  },
+  "exportFormats": {
+    "pptxEditable": {
+      "label": "PowerPoint (Bearbeitbar)",
+      "desc": "Bearbeitbarer Text und Formen"
+    },
+    "pptxImage": {
+      "label": "PowerPoint (Bild)",
+      "desc": "Bild mit Textebene"
+    },
+    "png": {
+      "label": "PNG-Bild",
+      "desc": "Hochwertige Bilddatei"
+    }
+  },
+  "ocr": {
+    "label": "OCR",
+    "processing": "Wird verarbeitet...",
+    "completed": "OCR abgeschlossen",
+    "error": "OCR-Fehler",
+    "progress": "OCR läuft, {{progress}}%",
+    "tooltipCompleted": "OCR abgeschlossen. Klicken zum erneuten Start.",
+    "tooltipError": "OCR fehlgeschlagen. Klicken zum Wiederholen.",
+    "tooltipStart": "OCR-Texterkennung starten",
+    "controls": "OCR-Steuerung",
+    "selectLanguage": "OCR-Sprache wählen",
+    "languageShort": {
+      "chi_tra": "ZH-TW",
+      "chi_sim": "ZH",
+      "eng": "EN",
+      "jpn": "JP",
+      "kor": "KR",
+      "fra": "FR",
+      "deu": "DE",
+      "spa": "ES",
+      "ita": "IT",
+      "por": "PT",
+      "rus": "RU",
+      "ara": "AR",
+      "tha": "TH",
+      "vie": "VI"
+    },
+    "languageLabel": {
+      "chi_tra": "Traditionelles Chinesisch (chi_tra)",
+      "chi_sim": "Vereinfachtes Chinesisch (chi_sim)",
+      "eng": "Englisch (eng)",
+      "jpn": "Japanisch (jpn)",
+      "kor": "Koreanisch (kor)",
+      "fra": "Französisch (fra)",
+      "deu": "Deutsch (deu)",
+      "spa": "Spanisch (spa)",
+      "ita": "Italienisch (ita)",
+      "por": "Portugiesisch (por)",
+      "rus": "Russisch (rus)",
+      "ara": "Arabisch (ara)",
+      "tha": "Thailändisch (tha)",
+      "vie": "Vietnamesisch (vie)"
+    }
+  },
+  "sidebar": {
+    "pages": "Seiten",
+    "pageAlt": "Seite {{index}}",
+    "processing": "Wird verarbeitet...",
+    "recognize": "OCR",
+    "recognizeAll": "OCR alle"
+  },
+  "toasts": {
+    "pageOcrDone": "✓ OCR für Seite {{page}} abgeschlossen",
+    "ocrFailed": "⚠ OCR fehlgeschlagen",
+    "allPagesDone": "OCR für alle Seiten abgeschlossen",
+    "recognizeAll": "OCR für alle Seiten...",
+    "recognizePage": "OCR Seite {{current}}/{{total}}...",
+    "allDone": "✓ OCR abgeschlossen ({{count}} Seiten)",
+    "needLoadImage": "Bitte zuerst ein Bild laden",
+    "waitForService": "Bitte auf Initialisierung des OCR-Dienstes warten",
+    "confirmReocr": "Diese Seite hat bereits OCR. Neu ausführen?",
+    "startOcr": "OCR wird gestartet...",
+    "ocrSuccess": "OCR abgeschlossen! {{count}} Textbereiche erkannt",
+    "ocrFail": "OCR fehlgeschlagen",
+    "nothingToExport": "Nichts zu exportieren",
+    "startExport": "Export startet...",
+    "pngExportSuccess": "PNG-Export erfolgreich",
+    "pptxExportSuccess": "PowerPoint-Export erfolgreich",
+    "exportFail": "Export fehlgeschlagen",
+    "loadProjectsFailed": "Projekte konnten nicht geladen werden",
+    "projectLoaded": "Projekt \"{{name}}\" geladen",
+    "loadProjectFailed": "Projekt konnte nicht geladen werden",
+    "confirmDeleteProject": "Projekt löschen? Dies kann nicht rückgängig gemacht werden.",
+    "projectDeleted": "Projekt gelöscht",
+    "projectExported": "Projekt exportiert",
+    "projectExportFailed": "Projekt-Export fehlgeschlagen",
+    "projectImported": "Projekt \"{{name}}\" importiert",
+    "projectImportFailed": "Import fehlgeschlagen. Format prüfen."
+  },
+  "properties": {
+    "title": "Eigenschaften",
+    "expand": "Eigenschaften-Panel erweitern",
+    "deleteTextBox": "Textfeld löschen",
+    "collapse": "Eigenschaften-Panel reduzieren",
+    "seoGeo": "SEO+GEO Doppeloptimierung",
+    "textContent": "Textinhalt",
+    "textFormat": "Textformat",
+    "bold": "Fett",
+    "italic": "Kursiv",
+    "alignLeft": "Linksbündig",
+    "alignCenter": "Zentriert",
+    "alignRight": "Rechtsbündig",
+    "alignTop": "Oben ausrichten",
+    "alignMiddle": "Vertikal zentrieren",
+    "alignBottom": "Unten ausrichten",
+    "fontSize": "Schriftgröße",
+    "textColor": "Textfarbe",
+    "fontFamily": "Schriftart",
+    "fontPlaceholder": "Schriftart wählen",
+    "fontInter": "Inter (Standard)",
+    "fontJhengHei": "Microsoft JhengHei",
+    "fontKaiTi": "KaiTi",
+    "fontPMingLiU": "PMingLiU",
+    "pageInfo": "Seiteninfo",
+    "currentPage": "Aktuelle Seite",
+    "ocrStatus": "OCR-Status",
+    "ocrDone": "Erkannt",
+    "ocrNotDone": "Nicht erkannt",
+    "quickActions": "Schnellaktionen",
+    "actionOcrTitle": "OCR klicken",
+    "actionOcrDesc": "Text aus Bildern extrahieren",
+    "actionSelectTitle": "Textfeld auswählen",
+    "actionSelectDesc": "Textfeld auf dem Canvas anklicken",
+    "actionAdjustTitle": "Eigenschaften anpassen",
+    "actionAdjustDesc": "Inhalt und Stil hier bearbeiten",
+    "shortcuts": "Kurzbefehle",
+    "undo": "Rückgängig",
+    "redo": "Wiederholen",
+    "deleteText": "Textfeld löschen",
+    "specialSymbols": "Sonderzeichen",
+    "tipTitle": "Tipp",
+    "tipBody": "Wähle ein Textfeld auf dem Canvas aus, um es hier zu bearbeiten.",
+    "editableHint": "Direkt bearbeitbar",
+    "textPlaceholderEditable": "Text hier bearbeiten. Die Aenderungen werden sofort auf die Leinwand uebernommen.",
+    "moreTools": "Mehr Werkzeuge",
+    "multiSelectHint": "Mehrfachauswahl mit Shift / Ctrl / Cmd",
+    "alignStatusNeedTwo": "{{count}} ausgewaehlt. Zum Ausrichten werden mindestens 2 Objekte benoetigt.",
+    "alignStatusAlignOnly": "{{count}} ausgewaehlt. Ausrichten ist verfuegbar.",
+    "alignStatusAlignAndDistribute": "{{count}} ausgewaehlt. Ausrichten und Verteilen sind verfuegbar.",
+    "alignmentExpand": "Ausrichtungswerkzeuge ausklappen",
+    "alignmentCollapse": "Ausrichtungswerkzeuge einklappen",
+    "alignmentCollapsedSummary": "{{count}} ausgewaehlt",
+    "mixed": "Gemischt"
+  },
+  "exportFile": {
+    "author": "OCR Arcade",
+    "title": "OCR Arcade Folien",
+    "pptxName": "OCR_Arcade_Export_{{mode}}.pptx",
+    "pngName": "ocr-arcade-export.png",
+    "pageName": "ocr-arcade-page-{{index}}.png"
+  },
+  "textOverlay": {
+    "selectedCount": "{{count}} Textfelder ausgewählt",
+    "fontSize": "Schriftgröße",
+    "textColor": "Textfarbe",
+    "backgroundColor": "Hintergrundfarbe"
+  },
+  "confidence": {
+    "high": "Hohe Zuverlässigkeit ({{percentage}}%) - Ergebnis vertrauenswürdig",
+    "medium": "Mittlere Zuverlässigkeit ({{percentage}}%) - Prüfung empfohlen",
+    "low": "Niedrige Zuverlässigkeit ({{percentage}}%) - Manuelle Prüfung nötig",
+    "title": "Zuverlässigkeitsübersicht",
+    "average": "Durchschnittliche Zuverlässigkeit:",
+    "highLabel": "Hoch ({{count}})",
+    "mediumLabel": "Mittel ({{count}})",
+    "lowLabel": "Niedrig ({{count}})"
+  },
+  "undoRedo": {
+    "canvasEdit": "Canvas-Bearbeitung #{{index}}",
+    "textEdit": "Textbearbeitung #{{index}}",
+    "justNow": "Gerade eben",
+    "minutesAgo": "vor {{minutes}} Min",
+    "hoursAgo": "vor {{hours}} Std",
+    "history": "Verlauf",
+    "historyTitle": "Bearbeitungsverlauf",
+    "latest": "Neueste",
+    "specific": "Spezifisch",
+    "undoCanvas": "Canvas-Bearbeitung rückgängig",
+    "undoText": "Textbearbeitung rückgängig",
+    "toastUndoText": "Textbearbeitung rückgängig",
+    "toastUndo": "Rückgängig",
+    "toastRedoText": "Textbearbeitung wiederhergestellt",
+    "toastRedo": "Wiederhergestellt"
+  },
+  "canvas": {
+    "zoomOut": "Verkleinern (-)",
+    "zoomReset": "Zoom zurücksetzen (100%)",
+    "zoomIn": "Vergrößern (+)",
+    "fitScreen": "An Bildschirm anpassen"
+  },
+  "projects": {
+    "title": "Projektmanager",
+    "load": "Projekt laden",
+    "import": "Projekt importieren",
+    "savedTitle": "Gespeicherte Projekte",
+    "close": "Schließen",
+    "empty": "Noch keine Projekte gespeichert",
+    "pages": "{{count}} Seiten",
+    "loadAction": "Laden"
+  },
+  "petsData": {
+    "leopard_cat": "Leopardenkatze",
+    "black_bear": "Formosa-Schwarzbär",
+    "salamander": "Formosa-Salamander",
+    "hare": "Formosa-Hase",
+    "muntjac": "Reeves-Muntjak"
+  },
+  "ocrPrompt": {
+    "title": "Bereit, Text zu extrahieren?",
+    "description": "Klicke auf OCR, um den Text dieser Seite zu erkennen.",
+    "cta": "OCR starten",
+    "dismiss": "Schließen"
+  },
+  "alignment": {
+    "sectionTitle": "Ausrichtung",
+    "guides": "Hilfslinien",
+    "snap": "Einrasten",
+    "smartSpacing": "Intelligente Abstaende",
+    "alignLeft": "Links",
+    "alignCenterX": "Horizontal zentrieren",
+    "alignRight": "Rechts",
+    "alignTop": "Oben",
+    "alignCenterY": "Vertikal zentrieren",
+    "alignBottom": "Unten",
+    "distributeHorizontally": "Horizontal verteilen",
+    "distributeVertically": "Vertikal verteilen",
+    "altToDisableSnap": "Alt halten, um Einrasten zu deaktivieren",
+    "smartAlign": "Intelligente Ausrichtung"
+  }
+}

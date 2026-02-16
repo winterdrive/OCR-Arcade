@@ -1,0 +1,344 @@
+{
+  "brand": "OCR Arcade",
+  "language": {
+    "label": "Language",
+    "zh": "Traditional Chinese",
+    "en": "English",
+    "zhCN": "Simplified Chinese",
+    "es": "Spanish",
+    "ar": "Arabic",
+    "ptBR": "Portuguese (Brazil)",
+    "fr": "French",
+    "ja": "Japanese",
+    "de": "German",
+    "ru": "Russian"
+  },
+  "pets": {
+    "show": "Show pets",
+    "hide": "Hide pets",
+    "greeting": "Hi! I'm {{name}}"
+  },
+  "dropzone": {
+    "heroTitle": "Make AI image text clearer",
+    "heroSubtitle": "Turn images into slides in one click",
+    "heroHint": "OCR turns images into text, no coding required",
+    "cta": "Upload image",
+    "action": "Drag and drop image files here, or click to select files",
+    "footer": "Client-side processing. Your data never leaves your browser.",
+    "onlyPdfImage": "Only PDF and image files are supported."
+  },
+  "howItWorks": {
+    "title": "How it works",
+    "step1": "Upload a scan or image",
+    "step2": "Run OCR to extract text",
+    "step3": "Edit and export slides"
+  },
+  "resultPreview": {
+    "title": "Result preview",
+    "desc": "See what you get before you export",
+    "before": "Before",
+    "after": "After"
+  },
+  "upload": {
+    "demoTitle": "Demo Gallery",
+    "demoSubtitle": "Pick a sample to preview OCR results fast",
+    "loadCta": "Load →",
+    "labels": {
+      "image": "Image",
+      "pdf": "PDF"
+    }
+  },
+  "demos": {
+    "scan1": {
+      "label": "Scan Sample 1",
+      "desc": "Dense text, great for OCR accuracy"
+    },
+    "scan2": {
+      "label": "Scan Sample 2",
+      "desc": "Complex layout, good for line/paragraph splitting"
+    },
+    "simple": {
+      "label": "Simple Sample",
+      "desc": "Clean text, fast results"
+    },
+    "collaboration": {
+      "label": "Collab Report (PDF)",
+      "desc": "Multi-page PDF to test rasterization"
+    }
+  },
+  "messages": {
+    "loadingFile": "Loading file...",
+    "loadingPdf": "Loading PDF ({{current}}/{{total}})...",
+    "loadingLabel": "Loading {{label}}...",
+    "loadingLabelProgress": "Loading {{label}} ({{current}}/{{total}})...",
+    "errorLoadingFile": "Error loading file",
+    "errorLoadingDemo": "Failed to load demo image"
+  },
+  "theme": {
+    "toLight": "Switch to light mode",
+    "toDark": "Switch to dark mode",
+    "toggle": "Toggle theme"
+  },
+  "firstTimeGuide": {
+    "title": "Welcome to OCR Arcade",
+    "description": "OCR Arcade is a powerful OCR editor that helps you turn images into editable text.",
+    "uploadTitle": "Upload images",
+    "uploadDesc": "Drag and drop image files here, or click to select files. Supports PDF and common image formats (PNG, JPG).",
+    "ocrTitle": "Run OCR",
+    "ocrDesc": "After upload, click OCR to extract text. The system detects and pulls text automatically.",
+    "editTitle": "Edit text",
+    "editDesc": "Edit text boxes on the canvas, move and resize, or fine-tune in the right panel.",
+    "exportTitle": "Export results",
+    "exportDesc": "Click Export in the toolbar to save as PowerPoint or images.",
+    "close": "Close guide",
+    "prev": "Previous",
+    "next": "Next",
+    "done": "Done",
+    "skip": "Skip all"
+  },
+  "toolbar": {
+    "undo": "Undo (⌘Z)",
+    "redo": "Redo (⌘⇧Z)",
+    "page": "Pg",
+    "export": "Export",
+    "exporting": "Exporting...",
+    "exportMenu": "Export format menu",
+    "exportTitle": "Export (PowerPoint or PNG)",
+    "exportingAria": "Exporting...",
+    "exportOptionsAria": "Export options"
+  },
+  "exportFormats": {
+    "pptxEditable": {
+      "label": "PowerPoint (Editable)",
+      "desc": "Editable text and shapes"
+    },
+    "pptxImage": {
+      "label": "PowerPoint (Image)",
+      "desc": "Image with text layer"
+    },
+    "png": {
+      "label": "PNG Image",
+      "desc": "High-quality image file"
+    }
+  },
+  "ocr": {
+    "label": "OCR",
+    "processing": "Processing...",
+    "completed": "OCR completed",
+    "error": "OCR error",
+    "progress": "Running OCR, {{progress}}% complete",
+    "tooltipCompleted": "OCR done. Click to run again.",
+    "tooltipError": "OCR failed. Click to retry.",
+    "tooltipStart": "Start OCR text recognition",
+    "controls": "OCR controls",
+    "selectLanguage": "Select OCR language",
+    "languageShort": {
+      "chi_tra": "ZH-TW",
+      "chi_sim": "ZH",
+      "eng": "EN",
+      "jpn": "JP",
+      "kor": "KR",
+      "fra": "FR",
+      "deu": "DE",
+      "spa": "ES",
+      "ita": "IT",
+      "por": "PT",
+      "rus": "RU",
+      "ara": "AR",
+      "tha": "TH",
+      "vie": "VI"
+    },
+    "languageLabel": {
+      "chi_tra": "Traditional Chinese (chi_tra)",
+      "chi_sim": "Simplified Chinese (chi_sim)",
+      "eng": "English (eng)",
+      "jpn": "Japanese (jpn)",
+      "kor": "Korean (kor)",
+      "fra": "French (fra)",
+      "deu": "German (deu)",
+      "spa": "Spanish (spa)",
+      "ita": "Italian (ita)",
+      "por": "Portuguese (por)",
+      "rus": "Russian (rus)",
+      "ara": "Arabic (ara)",
+      "tha": "Thai (tha)",
+      "vie": "Vietnamese (vie)"
+    }
+  },
+  "sidebar": {
+    "pages": "Pages",
+    "pageAlt": "Page {{index}}",
+    "processing": "Processing...",
+    "recognize": "OCR",
+    "recognizeAll": "OCR all"
+  },
+  "toasts": {
+    "pageOcrDone": "✓ OCR done on page {{page}}",
+    "ocrFailed": "⚠ OCR failed",
+    "allPagesDone": "All pages OCR complete",
+    "recognizeAll": "Running OCR on all pages...",
+    "recognizePage": "OCR page {{current}}/{{total}}...",
+    "allDone": "✓ All OCR done ({{count}} pages)",
+    "needLoadImage": "Load an image first",
+    "waitForService": "Wait for OCR service to initialize",
+    "confirmReocr": "This page already has OCR results. Re-run?",
+    "startOcr": "Starting OCR...",
+    "ocrSuccess": "OCR done! {{count}} text regions found",
+    "ocrFail": "OCR failed",
+    "nothingToExport": "Nothing to export",
+    "startExport": "Exporting...",
+    "pngExportSuccess": "PNG export succeeded",
+    "pptxExportSuccess": "PowerPoint export succeeded",
+    "exportFail": "Export failed",
+    "loadProjectsFailed": "Failed to load projects",
+    "projectLoaded": "Project \"{{name}}\" loaded",
+    "loadProjectFailed": "Failed to load project",
+    "confirmDeleteProject": "Delete this project? This cannot be undone.",
+    "projectDeleted": "Project deleted",
+    "projectExported": "Project exported",
+    "projectExportFailed": "Project export failed",
+    "projectImported": "Project \"{{name}}\" imported",
+    "projectImportFailed": "Import failed. Check the file format."
+  },
+  "properties": {
+    "title": "Properties",
+    "expand": "Expand properties panel",
+    "deleteTextBox": "Delete text box",
+    "collapse": "Collapse properties panel",
+    "seoGeo": "SEO+GEO dual optimization",
+    "textContent": "Text content",
+    "textFormat": "Text formatting",
+    "bold": "Bold",
+    "italic": "Italic",
+    "alignLeft": "Align left",
+    "alignCenter": "Align center",
+    "alignRight": "Align right",
+    "alignTop": "Align top",
+    "alignMiddle": "Vertical center",
+    "alignBottom": "Align bottom",
+    "fontSize": "Font size",
+    "textColor": "Text color",
+    "backgroundColor": "Background color",
+    "fontFamily": "Font",
+    "fontPlaceholder": "Choose a font",
+    "fontInter": "Inter (default)",
+    "fontJhengHei": "Microsoft JhengHei",
+    "fontKaiTi": "KaiTi",
+    "fontPMingLiU": "PMingLiU",
+    "pageInfo": "Page info",
+    "currentPage": "Current page",
+    "ocrStatus": "OCR status",
+    "ocrDone": "Recognized",
+    "ocrNotDone": "Not recognized",
+    "quickActions": "Quick actions",
+    "actionOcrTitle": "Click OCR",
+    "actionOcrDesc": "Extract text from images",
+    "actionSelectTitle": "Select a text box",
+    "actionSelectDesc": "Click a text box on the canvas to edit",
+    "actionAdjustTitle": "Adjust properties",
+    "actionAdjustDesc": "Edit text content and style here",
+    "shortcuts": "Shortcuts",
+    "undo": "Undo",
+    "redo": "Redo",
+    "deleteText": "Delete text box",
+    "specialSymbols": "Special Symbols",
+    "tipTitle": "Tip",
+    "tipBody": "Select a text box on the canvas to edit it here.",
+    "editableHint": "Editable",
+    "textPlaceholderEditable": "Edit text here and it will sync to the canvas.",
+    "moreTools": "More tools",
+    "multiSelectHint": "Use Shift / Ctrl / Cmd to multi-select",
+    "alignStatusNeedTwo": "Selected {{count}}. Select at least 2 objects to align.",
+    "alignStatusAlignOnly": "Selected {{count}}. Alignment is available.",
+    "alignStatusAlignAndDistribute": "Selected {{count}}. Alignment and distribution are available.",
+    "alignmentExpand": "Expand alignment tools",
+    "alignmentCollapse": "Collapse alignment tools",
+    "alignmentCollapsedSummary": "Selected {{count}} items",
+    "mixed": "Mixed"
+  },
+  "exportFile": {
+    "author": "OCR Arcade",
+    "title": "OCR Arcade Slides",
+    "pptxName": "OCR_Arcade_Export_{{mode}}.pptx",
+    "pngName": "ocr-arcade-export.png",
+    "pageName": "ocr-arcade-page-{{index}}.png"
+  },
+  "textOverlay": {
+    "selectedCount": "{{count}} text boxes selected",
+    "fontSize": "Font size",
+    "textColor": "Text color",
+    "backgroundColor": "Background color"
+  },
+  "confidence": {
+    "high": "High confidence ({{percentage}}%) - Reliable result",
+    "medium": "Medium confidence ({{percentage}}%) - Review recommended",
+    "low": "Low confidence ({{percentage}}%) - Manual check needed",
+    "title": "Confidence summary",
+    "average": "Average confidence:",
+    "highLabel": "High ({{count}})",
+    "mediumLabel": "Medium ({{count}})",
+    "lowLabel": "Low ({{count}})"
+  },
+  "undoRedo": {
+    "canvasEdit": "Canvas edit #{{index}}",
+    "textEdit": "Text edit #{{index}}",
+    "justNow": "Just now",
+    "minutesAgo": "{{minutes}} min ago",
+    "hoursAgo": "{{hours}} hr ago",
+    "history": "History",
+    "historyTitle": "Edit history",
+    "latest": "Latest",
+    "specific": "Specific",
+    "undoCanvas": "Undo canvas edits",
+    "undoText": "Undo text edits",
+    "toastUndoText": "Text edits undone",
+    "toastUndo": "Undo done",
+    "toastRedoText": "Text edits redone",
+    "toastRedo": "Redo done"
+  },
+  "canvas": {
+    "zoomOut": "Zoom out (-)",
+    "zoomReset": "Reset zoom (100%)",
+    "zoomIn": "Zoom in (+)",
+    "fitScreen": "Fit to screen"
+  },
+  "projects": {
+    "title": "Project manager",
+    "load": "Load project",
+    "import": "Import project",
+    "savedTitle": "Saved projects",
+    "close": "Close",
+    "empty": "No saved projects yet",
+    "pages": "{{count}} pages",
+    "loadAction": "Load"
+  },
+  "petsData": {
+    "leopard_cat": "Leopard cat",
+    "black_bear": "Formosan black bear",
+    "salamander": "Formosan salamander",
+    "hare": "Formosan hare",
+    "muntjac": "Reeves's muntjac"
+  },
+  "ocrPrompt": {
+    "title": "Ready to extract text?",
+    "description": "Click OCR to detect text on this page.",
+    "cta": "Start OCR",
+    "dismiss": "Close"
+  },
+  "alignment": {
+    "sectionTitle": "Alignment",
+    "guides": "Guides",
+    "snap": "Snap",
+    "smartSpacing": "Smart spacing",
+    "alignLeft": "Left",
+    "alignCenterX": "Center X",
+    "alignRight": "Right",
+    "alignTop": "Top",
+    "alignCenterY": "Center Y",
+    "alignBottom": "Bottom",
+    "distributeHorizontally": "Distribute H",
+    "distributeVertically": "Distribute V",
+    "altToDisableSnap": "Hold Alt to disable snap",
+    "smartAlign": "Smart align"
+  }
+}

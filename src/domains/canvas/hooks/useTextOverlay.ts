@@ -1,0 +1,196 @@
+import { useCallback, useEffect } from 'react'
+import { useStore } from '@/shared/store/useStore'
+import type { OCRWord } from '@/domains/ocr/services/ocr'
+import type { TextBox, TextFormatting } from '@/domains/canvas/components/TextOverlay'
+
+export function useTextOverlay() {
+  const {
+    pages,
+    currentPageIndex,
+    textBoxes,
+    selectedTextBoxes,
+    textOverlayEnabled,
+    setTextBoxes,
+    updateTextBox,
+    deleteTextBoxes,
+    setSelectedTextBoxes,
+    applyFormattingToSelected,
+    setTextOverlayEnabled,
+    saveTextOverlayState,
+    restoreTextOverlayState,
+    undoTextOverlay,
+    redoTextOverlay,
+    canUndoTextOverlay,
+    canRedoTextOverlay
+  } = useStore()
+
+  // Initialize text boxes from OCR data when page changes
+  useEffect(() => {
+    const currentPage = pages[currentPageIndex]
+    if (currentPage?.textOverlayData && textOverlayEnabled) {
+      // Only restore SAVED overlay state (from history/page switch), NOT fresh OCR data
+      setTextBoxes(currentPage.textOverlayData)
+    } else if (!textOverlayEnabled) {
+      setTextBoxes([])
+    }
+  }, [pages, currentPageIndex, textOverlayEnabled, setTextBoxes])
+
+  // Convert OCR data to text boxes
+  const initializeFromOCR = useCallback((ocrData: OCRWord[]) => {
+    const boxes: TextBox[] = ocrData.map((word, index) => ({
+      ...word,
+      id: word.id || `text-${currentPageIndex}-${index}`,
+      editable: true,
+      selected: false,
+      formatting: {
+        fontSize: 14,
+        fontFamily: 'Arial, sans-serif',
+        color: '#000000',
+        backgroundColor: 'rgba(255, 255, 255, 0.8)',
+        bold: false,
+        italic: false
+      }
+    }))
+    setTextBoxes(boxes)
+  }, [currentPageIndex, setTextBoxes])
+
+  // Select text boxes
+  const selectTextBoxes = useCallback((ids: string[], multiSelect: boolean = false) => {
+    const newSelection = new Set(selectedTextBoxes)
+
+    if (multiSelect) {
+      ids.forEach(id => {
+        if (newSelection.has(id)) {
+          newSelection.delete(id)
+        } else {
+          newSelection.add(id)
+        }
+      })
+    } else {
+      newSelection.clear()
+      ids.forEach(id => newSelection.add(id))
+    }
+
+    setSelectedTextBoxes(newSelection)
+
+    // Update text box selected state
+    const updatedBoxes = textBoxes.map(box => ({
+      ...box,
+      selected: newSelection.has(box.id)
+    }))
+    setTextBoxes(updatedBoxes)
+  }, [selectedTextBoxes, textBoxes, setSelectedTextBoxes, setTextBoxes])
+
+  // Clear selection
+  const clearSelection = useCallback(() => {
+    setSelectedTextBoxes(new Set())
+    const updatedBoxes = textBoxes.map(box => ({ ...box, selected: false }))
+    setTextBoxes(updatedBoxes)
+  }, [textBoxes, setSelectedTextBoxes, setTextBoxes])
+
+  // Update text content
+  const updateTextContent = useCallback((id: string, text: string) => {
+    updateTextBox(id, { text })
+  }, [updateTextBox])
+
+  // Update text box position
+  const updateTextPosition = useCallback((id: string, bbox: OCRWord['bbox']) => {
+    updateTextBox(id, { bbox })
+  }, [updateTextBox])
+
+  // Apply formatting to selected boxes
+  const applyFormatting = useCallback((formatting: Partial<TextFormatting>) => {
+    applyFormattingToSelected(formatting)
+  }, [applyFormattingToSelected])
+
+  // Delete selected boxes
+  const deleteSelected = useCallback(() => {
+    const selectedIds = Array.from(selectedTextBoxes)
+    if (selectedIds.length > 0) {
+      deleteTextBoxes(selectedIds)
+    }
+  }, [selectedTextBoxes, deleteTextBoxes])
+
+  // Add new text box
+  const addTextBox = useCallback((bbox: OCRWord['bbox'], text: string = 'New Text') => {
+    const newBox: TextBox = {
+      id: `text-${currentPageIndex}-${Date.now()}`,
+      text,
+      bbox,
+      confidence: 1.0,
+      editable: true,
+      selected: false,
+      formatting: {
+        fontSize: 14,
+        fontFamily: 'Arial, sans-serif',
+        color: '#000000',
+        backgroundColor: 'rgba(255, 255, 255, 0.8)',
+        bold: false,
+        italic: false
+      }
+    }
+
+    setTextBoxes([...textBoxes, newBox])
+  }, [currentPageIndex, textBoxes, setTextBoxes])
+
+  // Toggle text overlay
+  const toggleTextOverlay = useCallback(() => {
+    setTextOverlayEnabled(!textOverlayEnabled)
+  }, [textOverlayEnabled, setTextOverlayEnabled])
+
+  // Save current state
+  const saveState = useCallback(() => {
+    saveTextOverlayState()
+  }, [saveTextOverlayState])
+
+  // Restore saved state
+  const restoreState = useCallback(() => {
+    restoreTextOverlayState()
+  }, [restoreTextOverlayState])
+
+  // Get statistics
+  const getStatistics = useCallback(() => {
+    const totalBoxes = textBoxes.length
+    const selectedCount = selectedTextBoxes.size
+    const editableBoxes = textBoxes.filter(box => box.editable).length
+    const lowConfidenceBoxes = textBoxes.filter(box =>
+      box.confidence !== undefined && box.confidence < 0.8
+    ).length
+
+    return {
+      totalBoxes,
+      selectedCount,
+      editableBoxes,
+      lowConfidenceBoxes
+    }
+  }, [textBoxes, selectedTextBoxes])
+
+  return {
+    // State
+    textBoxes,
+    selectedTextBoxes,
+    textOverlayEnabled,
+
+    // Actions
+    initializeFromOCR,
+    selectTextBoxes,
+    clearSelection,
+    updateTextContent,
+    updateTextPosition,
+    applyFormatting,
+    deleteSelected,
+    addTextBox,
+    toggleTextOverlay,
+    saveState,
+    restoreState,
+
+    // Undo/Redo
+    undo: undoTextOverlay,
+    redo: redoTextOverlay,
+    canUndo: canUndoTextOverlay(),
+    canRedo: canRedoTextOverlay(),
+
+    // Statistics
+    getStatistics
+  }
+}

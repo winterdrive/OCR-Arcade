@@ -1,0 +1,343 @@
+{
+  "brand": "OCR Arcade",
+  "language": {
+    "label": "اللغة",
+    "zh": "الصينية التقليدية",
+    "en": "English",
+    "zhCN": "الصينية المبسطة",
+    "es": "الإسبانية",
+    "ar": "العربية",
+    "ptBR": "البرتغالية (البرازيل)",
+    "fr": "الفرنسية",
+    "ja": "اليابانية",
+    "de": "الألمانية",
+    "ru": "الروسية"
+  },
+  "pets": {
+    "show": "إظهار الحيوانات",
+    "hide": "إخفاء الحيوانات",
+    "greeting": "مرحباً! أنا {{name}}"
+  },
+  "dropzone": {
+    "heroTitle": "اجعل نص صور الذكاء الاصطناعي أوضح",
+    "heroSubtitle": "حوّل الصور إلى شرائح بنقرة واحدة",
+    "heroHint": "OCR يحول الصور إلى نص دون برمجة",
+    "cta": "تحميل صورة",
+    "action": "اسحب ملفات الصور إلى هنا أو انقر لاختيار الملفات",
+    "footer": "المعالجة محليًا، ملفاتك لا تغادر المتصفح.",
+    "onlyPdfImage": "ندعم ملفات PDF والصور فقط."
+  },
+  "howItWorks": {
+    "title": "كيف يعمل",
+    "step1": "حمّل مسحًا ضوئيًا أو صورة",
+    "step2": "شغّل OCR لاستخراج النص",
+    "step3": "حرّر وصدّر الشرائح"
+  },
+  "resultPreview": {
+    "title": "معاينة النتيجة",
+    "desc": "اطّلع على النتيجة قبل التصدير",
+    "before": "قبل",
+    "after": "بعد"
+  },
+  "upload": {
+    "demoTitle": "معرض التجارب",
+    "demoSubtitle": "اختر مثالًا لعرض نتائج OCR بسرعة",
+    "loadCta": "تحميل →",
+    "labels": {
+      "image": "صورة",
+      "pdf": "PDF"
+    }
+  },
+  "demos": {
+    "scan1": {
+      "label": "عينة مسح 1",
+      "desc": "نص كثيف لاختبار دقة OCR"
+    },
+    "scan2": {
+      "label": "عينة مسح 2",
+      "desc": "تخطيط معقد لاختبار تقسيم السطور/الفقرات"
+    },
+    "simple": {
+      "label": "عينة بسيطة",
+      "desc": "نص واضح ونتائج سريعة"
+    },
+    "collaboration": {
+      "label": "تقرير تعاوني (PDF)",
+      "desc": "ملف متعدد الصفحات لاختبار التحويل"
+    }
+  },
+  "messages": {
+    "loadingFile": "جارٍ تحميل الملف...",
+    "loadingPdf": "جارٍ تحميل PDF ({{current}}/{{total}})...",
+    "loadingLabel": "جارٍ تحميل {{label}}...",
+    "loadingLabelProgress": "جارٍ تحميل {{label}} ({{current}}/{{total}})...",
+    "errorLoadingFile": "فشل تحميل الملف",
+    "errorLoadingDemo": "فشل تحميل صورة العرض"
+  },
+  "theme": {
+    "toLight": "التبديل إلى الوضع الفاتح",
+    "toDark": "التبديل إلى الوضع الداكن",
+    "toggle": "تبديل المظهر"
+  },
+  "firstTimeGuide": {
+    "title": "مرحبًا بك في OCR Arcade",
+    "description": "OCR Arcade أداة OCR قوية لتحويل الصور إلى نص قابل للتحرير.",
+    "uploadTitle": "تحميل الصور",
+    "uploadDesc": "اسحب ملفات الصور إلى هنا أو انقر للاختيار. يدعم PDF وتنسيقات الصور الشائعة (PNG وJPG).",
+    "ocrTitle": "تشغيل OCR",
+    "ocrDesc": "بعد التحميل، انقر OCR لاستخراج النص. النظام يكتشف النص تلقائيًا.",
+    "editTitle": "تحرير النص",
+    "editDesc": "حرّر مربعات النص على اللوحة، حرّك وعدّل الحجم، أو اضبط من اللوحة اليمنى.",
+    "exportTitle": "تصدير النتائج",
+    "exportDesc": "انقر تصدير لحفظ PowerPoint أو صور.",
+    "close": "إغلاق الدليل",
+    "prev": "السابق",
+    "next": "التالي",
+    "done": "تم",
+    "skip": "تخطي الكل"
+  },
+  "toolbar": {
+    "undo": "تراجع (⌘Z)",
+    "redo": "إعادة (⌘⇧Z)",
+    "page": "صفحة",
+    "export": "تصدير",
+    "exporting": "جارٍ التصدير...",
+    "exportMenu": "قائمة صيغ التصدير",
+    "exportTitle": "تصدير (PowerPoint أو PNG)",
+    "exportingAria": "جارٍ التصدير...",
+    "exportOptionsAria": "خيارات التصدير"
+  },
+  "exportFormats": {
+    "pptxEditable": {
+      "label": "PowerPoint (قابل للتحرير)",
+      "desc": "نصوص وأشكال قابلة للتحرير"
+    },
+    "pptxImage": {
+      "label": "PowerPoint (صورة)",
+      "desc": "صورة مع طبقة نص"
+    },
+    "png": {
+      "label": "صورة PNG",
+      "desc": "ملف صورة عالي الجودة"
+    }
+  },
+  "ocr": {
+    "label": "OCR",
+    "processing": "جارٍ المعالجة...",
+    "completed": "اكتمل OCR",
+    "error": "خطأ في OCR",
+    "progress": "تشغيل OCR، {{progress}}%",
+    "tooltipCompleted": "اكتمل OCR. انقر لإعادة التشغيل.",
+    "tooltipError": "فشل OCR. انقر للمحاولة مرة أخرى.",
+    "tooltipStart": "بدء التعرف على النص",
+    "controls": "عناصر تحكم OCR",
+    "selectLanguage": "اختر لغة OCR",
+    "languageShort": {
+      "chi_tra": "ZH-TW",
+      "chi_sim": "ZH",
+      "eng": "EN",
+      "jpn": "JP",
+      "kor": "KR",
+      "fra": "FR",
+      "deu": "DE",
+      "spa": "ES",
+      "ita": "IT",
+      "por": "PT",
+      "rus": "RU",
+      "ara": "AR",
+      "tha": "TH",
+      "vie": "VI"
+    },
+    "languageLabel": {
+      "chi_tra": "الصينية التقليدية (chi_tra)",
+      "chi_sim": "الصينية المبسطة (chi_sim)",
+      "eng": "الإنجليزية (eng)",
+      "jpn": "اليابانية (jpn)",
+      "kor": "الكورية (kor)",
+      "fra": "الفرنسية (fra)",
+      "deu": "الألمانية (deu)",
+      "spa": "الإسبانية (spa)",
+      "ita": "الإيطالية (ita)",
+      "por": "البرتغالية (por)",
+      "rus": "الروسية (rus)",
+      "ara": "العربية (ara)",
+      "tha": "التايلندية (tha)",
+      "vie": "الفيتنامية (vie)"
+    }
+  },
+  "sidebar": {
+    "pages": "الصفحات",
+    "pageAlt": "صفحة {{index}}",
+    "processing": "جارٍ المعالجة...",
+    "recognize": "OCR",
+    "recognizeAll": "OCR للكل"
+  },
+  "toasts": {
+    "pageOcrDone": "✓ اكتمل OCR للصفحة {{page}}",
+    "ocrFailed": "⚠ فشل OCR",
+    "allPagesDone": "اكتمل OCR لكل الصفحات",
+    "recognizeAll": "تشغيل OCR لكل الصفحات...",
+    "recognizePage": "OCR للصفحة {{current}}/{{total}}...",
+    "allDone": "✓ اكتمل OCR ({{count}} صفحات)",
+    "needLoadImage": "حمّل صورة أولًا",
+    "waitForService": "انتظر تهيئة خدمة OCR",
+    "confirmReocr": "هذه الصفحة لديها نتائج OCR. إعادة؟",
+    "startOcr": "بدء OCR...",
+    "ocrSuccess": "اكتمل OCR! تم العثور على {{count}} مناطق",
+    "ocrFail": "فشل OCR",
+    "nothingToExport": "لا شيء للتصدير",
+    "startExport": "جارٍ التصدير...",
+    "pngExportSuccess": "تم تصدير PNG بنجاح",
+    "pptxExportSuccess": "تم تصدير PowerPoint بنجاح",
+    "exportFail": "فشل التصدير",
+    "loadProjectsFailed": "فشل تحميل المشاريع",
+    "projectLoaded": "تم تحميل المشروع \"{{name}}\"",
+    "loadProjectFailed": "فشل تحميل المشروع",
+    "confirmDeleteProject": "هل تريد حذف هذا المشروع؟ لا يمكن التراجع.",
+    "projectDeleted": "تم حذف المشروع",
+    "projectExported": "تم تصدير المشروع",
+    "projectExportFailed": "فشل تصدير المشروع",
+    "projectImported": "تم استيراد المشروع \"{{name}}\"",
+    "projectImportFailed": "فشل الاستيراد. تحقق من الصيغة."
+  },
+  "properties": {
+    "title": "الخصائص",
+    "expand": "توسيع لوحة الخصائص",
+    "deleteTextBox": "حذف مربع نص",
+    "collapse": "طي لوحة الخصائص",
+    "seoGeo": "تحسين مزدوج SEO+GEO",
+    "textContent": "محتوى النص",
+    "textFormat": "تنسيق النص",
+    "bold": "عريض",
+    "italic": "مائل",
+    "alignLeft": "محاذاة لليسار",
+    "alignCenter": "توسيط",
+    "alignRight": "محاذاة لليمين",
+    "alignTop": "محاذاة للأعلى",
+    "alignMiddle": "توسيط عمودي",
+    "alignBottom": "محاذاة للأسفل",
+    "fontSize": "حجم الخط",
+    "textColor": "لون النص",
+    "fontFamily": "الخط",
+    "fontPlaceholder": "اختر خطًا",
+    "fontInter": "Inter (افتراضي)",
+    "fontJhengHei": "Microsoft JhengHei",
+    "fontKaiTi": "KaiTi",
+    "fontPMingLiU": "PMingLiU",
+    "pageInfo": "معلومات الصفحة",
+    "currentPage": "الصفحة الحالية",
+    "ocrStatus": "حالة OCR",
+    "ocrDone": "تم التعرف",
+    "ocrNotDone": "غير معترف",
+    "quickActions": "إجراءات سريعة",
+    "actionOcrTitle": "انقر OCR",
+    "actionOcrDesc": "استخراج النص من الصور",
+    "actionSelectTitle": "حدد مربع نص",
+    "actionSelectDesc": "انقر مربع نص على اللوحة للتحرير",
+    "actionAdjustTitle": "تعديل الخصائص",
+    "actionAdjustDesc": "حرّر المحتوى والنمط هنا",
+    "shortcuts": "اختصارات",
+    "undo": "تراجع",
+    "redo": "إعادة",
+    "deleteText": "حذف مربع نص",
+    "specialSymbols": "رموز خاصة",
+    "tipTitle": "نصيحة",
+    "tipBody": "اختر مربع نص على اللوحة لتحريره هنا.",
+    "editableHint": "قابل للتحرير",
+    "textPlaceholderEditable": "حرر النص هنا، وسيتم مزامنته فوراً مع لوحة الرسم.",
+    "moreTools": "المزيد من الادوات",
+    "multiSelectHint": "استخدم Shift / Ctrl / Cmd للتحديد المتعدد",
+    "alignStatusNeedTwo": "تم تحديد {{count}}. يلزم عنصران على الاقل للمحاذاة.",
+    "alignStatusAlignOnly": "تم تحديد {{count}}. المحاذاة متاحة.",
+    "alignStatusAlignAndDistribute": "تم تحديد {{count}}. المحاذاة والتوزيع متاحان.",
+    "alignmentExpand": "توسيع أدوات المحاذاة",
+    "alignmentCollapse": "طي أدوات المحاذاة",
+    "alignmentCollapsedSummary": "تم تحديد {{count}} عنصر",
+    "mixed": "مختلط"
+  },
+  "exportFile": {
+    "author": "OCR Arcade",
+    "title": "شرائح OCR Arcade",
+    "pptxName": "OCR_Arcade_Export_{{mode}}.pptx",
+    "pngName": "ocr-arcade-export.png",
+    "pageName": "ocr-arcade-page-{{index}}.png"
+  },
+  "textOverlay": {
+    "selectedCount": "تم تحديد {{count}} مربع نص",
+    "fontSize": "حجم الخط",
+    "textColor": "لون النص",
+    "backgroundColor": "لون الخلفية"
+  },
+  "confidence": {
+    "high": "ثقة عالية ({{percentage}}%) - نتيجة موثوقة",
+    "medium": "ثقة متوسطة ({{percentage}}%) - يُنصح بالمراجعة",
+    "low": "ثقة منخفضة ({{percentage}}%) - يلزم تحقق يدوي",
+    "title": "ملخص الثقة",
+    "average": "متوسط الثقة:",
+    "highLabel": "عالية ({{count}})",
+    "mediumLabel": "متوسطة ({{count}})",
+    "lowLabel": "منخفضة ({{count}})"
+  },
+  "undoRedo": {
+    "canvasEdit": "تعديل اللوحة #{{index}}",
+    "textEdit": "تعديل النص #{{index}}",
+    "justNow": "الآن",
+    "minutesAgo": "قبل {{minutes}} دقيقة",
+    "hoursAgo": "قبل {{hours}} ساعة",
+    "history": "السجل",
+    "historyTitle": "سجل التعديلات",
+    "latest": "الأحدث",
+    "specific": "محدد",
+    "undoCanvas": "تراجع عن تعديل اللوحة",
+    "undoText": "تراجع عن تعديل النص",
+    "toastUndoText": "تم التراجع عن تعديل النص",
+    "toastUndo": "تم التراجع",
+    "toastRedoText": "تمت إعادة تعديل النص",
+    "toastRedo": "تمت الإعادة"
+  },
+  "canvas": {
+    "zoomOut": "تصغير (-)",
+    "zoomReset": "إعادة الضبط (100%)",
+    "zoomIn": "تكبير (+)",
+    "fitScreen": "ملاءمة الشاشة"
+  },
+  "projects": {
+    "title": "إدارة المشاريع",
+    "load": "تحميل مشروع",
+    "import": "استيراد مشروع",
+    "savedTitle": "المشاريع المحفوظة",
+    "close": "إغلاق",
+    "empty": "لا توجد مشاريع محفوظة بعد",
+    "pages": "{{count}} صفحة",
+    "loadAction": "تحميل"
+  },
+  "petsData": {
+    "leopard_cat": "قط مرقط",
+    "black_bear": "دب فورموسا الأسود",
+    "salamander": "سمندل فورموسا",
+    "hare": "أرنب فورموسا",
+    "muntjac": "مونتياك ريفز"
+  },
+  "ocrPrompt": {
+    "title": "هل تريد استخراج النص؟",
+    "description": "انقر على OCR لاكتشاف النص في هذه الصفحة.",
+    "cta": "بدء OCR",
+    "dismiss": "إغلاق"
+  },
+  "alignment": {
+    "sectionTitle": "المحاذاة",
+    "guides": "الخطوط الإرشادية",
+    "snap": "الالتقاط",
+    "smartSpacing": "تباعد ذكي",
+    "alignLeft": "محاذاة لليسار",
+    "alignCenterX": "توسيط أفقي",
+    "alignRight": "محاذاة لليمين",
+    "alignTop": "محاذاة للأعلى",
+    "alignCenterY": "توسيط عمودي",
+    "alignBottom": "محاذاة للأسفل",
+    "distributeHorizontally": "توزيع أفقي",
+    "distributeVertically": "توزيع عمودي",
+    "altToDisableSnap": "اضغط Alt لتعطيل الالتقاط مؤقتاً",
+    "smartAlign": "محاذاة ذكية"
+  }
+}

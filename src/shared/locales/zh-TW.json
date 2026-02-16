@@ -1,0 +1,344 @@
+{
+  "brand": "OCR Arcade",
+  "language": {
+    "label": "語言",
+    "zh": "繁中",
+    "en": "English",
+    "zhCN": "簡中",
+    "es": "西班牙文",
+    "ar": "阿拉伯文",
+    "ptBR": "葡萄牙文（巴西）",
+    "fr": "法文",
+    "ja": "日文",
+    "de": "德文",
+    "ru": "俄文"
+  },
+  "pets": {
+    "show": "顯示動物",
+    "hide": "隱藏動物",
+    "greeting": "你好！我是 {{name}}"
+  },
+  "dropzone": {
+    "heroTitle": "把 AI 文字變清楚",
+    "heroSubtitle": "圖片一鍵變投影片",
+    "heroHint": "OCR 技術把圖片變成文字，不用寫程式",
+    "cta": "上傳圖片",
+    "action": "拖曳圖片檔案到此區域，或點擊選擇檔案",
+    "footer": "全程在本機處理，檔案不會離開你的瀏覽器。",
+    "onlyPdfImage": "只支援 PDF 與圖片檔案。"
+  },
+  "howItWorks": {
+    "title": "使用流程",
+    "step1": "上傳掃描或圖片",
+    "step2": "執行 OCR 取得文字",
+    "step3": "編輯並匯出投影片"
+  },
+  "resultPreview": {
+    "title": "成果預覽",
+    "desc": "先看成果，再決定匯出",
+    "before": "前",
+    "after": "後"
+  },
+  "upload": {
+    "demoTitle": "示範案例",
+    "demoSubtitle": "直接點選範例，快速體驗 OCR 成果",
+    "loadCta": "點此載入 →",
+    "labels": {
+      "image": "圖片",
+      "pdf": "PDF"
+    }
+  },
+  "demos": {
+    "scan1": {
+      "label": "掃描樣本 1",
+      "desc": "高密度文字，適合測試 OCR 精度"
+    },
+    "scan2": {
+      "label": "掃描樣本 2",
+      "desc": "版面較複雜，適合測試分行/段落"
+    },
+    "simple": {
+      "label": "簡單樣本",
+      "desc": "清晰文本，速度快"
+    },
+    "collaboration": {
+      "label": "協作報告（PDF）",
+      "desc": "多頁文件，測試 PDF 轉圖流程"
+    }
+  },
+  "messages": {
+    "loadingFile": "載入檔案中...",
+    "loadingPdf": "載入 PDF ({{current}}/{{total}})...",
+    "loadingLabel": "載入 {{label}}...",
+    "loadingLabelProgress": "載入 {{label}} ({{current}}/{{total}})...",
+    "errorLoadingFile": "載入檔案失敗",
+    "errorLoadingDemo": "載入 Demo 圖片失敗"
+  },
+  "theme": {
+    "toLight": "切換到淺色模式",
+    "toDark": "切換到深色模式",
+    "toggle": "切換主題"
+  },
+  "firstTimeGuide": {
+    "title": "歡迎使用 OCR Arcade",
+    "description": "OCR Arcade 是一個強大的 OCR 文字識別和編輯工具，讓您輕鬆處理圖片中的文字內容。",
+    "uploadTitle": "上傳圖片",
+    "uploadDesc": "拖曳圖片檔案到此區域，或點擊選擇檔案。支援 PDF 與常見圖片格式（PNG、JPG）。",
+    "ocrTitle": "OCR 文字識別",
+    "ocrDesc": "點擊「開始OCR」按鈕，或使用OCR 工具欄進行文字識別。系統會自動檢測並提取圖片中的文字。",
+    "editTitle": "編輯文字",
+    "editDesc": "識別完成後，您可以點擊需修改的文字框。文字框轉為可編輯區後，即可拖曳調整位置和大小，或在右側屬性面板批量修改格式。",
+    "exportTitle": "匯出結果",
+    "exportDesc": "完成編輯後，點擊頂部工具欄的「匯出」按鈕將結果保存為 PowerPoint 或圖片格式。",
+    "close": "關閉引導",
+    "prev": "上一步",
+    "next": "下一步",
+    "done": "完成",
+    "skip": "跳過全部"
+  },
+  "toolbar": {
+    "undo": "復原 (⌘Z)",
+    "redo": "重做 (⌘⇧Z)",
+    "page": "頁",
+    "export": "匯出",
+    "exporting": "匯出中...",
+    "exportMenu": "匯出格式選單",
+    "exportTitle": "匯出 (PowerPoint 或 PNG)",
+    "exportingAria": "正在匯出...",
+    "exportOptionsAria": "匯出選項"
+  },
+  "exportFormats": {
+    "pptxEditable": {
+      "label": "PowerPoint (可編輯)",
+      "desc": "可編輯文字和形狀"
+    },
+    "pptxImage": {
+      "label": "PowerPoint (圖片)",
+      "desc": "圖片加文字圖層"
+    },
+    "png": {
+      "label": "PNG 圖片",
+      "desc": "高品質圖片檔案"
+    }
+  },
+  "ocr": {
+    "label": "OCR",
+    "processing": "處理中...",
+    "completed": "OCR 完成",
+    "error": "OCR 錯誤",
+    "progress": "正在處理 OCR，進度 {{progress}}%",
+    "tooltipCompleted": "OCR 已完成，點擊重新執行",
+    "tooltipError": "OCR 發生錯誤，點擊重試",
+    "tooltipStart": "開始 OCR 文字識別",
+    "controls": "OCR 操作",
+    "selectLanguage": "選擇 OCR 語言",
+    "languageShort": {
+      "chi_tra": "繁",
+      "chi_sim": "簡",
+      "eng": "英",
+      "jpn": "日",
+      "kor": "韓",
+      "fra": "法",
+      "deu": "德",
+      "spa": "西",
+      "ita": "義",
+      "por": "葡",
+      "rus": "俄",
+      "ara": "阿",
+      "tha": "泰",
+      "vie": "越"
+    },
+    "languageLabel": {
+      "chi_tra": "繁體中文 (chi_tra)",
+      "chi_sim": "簡體中文 (chi_sim)",
+      "eng": "英文 (eng)",
+      "jpn": "日文 (jpn)",
+      "kor": "韓文 (kor)",
+      "fra": "法文 (fra)",
+      "deu": "德文 (deu)",
+      "spa": "西班牙文 (spa)",
+      "ita": "義大利文 (ita)",
+      "por": "葡萄牙文 (por)",
+      "rus": "俄文 (rus)",
+      "ara": "阿拉伯文 (ara)",
+      "tha": "泰文 (tha)",
+      "vie": "越南文 (vie)"
+    }
+  },
+  "sidebar": {
+    "pages": "頁面",
+    "pageAlt": "第 {{index}} 頁",
+    "processing": "處理中...",
+    "recognize": "辨識",
+    "recognizeAll": "辨識全部"
+  },
+  "toasts": {
+    "pageOcrDone": "✓ 第 {{page}} 頁辨識完成",
+    "ocrFailed": "⚠ OCR 辨識失敗",
+    "allPagesDone": "所有頁面已辨識完成",
+    "recognizeAll": "辨識所有頁面...",
+    "recognizePage": "辨識第 {{current}}/{{total}} 頁...",
+    "allDone": "✓ 全部辨識完成 ({{count}} 頁)",
+    "needLoadImage": "請先載入圖片",
+    "waitForService": "請等待 OCR 服務初始化",
+    "confirmReocr": "此頁面已有 OCR 結果，是否重新識別？",
+    "startOcr": "開始 OCR 處理...",
+    "ocrSuccess": "OCR 完成！識別到 {{count}} 個文字區域",
+    "ocrFail": "OCR 處理失敗",
+    "nothingToExport": "沒有可匯出的內容",
+    "startExport": "開始匯出...",
+    "pngExportSuccess": "PNG 匯出成功",
+    "pptxExportSuccess": "PowerPoint 匯出成功",
+    "exportFail": "匯出失敗",
+    "loadProjectsFailed": "載入專案列表失敗",
+    "projectLoaded": "專案「{{name}}」已載入",
+    "loadProjectFailed": "載入專案失敗",
+    "confirmDeleteProject": "確定要刪除此專案嗎？此操作無法復原。",
+    "projectDeleted": "專案已刪除",
+    "projectExported": "專案已匯出",
+    "projectExportFailed": "匯出專案失敗",
+    "projectImported": "專案「{{name}}」已匯入",
+    "projectImportFailed": "匯入專案失敗，請檢查文件格式"
+  },
+  "properties": {
+    "title": "屬性",
+    "expand": "展開屬性面板",
+    "deleteTextBox": "刪除文字框",
+    "collapse": "收合屬性面板",
+    "seoGeo": "SEO+GEO 雙軌優化",
+    "textContent": "文字內容",
+    "textFormat": "文字格式",
+    "bold": "粗體",
+    "italic": "斜體",
+    "alignLeft": "靠左對齊",
+    "alignCenter": "置中對齊",
+    "alignRight": "靠右對齊",
+    "alignTop": "靠上對齊",
+    "alignMiddle": "垂直置中",
+    "alignBottom": "靠下對齊",
+    "fontSize": "字型大小",
+    "textColor": "文字顏色",
+    "backgroundColor": "背景顏色",
+    "fontFamily": "字型",
+    "fontPlaceholder": "選擇字型",
+    "fontInter": "Inter (預設)",
+    "fontJhengHei": "微軟正黑體",
+    "fontKaiTi": "標楷體",
+    "fontPMingLiU": "新細明體",
+    "pageInfo": "頁面資訊",
+    "currentPage": "當前頁面",
+    "ocrStatus": "OCR 狀態",
+    "ocrDone": "已識別",
+    "ocrNotDone": "未識別",
+    "quickActions": "快速操作",
+    "actionOcrTitle": "點擊 OCR 按鈕",
+    "actionOcrDesc": "識別圖片中的文字",
+    "actionSelectTitle": "選取文字框",
+    "actionSelectDesc": "點擊畫布上的文字框進行編輯",
+    "actionAdjustTitle": "調整屬性",
+    "actionAdjustDesc": "在此面板修改文字內容和樣式",
+    "shortcuts": "快捷鍵",
+    "undo": "復原",
+    "redo": "重做",
+    "deleteText": "刪除文字框",
+    "specialSymbols": "特殊符號工具",
+    "tipTitle": "提示",
+    "tipBody": "選取畫布上的文字框後，即可在此編輯其屬性",
+    "editableHint": "可直接編輯",
+    "textPlaceholderEditable": "在此編輯文字，會即時同步到畫布。",
+    "moreTools": "更多工具",
+    "multiSelectHint": "可用 Shift / Ctrl / Cmd 加選",
+    "alignStatusNeedTwo": "已選 {{count}} 個，需至少 2 個才能對齊",
+    "alignStatusAlignOnly": "已選 {{count}} 個，可使用對齊",
+    "alignStatusAlignAndDistribute": "已選 {{count}} 個，可使用對齊與分佈",
+    "alignmentExpand": "展開對齊工具",
+    "alignmentCollapse": "收合對齊工具",
+    "alignmentCollapsedSummary": "已選 {{count}} 個",
+    "mixed": "混合"
+  },
+  "exportFile": {
+    "author": "OCR Arcade",
+    "title": "OCR Arcade Slides",
+    "pptxName": "OCR_Arcade_Export_{{mode}}.pptx",
+    "pngName": "ocr-arcade-export.png",
+    "pageName": "ocr-arcade-page-{{index}}.png"
+  },
+  "textOverlay": {
+    "selectedCount": "已選擇 {{count}} 個文字框",
+    "fontSize": "字體大小",
+    "textColor": "文字顏色",
+    "backgroundColor": "背景顏色"
+  },
+  "confidence": {
+    "high": "高信心度 ({{percentage}}%) - 識別結果可靠",
+    "medium": "中等信心度 ({{percentage}}%) - 建議檢查結果",
+    "low": "低信心度 ({{percentage}}%) - 需要人工確認",
+    "title": "識別信心度統計",
+    "average": "平均信心度:",
+    "highLabel": "高 ({{count}})",
+    "mediumLabel": "中 ({{count}})",
+    "lowLabel": "低 ({{count}})"
+  },
+  "undoRedo": {
+    "canvasEdit": "畫布編輯 #{{index}}",
+    "textEdit": "文字編輯 #{{index}}",
+    "justNow": "剛才",
+    "minutesAgo": "{{minutes}} 分鐘前",
+    "hoursAgo": "{{hours}} 小時前",
+    "history": "歷史記錄",
+    "historyTitle": "操作歷史",
+    "latest": "最新",
+    "specific": "特定操作",
+    "undoCanvas": "復原畫布編輯",
+    "undoText": "復原文字編輯",
+    "toastUndoText": "已復原文字編輯",
+    "toastUndo": "已復原",
+    "toastRedoText": "已重做文字編輯",
+    "toastRedo": "已重做"
+  },
+  "canvas": {
+    "zoomOut": "縮小 (-)",
+    "zoomReset": "重設縮放 (100%)",
+    "zoomIn": "放大 (+)",
+    "fitScreen": "適應螢幕"
+  },
+  "projects": {
+    "title": "專案管理",
+    "load": "載入專案",
+    "import": "匯入專案",
+    "savedTitle": "已保存的專案",
+    "close": "關閉",
+    "empty": "尚未保存任何專案",
+    "pages": "{{count}} 頁",
+    "loadAction": "載入"
+  },
+  "petsData": {
+    "leopard_cat": "石虎",
+    "black_bear": "台灣黑熊",
+    "salamander": "山椒魚",
+    "hare": "台灣野兔",
+    "muntjac": "山羌"
+  },
+  "ocrPrompt": {
+    "title": "準備開始辨識文字？",
+    "description": "點擊 OCR 以辨識本頁文字。",
+    "cta": "開始 OCR",
+    "dismiss": "關閉"
+  },
+  "alignment": {
+    "sectionTitle": "對齊",
+    "guides": "輔助線",
+    "snap": "吸附",
+    "smartSpacing": "智慧等距",
+    "alignLeft": "左對齊",
+    "alignCenterX": "水平置中",
+    "alignRight": "右對齊",
+    "alignTop": "上對齊",
+    "alignCenterY": "垂直置中",
+    "alignBottom": "下對齊",
+    "distributeHorizontally": "水平分佈",
+    "distributeVertically": "垂直分佈",
+    "altToDisableSnap": "按住 Alt 可暫停吸附",
+    "smartAlign": "智慧對齊"
+  }
+}

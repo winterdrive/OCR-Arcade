@@ -1,143 +1,136 @@
 # OCR Arcade
 
-Turn scanned images and PDFs into editable slides in minutes.
+I use NotebookLM a lot for organizing information, and its visual summaries are incredibly useful. However, these AI tools often output **static images (PNG)** or PDFs, which creates a practical problem: **the content is locked.**
 
-If this project is useful, please **⭐ star this repo first**.
+If there's a typo in the generated image, or if I want to tweak the layout for a presentation, my only option is usually to re-run the prompt and hope for the best.
 
-[⭐ Star this repo](../../stargazers) · [Run locally in 2 minutes](#quick-start) · [繁體中文版 README](README.zh-TW.md)
+I built **OCR Arcade** to solve this specific frustration.
 
----
+[![Version](https://img.shields.io/badge/version-0.0.1-blue?style=flat-square)](CHANGELOG.md) [![License](https://img.shields.io/badge/license-AGPL%2BCommercial-orange?style=flat-square)](LICENSE) [![AI-Ready Context](https://img.shields.io/badge/AI--Ready-LLMS.txt-blue?style=flat-square)](llms.txt)
 
-## Why It Matters
+[![OCR Arcade Hero](./public/og-ocr-arcade.png)](https://winterdrive.github.io/OCR-Arcade/)
 
-Most OCR workflows still break at the same point: editing and export.
-
-- You can extract text, but still spend time retyping and reformatting.
-- Multi-page PDFs are painful to convert into clean, editable slides.
-- Final output quality often drops when moving to presentation tools.
-
-**OCR Arcade** focuses on the full flow:
-upload -> OCR -> visual editing -> exportable slides.
+[Run locally in 2 minutes](#quick-start-developer) · [繁體中文版 README](README.zh-TW.md) · [Changelog](CHANGELOG.md)
 
 ---
 
-## Key Features
+## What does this tool do?
 
-- PDF/image upload (PNG, JPG, PDF)
-- OCR extraction (Tesseract.js + ONNX runtime pipeline)
-- Canvas-based visual editor (with alignment/distribution tools)
-- Multi-language UI (10 locales)
-- Export to PPTX and PNG
-- Local-first processing statement (files stay in your browser workflow)
-- Theme + immersive UI layers (including Upside-down atmosphere effects)
+Simply put, it adds an "Edit Mode" to those static images.
 
----
+You drag in a screenshot from NotebookLM or a PDF handout, and it analyzes the layout to reconstruct text blocks and layers. Even if the OCR isn't perfect, you gain the ability to click and edit text directly in your browser, then export the result as a standard PPTX file.
 
-## Demo & Screenshots
+I mainly use it to:
 
-### Demo
-
-- Live demo: **Coming soon**
-- In the meantime, run locally with the Quick Start below.
-
-### Screenshots
-
-> Place screenshots in `docs/screenshots/` with the names below.
-
-![Upload Flow](docs/screenshots/upload.png)
-Upload a PDF/image and start instantly.
-
-![OCR + Editor](docs/screenshots/editor.png)
-Inspect OCR output and refine text directly on canvas.
-
-![Export Result](docs/screenshots/export.png)
-Export as editable PPTX or PNG.
-
-![Dark Mode](docs/screenshots/dark-mode.png)
-Dark mode workspace with ambient visual layers.
+1. **Fix AI-generated content**: Correct typos or data errors in visual notes.
+2. **Extract locked data**: Grab tables or paragraphs from PDFs and turn them into editable objects.
 
 ---
 
-## Quick Start
+## Why build another wheel?
+
+There are existing tools for this, but most of them are **Closed Source**.
+
+This means you can't be sure if your files are strictly processed locally, and you can't modify the tool if it doesn't quite fit your workflow.
+
+I wanted a fully **Open Source** alternative:
+
+1. **Transparency**: You can audit the code to ensure your data never leaves your machine.
+2. **Freedom**: If you don't like how a feature works, you have the code to change it.
+
+This side project is an experiment in building a privacy-focused tool that tries to replicate the editing feel of PowerPoint using web technologies.
+
+* **OCR**: Tesseract.js (WASM version).
+* **Layout**: onnxruntime-web for structure analysis.
+
+---
+
+## Features
+
+This is an active side project. Current features include:
+
+* **Multi-format**: Supports PDF, PNG, JPG, and clipboard pasting.
+* **Visual Editor**: Page navigation on the left, canvas in the middle, properties on the right. I tried to keep the UX familiar to presentation software users.
+* **PPTX Export**: Powered by `PptxGenJS`, outputs are compatible with Keynote and Google Slides.
+* **i18n**: Fully localized interface (currently includes Traditional Chinese).
+
+---
+
+## Screenshots
+
+### 1. Upload & Analyze
+
+Drag and drop an image, and the system automatically segments text blocks.
+
+![Upload Flow](./public/readme/upload.png)
+
+### 2. Edit Content
+
+My most used feature: double-click any text box to fix typos immediately.
+
+![OCR + Editor](./public/readme/editor.png)
+
+### 3. Export
+
+Once tweaked, download as PPTX to continue your work.
+
+![Export Result](./public/readme/export.png)
+
+---
+
+## Feature Demos
+
+### Advanced Editor Interactions
+
+![Advanced Editor Interactions](./public/readme/advanced-editor.webp)
+
+### PDF Workflow
+
+![PDF Workflow](./public/readme/pdf-workflow.webp)
+
+### Localization
+
+![Localization](./public/readme/localization.webp)
+
+---
+
+## Quick Start (Developer)
+
+If you want to run this locally:
 
 ### Requirements
 
-- Node.js `>= 18`
-- npm `>= 9`
+* Node.js >= 18
+* npm >= 9
 
-### Install & Run
+### Commands
 
 ```bash
+# Install dependencies
 npm install
+
+# Start dev server
 npm run dev
 ```
 
-Build production bundle:
+---
 
-```bash
-npm run build
-```
+## Tech Notes
 
-Preview production build:
+This is a pure frontend app (React 19 + Vite + TypeScript) with no backend database.
+The canvas interaction layer is built with Fabric.js—I spent a fair bit of time tuning the selection and scaling behaviors.
 
-```bash
-npm run preview
-```
+If you're interested in Image-to-Slide algorithms or find a bug, feel free to open an Issue or PR.
 
 ---
 
-## Tech Stack
+## Special Thanks
 
-- React 19 + Vite + TypeScript
-- Fabric.js (canvas editing)
-- Tesseract.js + onnxruntime-web (OCR pipeline)
-- pdfjs-dist (PDF rendering)
-- PptxGenJS (PPTX export)
-- i18next + react-i18next (i18n)
-- Zustand (state management)
-- Tailwind CSS + Radix UI primitives
+Big thanks to [**JBB-GAARA**](https://github.com/JBB-GAARA) for acting as the PM and Designer, helping to shape the product direction and UI design.
 
 ---
 
-## Project Structure
+## License
 
-```text
-src/
-  app/                # App shell and routes
-  domains/            # Feature domains (canvas, export, ocr, toolbar, layout)
-  shared/             # Shared UI, store, i18n, hooks, styles
-scripts/
-  pets/               # Pet sprite slicing and asset utility scripts
-public/
-  assets/             # Demo files and runtime static assets
-```
-
----
-
-## Notes for Contributors
-
-- This repo currently has known TypeScript issues unrelated to quick local dev flow.
-- Run tests with:
-
-```bash
-npm run test
-```
-
-E2E:
-
-```bash
-npm run test:e2e
-```
-
----
-
-## Support the Project
-
-If OCR Arcade helps your workflow:
-
-1. **⭐ Star this repository**
-2. Share your use case in Issues/Discussions
-3. Open a PR for improvements
-
-[⭐ Star this repo](../../stargazers)
-
+This project is licensed under **AGPL-3.0**.
+Feel free to use it for personal or open-source projects. For commercial/closed-source integration, please refer to `COMMERCIAL-LICENSE.md`.

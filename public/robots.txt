@@ -1,0 +1,4 @@
+User-agent: *
+Allow: /
+
+Sitemap: https://winterdrive.github.io/OCR-Arcade/sitemap.xml

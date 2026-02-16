@@ -1,0 +1,19 @@
+OCR Arcade Licensing Notice
+===========================
+
+Copyright (c) 2024 WinterDrive
+
+This project is offered under a dual-license model:
+
+1. Open Source License (default): GNU Affero General Public License v3.0 or later
+   (AGPL-3.0-or-later). See `LICENSE-AGPL-3.0.txt`.
+
+2. Commercial License (optional): available for organizations that need to use
+   OCR Arcade without AGPL obligations (for example, closed-source SaaS, OEM,
+   white-label embedding, or proprietary internal distributions).
+   See `COMMERCIAL-LICENSE.md`.
+
+If you cannot comply with AGPL terms, you must obtain a commercial license
+before deploying, distributing, embedding, or modifying this software.
+
+Trademark and branding are not granted by either license. See `TRADEMARK.md`.

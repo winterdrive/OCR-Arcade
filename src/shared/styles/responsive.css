@@ -1,0 +1,147 @@
+/* Responsive Layout Utilities */
+
+/* Custom scrollbar for mobile */
+@media (max-width: 768px) {
+  .custom-scrollbar::-webkit-scrollbar {
+    width: 4px;
+  }
+  
+  .custom-scrollbar::-webkit-scrollbar-thumb {
+    background: rgba(255, 255, 255, 0.2);
+    border-radius: 2px;
+  }
+}
+
+/* Sidebar overlay animations */
+.sidebar-overlay-enter {
+  transform: translateX(-100%);
+  opacity: 0;
+}
+
+.sidebar-overlay-enter-active {
+  transform: translateX(0);
+  opacity: 1;
+  transition: transform 300ms ease-out, opacity 300ms ease-out;
+}
+
+.sidebar-overlay-exit {
+  transform: translateX(0);
+  opacity: 1;
+}
+
+.sidebar-overlay-exit-active {
+  transform: translateX(-100%);
+  opacity: 0;
+  transition: transform 300ms ease-in, opacity 300ms ease-in;
+}
+
+/* Responsive breakpoint utilities */
+.responsive-container {
+  transition: all 300ms ease-in-out;
+}
+
+@media (max-width: 768px) {
+  .responsive-container {
+    padding: 1rem;
+  }
+}
+
+@media (min-width: 769px) and (max-width: 1024px) {
+  .responsive-container {
+    padding: 1.5rem;
+  }
+}
+
+@media (min-width: 1025px) {
+  .responsive-container {
+    padding: 2rem;
+  }
+}
+
+/* Canvas responsive adjustments */
+.canvas-container {
+  transition: margin 300ms ease-in-out, padding 300ms ease-in-out;
+}
+
+/* Toolbar compact mode */
+.toolbar-compact {
+  height: 3rem !important;
+}
+
+.toolbar-compact .toolbar-item {
+  padding: 0.25rem 0.5rem;
+  font-size: 0.75rem;
+}
+
+/* Properties panel responsive */
+.properties-panel-mobile {
+  position: fixed;
+  top: 0;
+  right: 0;
+  height: 100vh;
+  z-index: 50;
+  box-shadow: -10px 0 25px -5px rgba(0, 0, 0, 0.5);
+}
+
+/* Sidebar responsive states */
+.sidebar-collapsed-icon {
+  width: 60px;
+  transition: width 300ms ease-in-out;
+}
+
+.sidebar-collapsed-icon .sidebar-content {
+  opacity: 0;
+  pointer-events: none;
+}
+
+.sidebar-expanded {
+  width: 180px;
+  transition: width 300ms ease-in-out;
+}
+
+.sidebar-overlay {
+  position: fixed;
+  top: 0;
+  left: 0;
+  height: 100vh;
+  z-index: 40;
+  box-shadow: 10px 0 25px -5px rgba(0, 0, 0, 0.5);
+}
+
+/* Mobile-specific adjustments */
+@media (max-width: 768px) {
+  .mobile-hide {
+    display: none !important;
+  }
+  
+  .mobile-compact {
+    padding: 0.5rem !important;
+    font-size: 0.875rem !important;
+  }
+  
+  .mobile-full-width {
+    width: 100% !important;
+  }
+}
+
+/* Tablet-specific adjustments */
+@media (min-width: 769px) and (max-width: 1024px) {
+  .tablet-compact {
+    padding: 0.75rem !important;
+  }
+  
+  .tablet-hide {
+    display: none !important;
+  }
+}
+
+/* Desktop-specific adjustments */
+@media (min-width: 1025px) {
+  .desktop-show {
+    display: block !important;
+  }
+  
+  .desktop-flex {
+    display: flex !important;
+  }
+}

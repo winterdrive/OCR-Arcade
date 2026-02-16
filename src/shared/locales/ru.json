@@ -1,0 +1,343 @@
+{
+  "brand": "OCR Arcade",
+  "language": {
+    "label": "Язык",
+    "zh": "Традиционный китайский",
+    "en": "English",
+    "zhCN": "Упрощённый китайский",
+    "es": "Испанский",
+    "ar": "Арабский",
+    "ptBR": "Португальский (Бразилия)",
+    "fr": "Французский",
+    "ja": "Японский",
+    "de": "Немецкий",
+    "ru": "Русский"
+  },
+  "pets": {
+    "show": "Показать животных",
+    "hide": "Скрыть животных",
+    "greeting": "Привет! Я {{name}}"
+  },
+  "dropzone": {
+    "heroTitle": "Сделайте текст на ИИ-изображениях четче",
+    "heroSubtitle": "Превратите изображения в слайды одним кликом",
+    "heroHint": "OCR превращает изображения в текст без программирования",
+    "cta": "Загрузить изображение",
+    "action": "Перетащите файлы изображений сюда или нажмите, чтобы выбрать",
+    "footer": "Обработка локально. Файлы не покидают браузер.",
+    "onlyPdfImage": "Поддерживаются только PDF и изображения."
+  },
+  "howItWorks": {
+    "title": "Как это работает",
+    "step1": "Загрузите скан или изображение",
+    "step2": "Запустите OCR для извлечения текста",
+    "step3": "Редактируйте и экспортируйте слайды"
+  },
+  "resultPreview": {
+    "title": "Предпросмотр результата",
+    "desc": "Посмотрите результат перед экспортом",
+    "before": "До",
+    "after": "После"
+  },
+  "upload": {
+    "demoTitle": "Галерея демо",
+    "demoSubtitle": "Выберите пример и быстро проверьте OCR",
+    "loadCta": "Загрузить →",
+    "labels": {
+      "image": "Изображение",
+      "pdf": "PDF"
+    }
+  },
+  "demos": {
+    "scan1": {
+      "label": "Скан‑пример 1",
+      "desc": "Плотный текст, проверка точности OCR"
+    },
+    "scan2": {
+      "label": "Скан‑пример 2",
+      "desc": "Сложная верстка, тест строк/абзацев"
+    },
+    "simple": {
+      "label": "Простой пример",
+      "desc": "Чистый текст, быстрый результат"
+    },
+    "collaboration": {
+      "label": "Совместный отчёт (PDF)",
+      "desc": "Многостраничный PDF для проверки растрирования"
+    }
+  },
+  "messages": {
+    "loadingFile": "Загрузка файла...",
+    "loadingPdf": "Загрузка PDF ({{current}}/{{total}})...",
+    "loadingLabel": "Загрузка {{label}}...",
+    "loadingLabelProgress": "Загрузка {{label}} ({{current}}/{{total}})...",
+    "errorLoadingFile": "Ошибка загрузки файла",
+    "errorLoadingDemo": "Не удалось загрузить демо"
+  },
+  "theme": {
+    "toLight": "Переключить на светлую тему",
+    "toDark": "Переключить на тёмную тему",
+    "toggle": "Переключить тему"
+  },
+  "firstTimeGuide": {
+    "title": "Добро пожаловать в OCR Arcade",
+    "description": "OCR Arcade — мощный OCR‑редактор для превращения изображений в редактируемый текст.",
+    "uploadTitle": "Загрузить изображения",
+    "uploadDesc": "Перетащите файлы изображений сюда или нажмите для выбора. Поддерживаются PDF и распространенные форматы изображений (PNG, JPG).",
+    "ocrTitle": "Запустить OCR",
+    "ocrDesc": "После загрузки нажмите OCR для извлечения текста. Система распознаёт автоматически.",
+    "editTitle": "Редактировать текст",
+    "editDesc": "Редактируйте текстовые блоки на холсте, перемещайте и меняйте размер, или правьте в панели справа.",
+    "exportTitle": "Экспортировать результат",
+    "exportDesc": "Нажмите Экспорт, чтобы сохранить в PowerPoint или как изображение.",
+    "close": "Закрыть руководство",
+    "prev": "Назад",
+    "next": "Далее",
+    "done": "Готово",
+    "skip": "Пропустить всё"
+  },
+  "toolbar": {
+    "undo": "Отменить (⌘Z)",
+    "redo": "Повторить (⌘⇧Z)",
+    "page": "Стр",
+    "export": "Экспорт",
+    "exporting": "Экспорт...",
+    "exportMenu": "Меню форматов экспорта",
+    "exportTitle": "Экспорт (PowerPoint или PNG)",
+    "exportingAria": "Экспорт...",
+    "exportOptionsAria": "Параметры экспорта"
+  },
+  "exportFormats": {
+    "pptxEditable": {
+      "label": "PowerPoint (редактируемый)",
+      "desc": "Редактируемый текст и фигуры"
+    },
+    "pptxImage": {
+      "label": "PowerPoint (изображение)",
+      "desc": "Изображение с текстовым слоем"
+    },
+    "png": {
+      "label": "PNG изображение",
+      "desc": "Файл изображения высокого качества"
+    }
+  },
+  "ocr": {
+    "label": "OCR",
+    "processing": "Обработка...",
+    "completed": "OCR завершён",
+    "error": "Ошибка OCR",
+    "progress": "OCR выполняется, {{progress}}%",
+    "tooltipCompleted": "OCR завершён. Нажмите, чтобы повторить.",
+    "tooltipError": "OCR не удался. Нажмите для повтора.",
+    "tooltipStart": "Запустить распознавание текста",
+    "controls": "Управление OCR",
+    "selectLanguage": "Выберите язык OCR",
+    "languageShort": {
+      "chi_tra": "ZH-TW",
+      "chi_sim": "ZH",
+      "eng": "EN",
+      "jpn": "JP",
+      "kor": "KR",
+      "fra": "FR",
+      "deu": "DE",
+      "spa": "ES",
+      "ita": "IT",
+      "por": "PT",
+      "rus": "RU",
+      "ara": "AR",
+      "tha": "TH",
+      "vie": "VI"
+    },
+    "languageLabel": {
+      "chi_tra": "Традиционный китайский (chi_tra)",
+      "chi_sim": "Упрощённый китайский (chi_sim)",
+      "eng": "Английский (eng)",
+      "jpn": "Японский (jpn)",
+      "kor": "Корейский (kor)",
+      "fra": "Французский (fra)",
+      "deu": "Немецкий (deu)",
+      "spa": "Испанский (spa)",
+      "ita": "Итальянский (ita)",
+      "por": "Португальский (por)",
+      "rus": "Русский (rus)",
+      "ara": "Арабский (ara)",
+      "tha": "Тайский (tha)",
+      "vie": "Вьетнамский (vie)"
+    }
+  },
+  "sidebar": {
+    "pages": "Страницы",
+    "pageAlt": "Страница {{index}}",
+    "processing": "Обработка...",
+    "recognize": "OCR",
+    "recognizeAll": "OCR все"
+  },
+  "toasts": {
+    "pageOcrDone": "✓ OCR завершён на странице {{page}}",
+    "ocrFailed": "⚠ OCR не удался",
+    "allPagesDone": "OCR завершён на всех страницах",
+    "recognizeAll": "OCR для всех страниц...",
+    "recognizePage": "OCR стр. {{current}}/{{total}}...",
+    "allDone": "✓ OCR завершён ({{count}} стр.)",
+    "needLoadImage": "Сначала загрузите изображение",
+    "waitForService": "Дождитесь инициализации OCR",
+    "confirmReocr": "На этой странице уже есть OCR. Повторить?",
+    "startOcr": "Запуск OCR...",
+    "ocrSuccess": "OCR завершён! Найдено {{count}} областей",
+    "ocrFail": "OCR не удался",
+    "nothingToExport": "Нечего экспортировать",
+    "startExport": "Экспорт...",
+    "pngExportSuccess": "PNG экспорт успешен",
+    "pptxExportSuccess": "PowerPoint экспорт успешен",
+    "exportFail": "Экспорт не удался",
+    "loadProjectsFailed": "Не удалось загрузить проекты",
+    "projectLoaded": "Проект \"{{name}}\" загружен",
+    "loadProjectFailed": "Не удалось загрузить проект",
+    "confirmDeleteProject": "Удалить проект? Отменить нельзя.",
+    "projectDeleted": "Проект удалён",
+    "projectExported": "Проект экспортирован",
+    "projectExportFailed": "Не удалось экспортировать проект",
+    "projectImported": "Проект \"{{name}}\" импортирован",
+    "projectImportFailed": "Импорт не удался. Проверьте формат."
+  },
+  "properties": {
+    "title": "Свойства",
+    "expand": "Развернуть панель свойств",
+    "deleteTextBox": "Удалить текстовый блок",
+    "collapse": "Свернуть панель свойств",
+    "seoGeo": "Двойная оптимизация SEO+GEO",
+    "textContent": "Содержимое текста",
+    "textFormat": "Формат текста",
+    "bold": "Жирный",
+    "italic": "Курсив",
+    "alignLeft": "По левому краю",
+    "alignCenter": "По центру",
+    "alignRight": "По правому краю",
+    "alignTop": "По верхнему краю",
+    "alignMiddle": "По центру по вертикали",
+    "alignBottom": "По нижнему краю",
+    "fontSize": "Размер шрифта",
+    "textColor": "Цвет текста",
+    "fontFamily": "Шрифт",
+    "fontPlaceholder": "Выберите шрифт",
+    "fontInter": "Inter (по умолчанию)",
+    "fontJhengHei": "Microsoft JhengHei",
+    "fontKaiTi": "KaiTi",
+    "fontPMingLiU": "PMingLiU",
+    "pageInfo": "Информация о странице",
+    "currentPage": "Текущая страница",
+    "ocrStatus": "Статус OCR",
+    "ocrDone": "Распознано",
+    "ocrNotDone": "Не распознано",
+    "quickActions": "Быстрые действия",
+    "actionOcrTitle": "Нажмите OCR",
+    "actionOcrDesc": "Извлечь текст из изображений",
+    "actionSelectTitle": "Выберите текстовый блок",
+    "actionSelectDesc": "Нажмите на блок на холсте для редактирования",
+    "actionAdjustTitle": "Настроить свойства",
+    "actionAdjustDesc": "Редактируйте содержание и стиль здесь",
+    "shortcuts": "Горячие клавиши",
+    "undo": "Отменить",
+    "redo": "Повторить",
+    "deleteText": "Удалить текстовый блок",
+    "specialSymbols": "Специальные символы",
+    "tipTitle": "Подсказка",
+    "tipBody": "Выберите текстовый блок на холсте, чтобы редактировать его здесь.",
+    "editableHint": "Можно редактировать",
+    "textPlaceholderEditable": "Редактируйте текст здесь, и он сразу синхронизируется с холстом.",
+    "moreTools": "Dopolnitelnye instrumenty",
+    "multiSelectHint": "Dlya multivybora ispolzuyte Shift / Ctrl / Cmd",
+    "alignStatusNeedTwo": "Vybrano: {{count}}. Dlya vyravnivaniya nuzhno minimum 2 obekta.",
+    "alignStatusAlignOnly": "Vybrano: {{count}}. Vyravnivanie dostupno.",
+    "alignStatusAlignAndDistribute": "Vybrano: {{count}}. Dostupny vyravnivanie i raspredelenie.",
+    "alignmentExpand": "Raskryt instrumenty vyravnivaniya",
+    "alignmentCollapse": "Svernut instrumenty vyravnivaniya",
+    "alignmentCollapsedSummary": "Vybrano: {{count}}",
+    "mixed": "Smeshannoe"
+  },
+  "exportFile": {
+    "author": "OCR Arcade",
+    "title": "Слайды OCR Arcade",
+    "pptxName": "OCR_Arcade_Export_{{mode}}.pptx",
+    "pngName": "ocr-arcade-export.png",
+    "pageName": "ocr-arcade-page-{{index}}.png"
+  },
+  "textOverlay": {
+    "selectedCount": "Выбрано текстовых блоков: {{count}}",
+    "fontSize": "Размер шрифта",
+    "textColor": "Цвет текста",
+    "backgroundColor": "Цвет фона"
+  },
+  "confidence": {
+    "high": "Высокая уверенность ({{percentage}}%) — результат надёжен",
+    "medium": "Средняя уверенность ({{percentage}}%) — рекомендуется проверка",
+    "low": "Низкая уверенность ({{percentage}}%) — нужна проверка вручную",
+    "title": "Сводка уверенности",
+    "average": "Средняя уверенность:",
+    "highLabel": "Высокая ({{count}})",
+    "mediumLabel": "Средняя ({{count}})",
+    "lowLabel": "Низкая ({{count}})"
+  },
+  "undoRedo": {
+    "canvasEdit": "Правка холста #{{index}}",
+    "textEdit": "Правка текста #{{index}}",
+    "justNow": "Только что",
+    "minutesAgo": "{{minutes}} мин назад",
+    "hoursAgo": "{{hours}} ч назад",
+    "history": "История",
+    "historyTitle": "История действий",
+    "latest": "Последнее",
+    "specific": "Конкретное",
+    "undoCanvas": "Отменить правки холста",
+    "undoText": "Отменить правки текста",
+    "toastUndoText": "Правки текста отменены",
+    "toastUndo": "Отмена выполнена",
+    "toastRedoText": "Правки текста повторены",
+    "toastRedo": "Повтор выполнен"
+  },
+  "canvas": {
+    "zoomOut": "Уменьшить (-)",
+    "zoomReset": "Сбросить масштаб (100%)",
+    "zoomIn": "Увеличить (+)",
+    "fitScreen": "По размеру экрана"
+  },
+  "projects": {
+    "title": "Менеджер проектов",
+    "load": "Загрузить проект",
+    "import": "Импортировать проект",
+    "savedTitle": "Сохранённые проекты",
+    "close": "Закрыть",
+    "empty": "Нет сохранённых проектов",
+    "pages": "{{count}} стр.",
+    "loadAction": "Загрузить"
+  },
+  "petsData": {
+    "leopard_cat": "Леопардовая кошка",
+    "black_bear": "Тайваньский чёрный медведь",
+    "salamander": "Тайваньская саламандра",
+    "hare": "Тайваньский заяц",
+    "muntjac": "Мунтжак Ривза"
+  },
+  "ocrPrompt": {
+    "title": "Готовы извлечь текст?",
+    "description": "Нажмите OCR, чтобы распознать текст на этой странице.",
+    "cta": "Запустить OCR",
+    "dismiss": "Закрыть"
+  },
+  "alignment": {
+    "sectionTitle": "Выравнивание",
+    "guides": "Направляющие",
+    "snap": "Привязка",
+    "smartSpacing": "Умные интервалы",
+    "alignLeft": "По левому краю",
+    "alignCenterX": "По центру по горизонтали",
+    "alignRight": "По правому краю",
+    "alignTop": "По верхнему краю",
+    "alignCenterY": "По центру по вертикали",
+    "alignBottom": "По нижнему краю",
+    "distributeHorizontally": "Распределить по горизонтали",
+    "distributeVertically": "Распределить по вертикали",
+    "altToDisableSnap": "Удерживайте Alt для отключения привязки",
+    "smartAlign": "Умное выравнивание"
+  }
+}
