@@ -1,0 +1,14 @@
+# OCR Arcade
+> Turn scanned images and PDFs into editable slides in minutes. Browser-based, privacy-first, and powerful.
+
+OCR Arcade is a web application that bridges the gap between OCR and final presentation. It combines Tesseract.js for extraction with a visual canvas editor, allowing users to correct layout and text before exporting directly to PowerPoint (PPTX) or PNG.
+
+## Documentation
+- [README](https://github.com/winterdrive/OCR-Arcade/blob/main/README.md): Key features, tech stack, and quick start.
+- [Full Context Documentation](https://winterdrive.github.io/OCR-Arcade/llms-full.txt): A single file containing the full documentation for AI context.
+
+## Key Features
+- **Local Processing**: Files stay in your browser.
+- **Visual Editor**: Fix OCR errors in place.
+- **PPTX Export**: Get editable slides, not just text dumps.
+- **Multi-language**: Supports 10+ languages including English and Traditional Chinese.

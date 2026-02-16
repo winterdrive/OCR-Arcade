@@ -1,0 +1,30 @@
+# OCR Arcade - LLMs Context
+
+Project: OCR Arcade
+Repository: https://github.com/winterdrive/OCR-Arcade
+Primary Language: TypeScript
+Framework: React + Vite
+Key Domains: OCR, Canvas Editing, Export
+
+Quick Start:
+- npm install
+- npm run dev
+- npm run build
+
+Main Entry Points:
+- src/app/main.tsx
+- src/app/App.tsx
+
+Primary Components:
+- src/domains/canvas/components/CanvasArea.tsx
+- src/domains/layout/components/PropertiesPanel.tsx
+- src/domains/toolbar/components/SimplifiedToolbar.tsx
+
+OCR Pipeline:
+- src/domains/ocr/services/ocr.ts
+- src/domains/ocr/services/OCRServiceManager.ts
+- src/domains/ocr/services/imageAnalysisFacade.ts
+
+Notes:
+- This project is browser-first and supports GitHub Pages deployment.
+- Route strategy uses HashRouter for static hosting compatibility.
