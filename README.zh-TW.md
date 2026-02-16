@@ -10,7 +10,7 @@
 
 [![OCR Arcade Hero](./public/og-ocr-arcade.png)](https://winterdrive.github.io/OCR-Arcade/)
 
-[2 分鐘本機啟動](#quick-start) · [English README](README.md) · [已修正問題](CHANGELOG.md)
+[2 分鐘本機啟動](#quick-start) · [網站](https://winterdrive.github.io/OCR-Arcade/) · [GitHub Repo](https://github.com/winterdrive/OCR-Arcade) · [English README](README.md) · [已修正問題](CHANGELOG.md)
 
 ---
 

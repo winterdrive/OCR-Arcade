@@ -36,7 +36,7 @@ export function ThemeToggle() {
                     className={cn(
                         "absolute inset-0 transition-all duration-300",
                         theme === 'dark'
-                            ? "rotate-0 scale-100 opacity-100 text-blue-400"
+                            ? "rotate-0 scale-100 opacity-100 text-white/50"
                             : "-rotate-90 scale-0 opacity-0 text-white/50"
                     )}
                 />

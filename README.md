@@ -10,7 +10,7 @@ I built **OCR Arcade** to solve this specific frustration.
 
 [![OCR Arcade Hero](./public/og-ocr-arcade.png)](https://winterdrive.github.io/OCR-Arcade/)
 
-[Run locally in 2 minutes](#quick-start-developer) · [繁體中文版 README](README.zh-TW.md) · [Changelog](CHANGELOG.md)
+[Run locally in 2 minutes](#quick-start-developer) · [Website](https://winterdrive.github.io/OCR-Arcade/) · [GitHub Repo](https://github.com/winterdrive/OCR-Arcade) · [繁體中文版 README](README.zh-TW.md) · [Changelog](CHANGELOG.md)
 
 ---
 
