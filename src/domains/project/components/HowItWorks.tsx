@@ -1,5 +1,6 @@
 import { useTranslation } from 'react-i18next'
 import { useEffect, useState } from 'react'
+import { createPortal } from 'react-dom'
 import { assetUrl } from '@/shared/lib/utils'
 
 export function HowItWorks() {
@@ -95,7 +96,7 @@ export function HowItWorks() {
                     </div>
                 </div>
             </div>
-            {previewSrc && (
+            {previewSrc && createPortal(
                 <div
                     className="fixed inset-0 z-50 flex items-center justify-center bg-black/60 backdrop-blur-sm p-4"
                     role="dialog"
@@ -103,23 +104,26 @@ export function HowItWorks() {
                     onClick={() => setPreviewSrc(null)}
                 >
                     <div
-                        className="relative max-h-[90vh] w-full max-w-4xl overflow-hidden rounded-2xl border border-white/10 bg-white dark:bg-slate-950"
+                        className="relative max-h-[90vh] w-[95vw] md:w-auto md:max-w-4xl lg:max-w-6xl rounded-2xl border border-white/10 bg-white dark:bg-slate-950 shadow-2xl flex flex-col p-2"
                         onClick={(event) => event.stopPropagation()}
                     >
                         <button
                             type="button"
                             onClick={() => setPreviewSrc(null)}
-                            className="absolute right-3 top-3 z-10 rounded-full border border-white/10 bg-black/60 px-3 py-1 text-xs uppercase tracking-widest text-white"
+                            className="absolute right-3 top-3 z-10 rounded-full border border-white/10 bg-black/60 px-3 py-1 text-[10px] sm:text-xs uppercase tracking-widest text-white backdrop-blur-sm"
                         >
                             {t('projects.close')}
                         </button>
-                        <img
-                            src={previewSrc}
-                            alt={t('resultPreview.title')}
-                            className="h-full w-full object-contain"
-                        />
+                        <div className="overflow-auto w-full max-h-[85vh] custom-scrollbar flex items-start justify-center">
+                            <img
+                                src={previewSrc}
+                                alt={t('resultPreview.title')}
+                                className="w-auto h-auto min-w-full md:max-h-[80vh] md:max-w-full object-contain pixelated"
+                            />
+                        </div>
                     </div>
-                </div>
+                </div>,
+                document.body
             )}
         </section>
     )

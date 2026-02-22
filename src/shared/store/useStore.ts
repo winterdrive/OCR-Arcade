@@ -74,6 +74,7 @@ interface AppState {
     toggleSidebar: () => void
     isPropertiesPanelCollapsed: boolean
     togglePropertiesPanel: () => void
+    setPropertiesPanelCollapsed: (collapsed: boolean) => void
     setZoom: (zoom: number) => void
     setOcrLanguage: (lang: OCRLanguage) => void
     setOcrPromptDismissed: (dismissed: boolean) => void
@@ -232,6 +233,7 @@ export const useStore = create<AppState>((set, get) => ({
 
     isPropertiesPanelCollapsed: false,
     togglePropertiesPanel: () => set((state) => ({ isPropertiesPanelCollapsed: !state.isPropertiesPanelCollapsed })),
+    setPropertiesPanelCollapsed: (collapsed) => set({ isPropertiesPanelCollapsed: collapsed }),
 
     setZoom: (zoom) => set({ zoom }),
     setOcrLanguage: (lang) => set({ ocrLanguage: lang }),
@@ -252,6 +254,7 @@ export const useStore = create<AppState>((set, get) => ({
         ocrProgress: 0,
         selectedObjectCount: 0,
         pendingPropertyPatch: null,
+        isPropertiesPanelCollapsed: false,
 
         textOverlayEnabled: true,
         textBoxes: [],

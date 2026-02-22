@@ -254,7 +254,8 @@
     "alignmentExpand": "Expand alignment tools",
     "alignmentCollapse": "Collapse alignment tools",
     "alignmentCollapsedSummary": "Selected {{count}} items",
-    "mixed": "Mixed"
+    "mixed": "Mixed",
+    "mobileHint": "If the layout is complex, consider using a computer for full editing capabilities."
   },
   "exportFile": {
     "author": "OCR Arcade",

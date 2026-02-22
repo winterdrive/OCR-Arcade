@@ -775,12 +775,21 @@ export function useCanvas(containerWidth: number = 0, containerHeight: number = 
             deleteActiveTextObject()
         }
 
+        const handleDeselectAll = () => {
+            canvas.discardActiveObject()
+            canvas.requestRenderAll()
+            setSelectedObjectCount(0)
+            setActiveObjectProperties(null)
+        }
+
         window.addEventListener('keydown', handleKeyDown)
         window.addEventListener('canvas:deleteActiveObject', handleDeleteEvent)
+        window.addEventListener('canvas:deselectAll', handleDeselectAll)
 
         return () => {
             window.removeEventListener('keydown', handleKeyDown)
             window.removeEventListener('canvas:deleteActiveObject', handleDeleteEvent)
+            window.removeEventListener('canvas:deselectAll', handleDeselectAll)
         }
     }, [setActiveObjectProperties, setSelectedObjectCount])
 
@@ -1009,12 +1018,12 @@ export function useCanvas(containerWidth: number = 0, containerHeight: number = 
                 width: targetWidth,
                 left: adjustedLeft
             })
-            ; (text as any).initDimensions?.()
+                ; (text as any).initDimensions?.()
             text.setCoords()
         }
 
-            // Initialize minHeight based on initial height to preserve user-visible box height
-            ; (text as any).minHeight = text.height || (rect.height || 0)
+        // Initialize minHeight based on initial height to preserve user-visible box height
+        ; (text as any).minHeight = text.height || (rect.height || 0)
 
         // Attach standard controls & scaling behavior
         attachTextObjectBehavior(canvas, text)

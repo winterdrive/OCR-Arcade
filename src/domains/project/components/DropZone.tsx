@@ -85,8 +85,13 @@ export function DropZone({ onFileSelected, inputRef: externalInputRef, showCTA =
                     <Upload size={48} />
                 </div>
 
-                <p className="text-xl font-medium text-slate-700 dark:text-slate-200 mb-3">
-                    {t('dropzone.action')}
+                <p className="text-xl font-medium text-slate-700 dark:text-slate-200 mb-3 text-center leading-relaxed px-2">
+                    {t('dropzone.action').split('|').map((part, index, array) => (
+                        <React.Fragment key={index}>
+                            {part}
+                            {index < array.length - 1 && <br className="block sm:hidden" />}
+                        </React.Fragment>
+                    ))}
                 </p>
                 {showCTA && (
                     <button
@@ -95,17 +100,19 @@ export function DropZone({ onFileSelected, inputRef: externalInputRef, showCTA =
                             e.stopPropagation()
                             inputRef.current?.click()
                         }}
-                        className="mb-3 px-4 py-2 bg-primary text-primary-foreground border-2 border-border shadow-[4px_4px_0_rgba(2,6,23,0.45)] text-[10px] uppercase tracking-widest"
+                        className="mb-3 px-6 py-3 md:py-4 md:px-8 bg-primary text-primary-foreground border-2 border-border shadow-[4px_4px_0_rgba(2,6,23,0.45)] text-xs md:text-sm font-semibold uppercase tracking-widest"
                     >
                         {t('dropzone.cta')}
                     </button>
                 )}
-                <p className="text-slate-500 dark:text-slate-400 text-sm flex items-center gap-2">
-                    <FileText size={14} /> PDF
-                    <span className="w-1 h-1 rounded-full bg-slate-400 dark:bg-slate-600" />
-                    <ImageIcon size={14} /> PNG / JPG
-                    <span className="w-1 h-1 rounded-full bg-slate-400 dark:bg-slate-600" />
-                    <span className="px-1.5 py-0.5 rounded border border-slate-300 dark:border-white/20 text-xs font-mono">Ctrl+V</span>
+                <p className="text-slate-500 dark:text-slate-400 text-sm flex items-center justify-center gap-2 flex-wrap">
+                    <span className="flex items-center gap-2 whitespace-nowrap">
+                        <FileText size={14} /> PDF
+                        <span className="w-1 h-1 rounded-full bg-slate-400 dark:bg-slate-600" />
+                        <ImageIcon size={14} /> PNG / JPG
+                    </span>
+                    <span className="hidden sm:inline-flex w-1 h-1 rounded-full bg-slate-400 dark:bg-slate-600" />
+                    <span className="px-1.5 py-0.5 rounded border border-slate-300 dark:border-white/20 text-xs font-mono whitespace-nowrap">Ctrl+V</span>
                 </p>
 
                 <input
@@ -117,8 +124,13 @@ export function DropZone({ onFileSelected, inputRef: externalInputRef, showCTA =
                 />
             </div>
 
-            <footer className="mt-4 text-sm text-slate-600 dark:text-slate-300 font-medium text-center">
-                {t('dropzone.footer')}
+            <footer className="mt-4 text-sm text-slate-600 dark:text-slate-300 font-medium text-center px-4">
+                {t('dropzone.footer').split('|').map((part, index, array) => (
+                    <React.Fragment key={index}>
+                        {part}
+                        {index < array.length - 1 && <br className="block sm:hidden" />}
+                    </React.Fragment>
+                ))}
             </footer>
         </div>
     )

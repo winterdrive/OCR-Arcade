@@ -1,7 +1,7 @@
 import { useStore, type ActiveObjectMixedKey, type ActiveObjectProps } from '@/shared/store/useStore'
 import { Button } from '@/shared/ui/button'
 import { Slider } from '@/shared/ui/slider'
-import { Type, Palette, AlignLeft, Bold, Italic, AlignCenter, AlignRight, PanelRightClose, PanelRight, AlignVerticalJustifyStart, AlignVerticalJustifyCenter, AlignVerticalJustifyEnd, Trash2, CheckCircle2, AlertTriangle, ExternalLink, PaintRoller, ChevronDown, AlignHorizontalDistributeCenter, AlignVerticalDistributeCenter } from 'lucide-react'
+import { Type, Palette, AlignLeft, Bold, Italic, AlignCenter, AlignRight, PanelRightClose, PanelBottomClose, PanelRight, AlignVerticalJustifyStart, AlignVerticalJustifyCenter, AlignVerticalJustifyEnd, Trash2, CheckCircle2, AlertTriangle, ExternalLink, PaintRoller, ChevronDown, AlignHorizontalDistributeCenter, AlignVerticalDistributeCenter } from 'lucide-react'
 import { useState, useEffect, useRef } from 'react'
 import { useResponsiveLayout } from '@/domains/layout/hooks/useResponsiveLayout'
 import { cn } from '@/shared/lib/utils'
@@ -21,6 +21,7 @@ export function PropertiesPanel() {
         updateActiveObjectProperty,
         isPropertiesPanelCollapsed,
         togglePropertiesPanel,
+        setPropertiesPanelCollapsed,
         isFormatPainterActive,
         setIsFormatPainterActive,
         setCopiedStyle,
@@ -66,10 +67,10 @@ export function PropertiesPanel() {
 
     // Auto-collapse on mobile/tablet instead of hiding completely
     useEffect(() => {
-        if ((isMobile || isTablet) && !isPropertiesPanelCollapsed) {
-            togglePropertiesPanel()
+        if (isMobile || isTablet) {
+            setPropertiesPanelCollapsed(true)
         }
-    }, [isMobile, isTablet])
+    }, [isMobile, isTablet, setPropertiesPanelCollapsed])
 
     useEffect(() => {
         if (pulseTimerRef.current) {
@@ -119,8 +120,8 @@ export function PropertiesPanel() {
         setIsAlignmentExpanded(selectedObjectCount >= 2)
     }, [selectedObjectCount])
 
-    // Show collapsed state
-    if (isPropertiesPanelCollapsed) {
+    // Show collapsed state (Desktop only to allow mobile bottom sheet animation)
+    if (isPropertiesPanelCollapsed && !isMobile && !isTablet) {
         return (
             <div className="glass-panel border-l border-white/5 flex flex-col h-full shrink-0 z-10 w-10 transition-all duration-300">
                 <button
@@ -169,13 +170,29 @@ export function PropertiesPanel() {
 
     return (
         <div className={cn(
-            "glass-panel border-l border-slate-200 dark:border-white/5 flex flex-col h-full shrink-0 z-10 transition-all duration-300",
-            // Responsive width
-            "w-[260px]"
+            "glass-panel flex flex-col shrink-0 z-40 transition-all duration-300 ease-out",
+            (isMobile || isTablet)
+                ? cn(
+                    "fixed left-0 right-0 w-full h-[45vh] rounded-t-2xl border-t border-slate-200 dark:border-white/10 shadow-[0_-10px_40px_rgba(0,0,0,0.15)] dark:shadow-[0_-5px_30px_rgba(0,0,0,0.5)] bg-slate-50/95 dark:bg-slate-950/95 backdrop-blur-xl bottom-0",
+                    isPropertiesPanelCollapsed ? "translate-y-[calc(100%-28px)] opacity-90" : "translate-y-0 opacity-100"
+                )
+                : "border-l border-slate-200 dark:border-white/5 h-full w-[260px]"
         )}>
+            {/* Bottom Sheet Drag Handle */}
+            {(isMobile || isTablet) && (
+                <div
+                    className="absolute top-0 left-0 right-0 h-7 flex items-center justify-center cursor-pointer pointer-events-auto z-10 hover:bg-black/5 dark:hover:bg-white/5 transition-colors rounded-t-2xl"
+                    onClick={togglePropertiesPanel}
+                    title={isPropertiesPanelCollapsed ? t('menu.open', '開啟') : t('menu.close', '收合')}
+                >
+                    <div className="w-12 h-1.5 rounded-full bg-slate-300 dark:bg-slate-600/80" />
+                </div>
+            )}
+
             {/* Header */}
             <div className={cn(
-                "border-b border-slate-200 dark:border-stranger-red/30 flex items-center justify-between px-3 bg-white dark:bg-black/20 h-14"
+                "border-b border-slate-200 dark:border-stranger-red/30 flex items-center justify-between px-3 shrink-0",
+                (isMobile || isTablet) ? "h-14 pt-4 bg-transparent border-none" : "h-14 bg-white dark:bg-black/20"
             )}>
                 <span className="font-medium text-sm text-slate-900 dark:text-stranger-red dark:font-stranger dark:tracking-widest dark:text-shadow-stranger-sm dark:uppercase animate-stranger-flicker">{t('properties.title')}</span>
                 <div className="flex items-center gap-2">
@@ -216,7 +233,7 @@ export function PropertiesPanel() {
                         className="p-2 rounded-lg text-muted-foreground hover:text-white hover:bg-white/10 transition-colors"
                         title={t('properties.collapse')}
                     >
-                        <PanelRightClose size={16} />
+                        {(isMobile || isTablet) ? <PanelBottomClose size={16} /> : <PanelRightClose size={16} />}
                     </button>
                 </div>
             </div>
@@ -224,13 +241,19 @@ export function PropertiesPanel() {
             {/* Content Area */}
             {activeObjectProperties ? (
                 <>
-
-
                     <div className={cn(
                         "flex-1 overflow-y-auto space-y-4 custom-scrollbar",
                         // Responsive padding
-                        isMobile ? "p-3 space-y-4" : "p-4 space-y-4"
+                        isMobile ? "p-3 space-y-4 pb-8" : "p-4 space-y-4"
                     )}>
+                        {/* Mobile only hint to edit on desktop if complex - Always visible */}
+                        {(isMobile || isTablet) && (
+                            <div className="flex items-start gap-2 p-2 rounded bg-amber-50 dark:bg-amber-500/10 border border-amber-200 dark:border-amber-500/20 text-xs text-amber-800 dark:text-amber-200/90">
+                                <AlertTriangle size={14} className="shrink-0 mt-0.5" />
+                                <span>{t('properties.mobileHint')}</span>
+                            </div>
+                        )}
+
                         {/* Text Content */}
                         <div className="space-y-3">
                             <div className="flex items-center justify-between gap-2">
@@ -259,6 +282,7 @@ export function PropertiesPanel() {
                                     isMixed('text') && "border-sky-300 dark:border-sky-500/40"
                                 )}
                             />
+
                             <div className="pt-2 border-t border-slate-200 dark:border-white/10">
                                 <details className="group rounded-lg border border-slate-200 dark:border-white/10 bg-slate-50/70 dark:bg-white/5">
                                     <summary className="list-none cursor-pointer px-3 py-2 flex items-center justify-between text-xs font-medium text-slate-600 dark:text-white/70">
@@ -283,8 +307,8 @@ export function PropertiesPanel() {
                         <div className="space-y-3">
                             <div className="flex items-center justify-between gap-2 text-xs font-semibold text-muted-foreground uppercase tracking-wider">
                                 <div className="flex items-center gap-2">
-                                <Type size={14} />
-                                <span>{t('properties.textFormat')}</span>
+                                    <Type size={14} />
+                                    <span>{t('properties.textFormat')}</span>
                                 </div>
                                 {(isMixed('fontWeight') || isMixed('fontStyle') || isMixed('textAlign') || isMixed('verticalAlign')) && (
                                     <span className="inline-flex items-center rounded-full bg-sky-100 text-sky-700 dark:bg-sky-500/15 dark:text-sky-300 text-[10px] font-medium px-2 py-0.5">
@@ -652,7 +676,15 @@ export function PropertiesPanel() {
                     </div>
                 </>
             ) : (
-                <div className="flex-1 overflow-y-auto p-4 space-y-4 custom-scrollbar">
+                <div className={cn("flex-1 overflow-y-auto p-4 space-y-4 custom-scrollbar", isMobile && "pb-8")}>
+                    {/* Mobile only hint to edit on desktop if complex - Always visible */}
+                    {(isMobile || isTablet) && (
+                        <div className="flex items-start gap-2 p-2 rounded bg-amber-50 dark:bg-amber-500/10 border border-amber-200 dark:border-amber-500/20 text-xs text-amber-800 dark:text-amber-200/90">
+                            <AlertTriangle size={14} className="shrink-0 mt-0.5" />
+                            <span>{t('properties.mobileHint')}</span>
+                        </div>
+                    )}
+
                     {/* Page Info Section */}
                     <div className="space-y-3">
                         <div className="flex items-center gap-2 text-xs font-semibold text-muted-foreground uppercase tracking-wider">
@@ -749,7 +781,7 @@ export function PropertiesPanel() {
                 </div>
             )
             }
-        </div >
+        </div>
     )
 }
 

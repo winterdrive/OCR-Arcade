@@ -5,6 +5,7 @@ import { LoadingOverlay } from '@/shared/components/LoadingOverlay'
 import { ToastContainer } from '@/shared/components/ToastContainer'
 import { ThemeToggle } from '@/shared/components/ThemeToggle'
 import { SimplifiedToolbar } from '@/domains/toolbar/components'
+import { MobileHeaderMenu } from '@/shared/components/MobileHeaderMenu'
 import { Sidebar } from '@/domains/layout/components/Sidebar'
 import { CanvasArea } from '@/domains/canvas/components/CanvasArea'
 import { PropertiesPanel } from '@/domains/layout/components/PropertiesPanel'
@@ -126,13 +127,14 @@ function UploadPage({ showPets }: { showPets: boolean }) {
     }
 
     return (
-        <div className="relative flex-1 flex flex-col items-center p-6 pt-10 pb-10 animate-fade-in-up overflow-y-auto min-h-0 w-full">
+        <div className="relative flex-1 flex flex-col items-center p-6 pt-10 pb-10 animate-fade-in-up overflow-y-auto overflow-x-hidden min-h-0 w-full">
             <DesktopPets enabled={showPets} variant="subtle" edgeCorridor={false} transparencyMode="zone-based" />
             <div className="w-full max-w-4xl space-y-8">
                 {/* Header Section */}
                 <div className="flex items-center justify-between">
                     <ArcadeLogo linkTo="/" size="lg" className="hover:opacity-80 transition-opacity" />
-                    <div className="flex items-center gap-3">
+                    {/* Desktop Header Actions (hidden on mobile) */}
+                    <div className="hidden sm:flex items-center gap-3">
                         <a
                             href={GITHUB_REPO_URL}
                             target="_blank"
@@ -149,16 +151,19 @@ function UploadPage({ showPets }: { showPets: boolean }) {
                         <ThemeToggle />
                         <LanguageToggle variant="compact" />
                     </div>
+
+                    {/* Mobile Menu Action (hidden on desktop) */}
+                    <MobileHeaderMenu />
                 </div>
 
                 {/* Drop Zone Area */}
                 <div className="drop-zone glass-card rounded-2xl p-6 min-h-[400px] flex flex-col">
                     <div className="grid grid-cols-1 lg:grid-cols-2 gap-8 items-center">
                         <div className="text-left space-y-6">
-                            <h1 className="text-4xl sm:text-5xl font-bold tracking-tight">
+                            <h1 className="text-2xl sm:text-5xl font-bold tracking-tight break-words">
                                 <span className="text-gradient drop-shadow-2xl">{t('dropzone.heroTitle')}</span>
                             </h1>
-                            <p className="text-muted-foreground dark:text-white text-lg">{t('dropzone.heroSubtitle')}</p>
+                            <p className="text-muted-foreground dark:text-white text-base sm:text-lg">{t('dropzone.heroSubtitle')}</p>
                             <p className="text-sm leading-6 text-slate-500 dark:text-slate-400">{t('dropzone.heroHint')}</p>
                             <div className="flex items-start flex-col gap-3 pt-2">
                                 <button

@@ -23,8 +23,8 @@
     "heroSubtitle": "圖片一鍵變投影片",
     "heroHint": "OCR 技術把圖片變成文字，不用寫程式",
     "cta": "上傳圖片",
-    "action": "拖曳圖片檔案到此區域，或點擊選擇檔案",
-    "footer": "全程在本機處理，檔案不會離開你的瀏覽器。",
+    "action": "拖曳圖片檔案到此區，|或點擊選擇檔案",
+    "footer": "全程在本機處理，|檔案不會離開你的瀏覽器。",
     "onlyPdfImage": "只支援 PDF 與圖片檔案。"
   },
   "howItWorks": {
@@ -254,7 +254,8 @@
     "alignmentExpand": "展開對齊工具",
     "alignmentCollapse": "收合對齊工具",
     "alignmentCollapsedSummary": "已選 {{count}} 個",
-    "mixed": "混合"
+    "mixed": "混合",
+    "mobileHint": "如果排版複雜，建議使用電腦版獲得完整的編輯體驗。"
   },
   "exportFile": {
     "author": "OCR Arcade",

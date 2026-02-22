@@ -23,8 +23,8 @@
     "heroSubtitle": "图片一键变投影片",
     "heroHint": "OCR 技术把图片变成文字，不用写程序",
     "cta": "上传图片",
-    "action": "拖拽图片文件到此区域，或点击选择文件",
-    "footer": "全程在本机处理，文件不会离开你的浏览器。",
+    "action": "拖拽图片文件到此区，|或点击选择文件",
+    "footer": "全程在本机处理，|文件不会离开你的浏览器。",
     "onlyPdfImage": "仅支持 PDF 与图片文件。"
   },
   "howItWorks": {
@@ -253,7 +253,8 @@
     "alignmentExpand": "展开对齐工具",
     "alignmentCollapse": "收起对齐工具",
     "alignmentCollapsedSummary": "已选 {{count}} 个",
-    "mixed": "混合"
+    "mixed": "混合",
+    "mobileHint": "如果排版复杂，建议使用电脑版以获得完整的编辑体验。"
   },
   "exportFile": {
     "author": "OCR Arcade",

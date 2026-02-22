@@ -98,7 +98,7 @@ export function Sidebar() {
         <div className={cn(
             "h-full flex flex-col glass-panel shrink-0 transition-all duration-300 z-10 bg-white/40 dark:bg-white/5",
             // Responsive width - full width in overlay mode, normal width otherwise
-            isOverlayMode ? "w-[280px] shadow-2xl" : "w-[180px]"
+            isOverlayMode ? "w-[280px] shadow-2xl" : "w-full"
         )}>
             {/* Header with close button for overlay mode */}
             <div className="p-4 border-b border-slate-200 dark:border-stranger-red/30 flex items-center justify-between">
@@ -134,16 +134,16 @@ export function Sidebar() {
                             <div
                                 onClick={() => setCurrentPageIndex(i)}
                                 className={cn(
-                                    "relative aspect-video rounded-lg cursor-pointer transition-all duration-300 border-2 group",
+                                    "relative aspect-video rounded-lg cursor-pointer transition-all duration-300 border-2 group mx-1",
                                     i === currentPageIndex
-                                        ? "border-primary/60 ring-1 ring-primary/20 shadow-[0_0_8px_rgba(249,115,22,0.18)] scale-[1.02] z-10"
+                                        ? "border-primary/60 ring-2 ring-primary/20 shadow-[0_0_8px_rgba(249,115,22,0.18)] z-10"
                                         : "border-transparent hover:border-slate-300/70 dark:hover:border-white/15 opacity-60 hover:opacity-100"
                                 )}
                             >
                                 <img
                                     src={page.imageData}
                                     alt={t('sidebar.pageAlt', { index: i + 1 })}
-                                    className="w-full h-full object-cover rounded-md"
+                                    className="w-full h-full object-contain rounded-md"
                                 />
 
                                 {/* Page Number */}

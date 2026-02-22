@@ -147,7 +147,7 @@ export function CanvasArea() {
             <div
                 ref={containerRef}
                 className={cn(
-                    "absolute inset-0 overflow-auto grid place-items-center",
+                    "absolute inset-0 overflow-auto flex",
                     // Responsive padding adjustments
                     isMobile ? "p-4" : isTablet ? "p-6" : "p-8",
                     // Cursor logic:
@@ -158,6 +158,12 @@ export function CanvasArea() {
                     isPanMode && "select-none" // Prevent text selection while panning
                 )}
                 id="canvas-container"
+                onClick={(e) => {
+                    // Only trigger if clicking exactly on the grey background padding, not the canvas or its controls
+                    if (e.target === e.currentTarget) {
+                        window.dispatchEvent(new Event('canvas:deselectAll'))
+                    }
+                }}
                 onMouseDown={(e) => {
                     if (!isPanMode) return
                     const target = e.target as HTMLElement | null
@@ -181,7 +187,7 @@ export function CanvasArea() {
                 {/* Canvas wrapper - stable sizing with pointer-events to prevent layout feedback */}
                 {/* When in Pan Mode, we disable pointer events on the canvas so the click hits the container instead */}
                 <div className={cn(
-                    "relative shadow-2xl rounded-lg overflow-hidden ring-1 ring-white/10 w-max h-max",
+                    "relative shadow-2xl rounded-lg overflow-hidden ring-1 ring-white/10 w-max h-max m-auto flex-shrink-0",
                     isPanMode && "pointer-events-none"
                 )}>
                     <canvas ref={canvasRef} style={{ display: 'block' }} />
@@ -203,13 +209,13 @@ export function CanvasArea() {
                 theme === 'light'
                     ? 'bg-white border-slate-400'
                     : 'bg-black/85 border-white/30',
-                // Responsive positioning - ensure it's at the bottom-right
+                // Responsive positioning - ensure it's centered on mobile to avoid pet button, bottom-right on desktop
                 isMobile
-                    ? "bottom-4 right-4"
+                    ? "bottom-4 left-1/2 -translate-x-1/2"
                     : "bottom-8 right-6"
             )}>
                 <span className={cn(
-                    "px-2 text-[10px] uppercase tracking-widest",
+                    "px-2 text-[10px] uppercase tracking-widest hidden sm:block",
                     theme === 'light' ? 'text-slate-600' : 'text-white/80'
                 )}>
                     Zoom
@@ -217,7 +223,7 @@ export function CanvasArea() {
                 <ZoomBtn icon={ZoomOut} onClick={handleZoomOut} title={t('canvas.zoomOut')} />
                 <div
                     className={cn(
-                        "w-14 text-center text-xs font-mono cursor-pointer select-none hover:text-primary transition-colors flex items-center justify-center",
+                        "w-14 text-center text-xs font-mono cursor-pointer select-none hover:text-primary transition-colors items-center justify-center hidden sm:flex",
                         theme === 'light' ? 'text-slate-900' : 'text-white'
                     )}
                     onClick={handleReset}
@@ -227,12 +233,12 @@ export function CanvasArea() {
                 </div>
                 <ZoomBtn icon={ZoomIn} onClick={handleZoomIn} title={t('canvas.zoomIn')} />
                 <div className={cn(
-                    "w-px h-4 mx-0.5",
+                    "w-px h-4 mx-0.5 hidden sm:block",
                     theme === 'light' ? 'bg-slate-300' : 'bg-white/20'
                 )} />
                 <ZoomBtn icon={RotateCcw} onClick={handleReset} title={t('canvas.fitScreen')} />
                 <div className={cn(
-                    "w-px h-4 mx-0.5",
+                    "w-px h-4 mx-0.5 hidden sm:block",
                     theme === 'light' ? 'bg-slate-300' : 'bg-white/20'
                 )} />
                 <ZoomBtn
