@@ -1,4 +1,4 @@
-import { createWorker } from 'tesseract.js'
+import { createWorker, PSM } from 'tesseract.js'
 import type { Worker } from 'tesseract.js'
 import { preprocessImage } from '@/shared/lib/imagePreprocessing'
 import { FoundationMorphology } from '@/domains/ocr/foundations/FoundationMorphology'
@@ -114,10 +114,13 @@ export const ocrService = {
             // Tesseract.js v7: 需要明確指定 output 選項才會返回 blocks 結構
             // recognize(image, options, output, jobId)
             // 使用 PSM 6 (假設為統一的文字區塊) 來提升辨識品質
-            const result = await w.recognize(processedImage, {
-                tessedit_pageseg_mode: '6',  // Assume a single uniform block of text
+            // Note: tessedit_pageseg_mode 屬於 WorkerParams，必須透過 setParameters() 設定
+            // 使用 PSM enum，不可直接使用字串
+            await w.setParameters({
+                tessedit_pageseg_mode: PSM.SINGLE_BLOCK,  // Assume a single uniform block of text
                 preserve_interword_spaces: '1',
-            }, { blocks: true })
+            });
+            const result = await w.recognize(processedImage, {}, { blocks: true })
             const data = result.data as any;
             return this.processOutput(data, processedImage, debugSteps, segmentationMethod, onDebugImage)
         } catch (err: any) {
