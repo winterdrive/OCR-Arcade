@@ -37,20 +37,33 @@ export function useTextOverlay() {
 
   // Convert OCR data to text boxes
   const initializeFromOCR = useCallback((ocrData: OCRWord[]) => {
-    const boxes: TextBox[] = ocrData.map((word, index) => ({
-      ...word,
-      id: word.id || `text-${currentPageIndex}-${index}`,
-      editable: true,
-      selected: false,
-      formatting: {
-        fontSize: 14,
-        fontFamily: 'Arial, sans-serif',
-        color: '#000000',
-        backgroundColor: 'rgba(255, 255, 255, 0.8)',
-        bold: false,
-        italic: false
+    const boxes: TextBox[] = ocrData.map((word, index) => {
+      // Auto-fit font size based on bounding box height
+      const boxHeight = word.bbox.y1 - word.bbox.y0
+      const boxWidth = word.bbox.x1 - word.bbox.x0
+      const textLen = (word.text || '').length
+      // Estimate: for CJK each char ≈ 1em, for Latin average ≈ 0.6em
+      const hasCJK = /[\u4e00-\u9fff\u3400-\u4dbf\u3040-\u309f\u30a0-\u30ff\uac00-\ud7af]/.test(word.text || '')
+      const estimatedCharWidth = hasCJK ? 1.0 : 0.6
+      const widthBasedSize = textLen > 0 ? boxWidth / (textLen * estimatedCharWidth) : boxHeight * 0.7
+      const heightBasedSize = boxHeight * 0.8
+      const autoFontSize = Math.max(8, Math.min(Math.round(Math.min(widthBasedSize, heightBasedSize)), 72))
+
+      return {
+        ...word,
+        id: word.id || `text-${currentPageIndex}-${index}`,
+        editable: true,
+        selected: false,
+        formatting: {
+          fontSize: autoFontSize,
+          fontFamily: 'Arial, sans-serif',
+          color: '#000000',
+          backgroundColor: 'rgba(255, 255, 255, 0.8)',
+          bold: false,
+          italic: false
+        }
       }
-    }))
+    })
     setTextBoxes(boxes)
   }, [currentPageIndex, setTextBoxes])
 

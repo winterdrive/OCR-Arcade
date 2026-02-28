@@ -435,13 +435,15 @@ function TextBoxComponent({
         />
       ) : (
         <div
-          className="w-full h-full flex items-center justify-center text-center p-1 cursor-move"
+          className="w-full h-full flex items-center justify-center text-center p-1 cursor-move overflow-hidden"
           style={{
             fontSize: box.formatting.fontSize,
             fontFamily: box.formatting.fontFamily,
             color: box.formatting.color,
             fontWeight: box.formatting.bold ? 'bold' : 'normal',
-            fontStyle: box.formatting.italic ? 'italic' : 'normal'
+            fontStyle: box.formatting.italic ? 'italic' : 'normal',
+            lineHeight: 1.2,
+            wordBreak: 'break-all'
           }}
         >
           {box.text}

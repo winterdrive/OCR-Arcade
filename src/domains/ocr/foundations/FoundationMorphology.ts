@@ -21,22 +21,25 @@ export class FoundationMorphology implements IOcrFoundation {
         const data = imageData.data;
 
         // 1. 二值化 (Binarization)
-        // 簡單的閾值處理，假設文字是深色
+        // 使用 Otsu's 方法自動確定閾值，而非固定 128
         const binaryMap = new Uint8Array(width * height);
+        const threshold = this.otsuThreshold(data, width * height);
+
         for (let i = 0; i < width * height; i++) {
             const r = data[i * 4];
             const g = data[i * 4 + 1];
             const b = data[i * 4 + 2];
-            // Luminance
             const gray = 0.299 * r + 0.587 * g + 0.114 * b;
-            binaryMap[i] = gray < 128 ? 1 : 0; // 1 = Foreground (Text)
+            binaryMap[i] = gray < threshold ? 1 : 0; // 1 = Foreground (Text)
         }
 
         // 2. 膨脹 (Dilation)
-        // 使用 5x5 若 kernel，甚至更大，來確保字與字黏合
-        // 為了效能，我們做兩次 pass: 水平膨脹 + 垂直膨脹
-        const kernelX = 10; // 水平黏合力度大一點
-        const kernelY = 3;  // 垂直黏合力度小一點，避免黏行
+        // 根據圖片解析度自適應核大小
+        // 標準公式: kernelSize 正比於解析度，除以一個基準值
+        const baseResolution = 1000; // 基準解析度
+        const scaleFactor = Math.max(width, height) / baseResolution;
+        const kernelX = Math.max(5, Math.min(20, Math.round(8 * scaleFactor))); // 水平黏合
+        const kernelY = Math.max(2, Math.min(6, Math.round(2 * scaleFactor)));  // 垂直黏合
 
         const dilatedMap = this.dilate(binaryMap, width, height, kernelX, kernelY);
 
@@ -134,5 +137,54 @@ export class FoundationMorphology implements IOcrFoundation {
         }
 
         return boxes;
+    }
+
+    /**
+     * Otsu's Method: 自動計算最佳二值化閾值
+     * 找到使前景和背景的類間方差最大化的閾值
+     */
+    private otsuThreshold(data: Uint8ClampedArray, pixelCount: number): number {
+        // 建立灰度直方圖
+        const histogram = new Array(256).fill(0);
+        for (let i = 0; i < pixelCount; i++) {
+            const r = data[i * 4];
+            const g = data[i * 4 + 1];
+            const b = data[i * 4 + 2];
+            const gray = Math.round(0.299 * r + 0.587 * g + 0.114 * b);
+            histogram[gray]++;
+        }
+
+        let sum = 0;
+        for (let i = 0; i < 256; i++) {
+            sum += i * histogram[i];
+        }
+
+        let sumB = 0;
+        let wB = 0;
+        let wF = 0;
+        let maxVariance = 0;
+        let threshold = 128; // fallback
+
+        for (let t = 0; t < 256; t++) {
+            wB += histogram[t];
+            if (wB === 0) continue;
+
+            wF = pixelCount - wB;
+            if (wF === 0) break;
+
+            sumB += t * histogram[t];
+
+            const mB = sumB / wB;
+            const mF = (sum - sumB) / wF;
+
+            const variance = wB * wF * (mB - mF) * (mB - mF);
+
+            if (variance > maxVariance) {
+                maxVariance = variance;
+                threshold = t;
+            }
+        }
+
+        return threshold;
     }
 }

@@ -882,11 +882,88 @@ export function useCanvas(containerWidth: number = 0, containerHeight: number = 
         canvas.requestRenderAll()
     }
 
+    /**
+     * Auto-fit font size estimation.
+     * Given text content and a bounding box, finds the largest font size
+     * where the text fits within the box dimensions.
+     * Uses binary search for efficiency.
+     */
+    const estimateBestFontSize = (
+        text: string,
+        boxWidth: number,
+        boxHeight: number,
+        fontFamily: string
+    ): number => {
+        if (!text || text.trim().length === 0) return 10
+
+        // Create a reusable measurement canvas
+        const measureCanvas = document.createElement('canvas')
+        const measureCtx = measureCanvas.getContext('2d')
+        if (!measureCtx) return Math.max(8, Math.round(boxHeight * 0.6))
+
+        const measureAtSize = (size: number): { textWidth: number; lineHeight: number; numLines: number } => {
+            measureCtx.font = `normal normal ${size}px ${fontFamily}`
+            const singleLineText = text.replace(/\r?\n/g, '')
+            const textWidth = measureCtx.measureText(singleLineText).width
+            const lineHeight = size * 1.2 // Approximate line height
+
+            // Estimate number of lines needed if text wraps
+            const usableWidth = boxWidth - 8 // Small padding
+            const numLines = usableWidth > 0 ? Math.ceil(textWidth / usableWidth) : 1
+
+            return { textWidth, lineHeight, numLines }
+        }
+
+        // Binary search: find max fontSize where text fits in box
+        let lo = 6   // Minimum readable font size
+        let hi = Math.min(boxHeight, 200) // Cap at box height or 200px
+        let bestSize = lo
+
+        // Quick check: does the text content suggest single line or multi-line?
+        const contentLength = text.replace(/\r?\n/g, '').length
+
+        // For CJK characters, each char is roughly 1em wide
+        const hasCJK = /[\u4e00-\u9fff\u3400-\u4dbf\u3040-\u309f\u30a0-\u30ff\uac00-\ud7af]/.test(text)
+
+        // Maximum font size heuristic: for single-line text, height-based cap
+        // For multi-char text, also consider width
+        if (hasCJK) {
+            // CJK: each character ≈ 1em wide, so maxFontSize ≈ boxWidth / charCount
+            const widthBasedMax = contentLength > 0 ? boxWidth / contentLength : boxHeight
+            hi = Math.min(hi, Math.max(widthBasedMax * 1.1, boxHeight * 0.9))
+        }
+
+        while (lo <= hi) {
+            const mid = Math.round((lo + hi) / 2)
+            if (mid < 6) break
+
+            const { lineHeight, numLines } = measureAtSize(mid)
+            const totalHeight = lineHeight * numLines
+
+            if (totalHeight <= boxHeight && numLines <= Math.max(1, Math.floor(boxHeight / lineHeight))) {
+                bestSize = mid
+                lo = mid + 1
+            } else {
+                hi = mid - 1
+            }
+        }
+
+        // Final clamp: never exceed box height, and have a reasonable minimum
+        return Math.max(8, Math.min(bestSize, Math.round(boxHeight * 0.85)))
+    }
+
     const convertToEditable = (rect: fabric.Rect, word: OCRWord) => {
         const canvas = fabricRef.current
         if (!canvas) return
 
-        const fontSize = Math.round((rect.height || 12) * 0.8)
+        const boxWidth = rect.width || 50
+        const boxHeight = rect.height || 12
+
+        // --- Auto-Fit Font Size ---
+        // Instead of blindly using bbox height * 0.8, we measure the actual
+        // text content and find the largest font size that fits within the box.
+        const fontFamily = 'Inter, sans-serif'
+        const fontSize = estimateBestFontSize(word.text, boxWidth, boxHeight, fontFamily)
 
         // Generate ID
         const id = Math.random().toString(36).substr(2, 9)
@@ -959,7 +1036,7 @@ export function useCanvas(containerWidth: number = 0, containerHeight: number = 
         // We start from OCR bbox + buffer, then auto-expand by measured text width to avoid
         // creating a wrapped two-line textbox on first click.
         const effectiveWidth = Math.max(rect.width || 0, 50) + 20
-        const measureTextWidth = (content: string, sizePx: number, family: string) => {
+        const measureTextWidthAtSize = (content: string, sizePx: number, family: string) => {
             if (typeof document === 'undefined') return 0
             const measurementCanvas = document.createElement('canvas')
             const measurementCtx = measurementCanvas.getContext('2d')
@@ -972,8 +1049,8 @@ export function useCanvas(containerWidth: number = 0, containerHeight: number = 
             left: rect.left,
             top: rect.top,
             width: effectiveWidth,
-            fontSize: (fontSize || 12),
-            fontFamily: 'Inter, sans-serif',
+            fontSize: (fontSize || 10),
+            fontFamily: fontFamily,
             fill: textFill,
             backgroundColor: backgroundColor,
             id,
@@ -1000,7 +1077,7 @@ export function useCanvas(containerWidth: number = 0, containerHeight: number = 
             borderScaleFactor: 2
         } as any)
 
-        const measuredWidth = measureTextWidth(word.text || '', (fontSize || 12), 'Inter, sans-serif')
+        const measuredWidth = measureTextWidthAtSize(word.text || '', (fontSize || 10), fontFamily)
         const horizontalPadding = 28
         const unzoomedCanvasWidth = currentPage?.width || (canvas.getWidth() / (canvas.getZoom() || 1))
         const maxTextboxWidth = Math.max(80, unzoomedCanvasWidth - 8)

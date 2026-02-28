@@ -94,12 +94,14 @@ export const ocrService = {
         let processedImage = imageData
         if (enablePreprocessing) {
             try {
+                // sub-region 模式：已是裁切後的小圖片，只要灰饨 + 提高對比即可，不需要耗時的二值化
+                const isSubRegion = segmentationMethod === 'pre-ocr-subregion'
                 processedImage = await preprocessImage(imageData,
                     preprocessOptions ? { ...preprocessOptions, onIntermediateImage: onDebugImage } : {
                         grayscale: true,
-                        enhanceContrast: true, // 還原預設值，確保簡單圖片的識別率
-                        binarize: false,
-                        denoise: false,
+                        enhanceContrast: true,
+                        binarize: !isSubRegion,  // 主圖啟用二值化；sub-region 已是小圖不需要
+                        denoise: false,           // 純 JS median filter 太慢，二值化已經去除大部分雜訊
                         onIntermediateImage: onDebugImage
                     },
                     debugSteps
@@ -111,7 +113,11 @@ export const ocrService = {
         try {
             // Tesseract.js v7: 需要明確指定 output 選項才會返回 blocks 結構
             // recognize(image, options, output, jobId)
-            const result = await w.recognize(processedImage, {}, { blocks: true })
+            // 使用 PSM 6 (假設為統一的文字區塊) 來提升辨識品質
+            const result = await w.recognize(processedImage, {
+                tessedit_pageseg_mode: '6',  // Assume a single uniform block of text
+                preserve_interword_spaces: '1',
+            }, { blocks: true })
             const data = result.data as any;
             return this.processOutput(data, processedImage, debugSteps, segmentationMethod, onDebugImage)
         } catch (err: any) {
@@ -166,13 +172,14 @@ export const ocrService = {
             const croppedDataUrl = await cropImageByBbox(imageDataUrl, box, imageElement);
 
             // 遞迴調用 recognize，但使用基礎 Tesseract 模式避免遞迴
+            // sub-region 編識：僳用检素化 + 對比強化即可，不需要二值化（避免重複耗時處理）
             const subWords = await this.recognize(
                 croppedDataUrl,
                 lang,
                 undefined,
                 true,
                 [],
-                undefined,
+                { grayscale: true, enhanceContrast: true, binarize: false, denoise: false },
                 'pre-ocr-subregion',
                 onDebugImage
             );
@@ -221,6 +228,12 @@ export const ocrService = {
         // === Debug: 提取 Tesseract line-level bboxes ===
         const debugLineBboxes: { x0: number, y0: number, x1: number, y1: number, label?: string }[] = [];
 
+        // 新策略：優先使用 line-level 結果
+        // 對 CJK 文字而言，line-level 比 word-level 更準確
+        // 因為 Tesseract 對 CJK 的 word 分割常常不正確
+        let useLineLevelResults = false;
+        const lineResults: any[] = [];
+
         if (data && Array.isArray(data.words) && data.words.length > 0) {
             rawWords = data.words;
         } else if (data && Array.isArray(data.blocks)) {
@@ -241,6 +254,15 @@ export const ocrService = {
                                     });
                                 }
 
+                                // 收集 line-level 結果 (用於 CJK 優先策略)
+                                if (line.text && line.bbox && line.confidence != null) {
+                                    lineResults.push({
+                                        text: line.text,
+                                        bbox: line.bbox,
+                                        confidence: line.confidence
+                                    });
+                                }
+
                                 if (Array.isArray(line.words) && line.words.length > 0) {
                                     rawWords.push(...line.words);
                                 } else if (Array.isArray(line.symbols) && line.symbols.length > 0) {
@@ -252,6 +274,18 @@ export const ocrService = {
                     });
                 }
             });
+
+            // 判斷是否使用 line-level 結果
+            // 條件：有 line 結果，且文字中含有 CJK 字元
+            if (lineResults.length > 0) {
+                const allText = lineResults.map(l => l.text).join('');
+                const hasCJK = /[\u4e00-\u9fff\u3400-\u4dbf\u3040-\u309f\u30a0-\u30ff\uac00-\ud7af]/.test(allText);
+                if (hasCJK) {
+                    // CJK: 使用 line-level 結果，避免 word 分割錯誤
+                    rawWords = lineResults;
+                    useLineLevelResults = true;
+                }
+            }
         } else {
         }
 
@@ -282,7 +316,7 @@ export const ocrService = {
         // 1. 轉換數據並套用 BBox Padding (擴張 2px)
         const padding = 2
         const words = rawWords.map((word: any) => ({
-            text: word.text || '',
+            text: this.cleanOcrText(word.text || ''),
             bbox: {
                 x0: Math.max(0, (word.bbox?.x0 ?? 0) - padding),
                 y0: Math.max(0, (word.bbox?.y0 ?? 0) - padding),
@@ -292,12 +326,18 @@ export const ocrService = {
             confidence: word.confidence ?? 0
         }))
 
-        // 2. 幾何過濾器 (基礎版)：只過濾絕對異常值
+        // 2. 信心度 + 幾何過濾器：過濾低品質結果
         const filteredWords = words.filter((word: OCRWord) => {
             const width = word.bbox.x1 - word.bbox.x0
             const height = word.bbox.y1 - word.bbox.y0
             const aspectRatio = width / height
             const area = width * height
+
+            // 過濾空文字或純空白
+            if (!word.text || word.text.trim().length === 0) return false
+
+            // 過濾低信心度結果 (低於 30% 幾乎都是雜訊)
+            if ((word.confidence ?? 0) < 30) return false
 
             // 過濾極細長的線條
             if (aspectRatio > 20 || aspectRatio < 0.05) return false
@@ -311,7 +351,13 @@ export const ocrService = {
         // 3. 根據分割方法選擇不同的處理流程
         let groupedWords: OCRWord[];
 
-        groupedWords = this.groupWordsIntoTextBoxes(filteredWords);
+        // 如果已經是 line-level 結果（CJK 優先策略），跳過文字分組
+        // 因為 line-level 已經是最佳粒度
+        if (useLineLevelResults) {
+            groupedWords = filteredWords;
+        } else {
+            groupedWords = this.groupWordsIntoTextBoxes(filteredWords);
+        }
 
         // 4. 重疊合併 (解決方框重疊導致的重複辨識)
         const mergedWords = this.mergeOverlappingBoxes(groupedWords)
@@ -559,6 +605,33 @@ export const ocrService = {
         }
 
         return croppedImages;
+    },
+
+    /**
+     * OCR 文字清理：移除常見的 OCR 雜訊字元
+     * - 移除大量連續特殊符號（通常是誤判背景紋理）
+     * - 移除控制字元
+     * - 正規化空白
+     */
+    cleanOcrText(text: string): string {
+        if (!text) return ''
+
+        // 移除控制字元（保留常見空白）
+        let cleaned = text.replace(/[\x00-\x08\x0B\x0C\x0E-\x1F\x7F]/g, '')
+
+        // 移除常見 OCR 雜訊模式：連續 3+ 個相同的特殊符號
+        cleaned = cleaned.replace(/([^\w\u4e00-\u9fff\u3400-\u4dbf\u3000-\u303f\uff00-\uffef])\1{2,}/g, '$1')
+
+        // 如果清理後只剩特殊符號（沒有任何字母、數字或 CJK 字元），視為雜訊
+        const hasContent = /[\w\u4e00-\u9fff\u3400-\u4dbf\u3040-\u309f\u30a0-\u30ff\uac00-\ud7af]/.test(cleaned)
+        if (!hasContent && cleaned.trim().length > 0 && cleaned.trim().length < 3) {
+            return ''
+        }
+
+        // 正規化連續空白
+        cleaned = cleaned.replace(/\s+/g, ' ').trim()
+
+        return cleaned
     },
 
     async terminate() {
