@@ -1,4 +1,5 @@
-import { fabric } from 'fabric'
+import * as fabric from 'fabric'
+import '@/domains/canvas/fabric/defaults'
 import { OCR_HOTSPOT } from '@/shared/constants/canvas'
 import type { OCRWord } from './ocr'
 
@@ -61,7 +62,7 @@ export class OcrHotspotManager {
      * @param obj - Fabric.js object to check
      * @returns True if the object is an OCR hotspot
      */
-    static isHotspot(obj: fabric.Object): boolean {
+    static isHotspot(obj: fabric.FabricObject): boolean {
         const name = (obj as any).name
         return typeof name === 'string' && name.startsWith(OCR_HOTSPOT.NAME_PREFIX)
     }
@@ -72,7 +73,7 @@ export class OcrHotspotManager {
      * @param canvas - Fabric.js canvas instance
      * @returns Array of OCR hotspot objects
      */
-    static findAll(canvas: fabric.Canvas): fabric.Object[] {
+    static findAll(canvas: fabric.Canvas): fabric.FabricObject[] {
         return canvas.getObjects().filter(this.isHotspot)
     }
 

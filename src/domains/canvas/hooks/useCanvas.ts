@@ -1,6 +1,7 @@
 import { useEffect, useRef } from 'react'
 import { flushSync } from 'react-dom'
-import { fabric } from 'fabric'
+import * as fabric from 'fabric'
+import '@/domains/canvas/fabric/defaults'
 import { useStore, type ActiveObjectMixedKey, type ActiveObjectProps } from '@/shared/store/useStore'
 import type { OCRWord } from '@/domains/ocr/services/ocr'
 import { inpaintingService } from '@/domains/canvas/services/inpaintingService'
@@ -71,9 +72,9 @@ export function useCanvas(containerWidth: number = 0, containerHeight: number = 
         return value
     }
 
-    const getSelectionTextObjects = (active: fabric.Object | undefined | null): any[] => {
+    const getSelectionTextObjects = (active: fabric.FabricObject | undefined | null): any[] => {
         if (!active) return []
-        if ((active as any).type === 'activeSelection' && Array.isArray((active as any)._objects)) {
+        if ((active as any).type === 'activeselection' && Array.isArray((active as any)._objects)) {
             return (active as any)._objects.filter((obj: any) => isTextEditableObject(obj))
         }
         if ((active as any).type === 'group' && Array.isArray((active as any)._objects)) {
@@ -114,16 +115,15 @@ export function useCanvas(containerWidth: number = 0, containerHeight: number = 
         return props
     }
 
-    const getBoundsForObject = (canvas: fabric.Canvas, obj: fabric.Object): RectBounds | null => {
-        const zoomLevel = canvas.getZoom() || 1
-        const bounds = obj.getBoundingRect(false, false)
+    const getBoundsForObject = (_canvas: fabric.Canvas, obj: fabric.FabricObject): RectBounds | null => {
+        const bounds = obj.getBoundingRect()
         if (!Number.isFinite(bounds.left) || !Number.isFinite(bounds.top) || bounds.width <= 0 || bounds.height <= 0) {
             return null
         }
-        const left = bounds.left / zoomLevel
-        const top = bounds.top / zoomLevel
-        const width = bounds.width / zoomLevel
-        const height = bounds.height / zoomLevel
+        const left = bounds.left
+        const top = bounds.top
+        const width = bounds.width
+        const height = bounds.height
         return {
             id: String((obj as any).id ?? (obj as any).name ?? obj.type ?? 'object'),
             left,
@@ -138,17 +138,17 @@ export function useCanvas(containerWidth: number = 0, containerHeight: number = 
         }
     }
 
-    const runSnapForTarget = (canvas: fabric.Canvas, target: fabric.Object) => {
+    const runSnapForTarget = (canvas: fabric.Canvas, target: fabric.FabricObject) => {
+        const zoomLevel = canvas.getZoom() || 1
         const activeBounds = getBoundsForObject(canvas, target)
         if (!activeBounds) return
 
-        const selected = new Set<fabric.Object>()
-        if (target.type === 'activeSelection' && Array.isArray((target as any)._objects)) {
-            ; (target as any)._objects.forEach((obj: fabric.Object) => selected.add(obj))
+        const selected = new Set<fabric.FabricObject>()
+        if (target.type === 'activeselection' && Array.isArray((target as any)._objects)) {
+            ; (target as any)._objects.forEach((obj: fabric.FabricObject) => selected.add(obj))
         }
         selected.add(target)
 
-        const zoomLevel = canvas.getZoom() || 1
         const canvasBounds: RectBounds = {
             id: 'canvas-bounds',
             left: 0,
@@ -338,7 +338,7 @@ export function useCanvas(containerWidth: number = 0, containerHeight: number = 
             ; (upgraded as any).minHeight = minHeight
 
         canvas.remove(obj)
-        canvas.insertAt(upgraded, Math.max(index, 0), false)
+        canvas.insertAt(Math.max(index, 0), upgraded)
 
         attachTextObjectBehavior(canvas, upgraded)
     }
@@ -381,66 +381,40 @@ export function useCanvas(containerWidth: number = 0, containerHeight: number = 
 
         // We set dimensions based on the Current Fit 
         // NOTE: Fabric needs explicit dimensions to render corrections
-        canvas.setWidth(currentPage.width * effectiveZoom)
-        canvas.setHeight(currentPage.height * effectiveZoom)
+        canvas.setDimensions({ width: currentPage.width * effectiveZoom, height: currentPage.height * effectiveZoom })
         canvas.setZoom(effectiveZoom)
 
-        // Determine which image to show
-        const bgImage = currentPage.imageData
-
-        // Load State or Background
-        if (canvasStates[currentPageIndex]) {
-            canvas.loadFromJSON(canvasStates[currentPageIndex], () => {
-                // Safety check: ensure canvas is still valid after async load
-                if (!canvas.getElement() || !canvas.getContext()) return
-
-                canvas.renderAll()
-                // Re-apply zoom after load
+        const controller = new AbortController()
+        const { signal } = controller
+        const loadPage = async () => {
+            const state = canvasStates[currentPageIndex]
+            if (state) {
+                await canvas.loadFromJSON(state, undefined, { signal })
+                if (signal.aborted || canvas.disposed || canvas.destroyed) return
                 canvas.setZoom(effectiveZoom)
-
-                // IMPORTANT: When loading from JSON, dimensions might be reset or need adjusting
-                canvas.setWidth(currentPage.width * effectiveZoom)
-                canvas.setHeight(currentPage.height * effectiveZoom)
-
-                // CRITICAL: Re-apply control visibility and event listeners to all text objects,
-                // and upgrade any textbox with vertical props into VerticalTextbox
-                canvas.getObjects().forEach((obj: any) => {
-                    if (obj.type === 'textbox' || obj.type === 'i-text' || obj.type === 'verticaltextbox') {
-                        upgradeTextObject(canvas, obj)
-                    }
-                })
-
-                // Force background update
-                fabric.Image.fromURL(bgImage, (img) => {
-                    if (!canvas.getElement() || !canvas.getContext()) return
-                    canvas.setBackgroundImage(img, canvas.renderAll.bind(canvas), {
-                        scaleX: currentPage.width / (img.width || 1),
-                        scaleY: currentPage.height / (img.height || 1)
-                    })
-                })
+                canvas.setDimensions({ width: currentPage.width * effectiveZoom, height: currentPage.height * effectiveZoom })
+                canvas.getObjects().forEach((obj) => upgradeTextObject(canvas, obj))
+            }
+            const image = await fabric.FabricImage.fromURL(currentPage.imageData, { signal })
+            if (signal.aborted || canvas.disposed || canvas.destroyed) return
+            image.set({
+                scaleX: currentPage.width / (image.width || 1),
+                scaleY: currentPage.height / (image.height || 1)
             })
-        } else {
-            fabric.Image.fromURL(bgImage, (img) => {
-                // Safety check: ensure canvas is still valid after async load
-                if (!canvas.getElement() || !canvas.getContext()) return
-
-                canvas.setBackgroundImage(img, () => {
-                    // Another safety check before rendering
-                    if (!canvas.getElement() || !canvas.getContext()) return
-                    canvas.renderAll()
-                }, {
-                    scaleX: currentPage.width / (img.width || 1),
-                    scaleY: currentPage.height / (img.height || 1)
-                })
-            })
+            canvas.backgroundImage = image
+            canvas.renderAll()
         }
+        void loadPage().catch((error) => {
+            if (!signal.aborted) console.error('Unable to load canvas page', error)
+        })
+        return () => controller.abort()
     }, [currentPageIndex, pages, setSelectedObjectCount])
 
 
     // Helper: Apply style to fabric object (supports groups)
     const applyStyleToFabricObject = (obj: any, key: string, value: any): boolean => {
         // Handle Group/Selection
-        if ((obj.type === 'activeSelection' || obj.type === 'group') && obj._objects) {
+        if ((obj.type === 'activeselection' || obj.type === 'group') && obj._objects) {
             let changed = false
             obj._objects.forEach((child: any) => {
                 if (applyStyleToFabricObject(child, key, value)) changed = true
@@ -474,7 +448,7 @@ export function useCanvas(containerWidth: number = 0, containerHeight: number = 
         const canvas = fabricRef.current
         if (!canvas || !currentPage) return
 
-        if (!canvas.getElement() || !canvas.getContext()) return
+        if (canvas.disposed || canvas.destroyed || !canvas.getElement() || !canvas.getContext()) return
 
         try {
             canvas.setZoom(effectiveZoom)
@@ -499,7 +473,8 @@ export function useCanvas(containerWidth: number = 0, containerHeight: number = 
             if (!snapshot) return
 
             isReloadingRef.current = true
-            canvas.loadFromJSON(snapshot, () => {
+            canvas.loadFromJSON(snapshot).then(() => {
+                if (canvas.disposed || canvas.destroyed) return
                 canvas.setZoom(effectiveZoom)
 
                 canvas.getObjects().forEach((obj: any) => {
@@ -587,7 +562,7 @@ export function useCanvas(containerWidth: number = 0, containerHeight: number = 
             }
 
             const active = canvas.getActiveObject()
-            const selectedCount = active?.type === 'activeSelection' && Array.isArray((active as any)._objects)
+            const selectedCount = active?.type === 'activeselection' && Array.isArray((active as any)._objects)
                 ? (active as any)._objects.length
                 : active ? 1 : 0
             setSelectedObjectCount(selectedCount)
@@ -682,13 +657,13 @@ export function useCanvas(containerWidth: number = 0, containerHeight: number = 
         if (!canvas) return
 
         const handleMoving = (e: any) => {
-            const target = e?.target as fabric.Object | undefined
+            const target = e?.target as fabric.FabricObject | undefined
             if (!target || OcrHotspotManager.isHotspot(target)) return
             runSnapForTarget(canvas, target)
         }
 
         const handleScaling = (e: any) => {
-            const target = e?.target as fabric.Object | undefined
+            const target = e?.target as fabric.FabricObject | undefined
             if (!target || OcrHotspotManager.isHotspot(target)) return
             runSnapForTarget(canvas, target)
         }
@@ -987,7 +962,7 @@ export function useCanvas(containerWidth: number = 0, containerHeight: number = 
         // let textFontSize = fontSize // We started with this
 
         // Ensure we have access to the raw image data to sample
-        const bgImageObj = canvas.backgroundImage as fabric.Image
+        const bgImageObj = canvas.backgroundImage as fabric.FabricImage
         // @ts-ignore
         const imgElement = bgImageObj?._element as HTMLImageElement
 
@@ -1134,7 +1109,7 @@ export function useCanvas(containerWidth: number = 0, containerHeight: number = 
         canvas.add(text)
 
         canvas.setActiveObject(text)
-        setCanvasState(currentPageIndex, canvas.toJSON(['id', 'name', 'width', 'height', 'minHeight', 'verticalAlign']))
+        setCanvasState(currentPageIndex, canvas.toObject(['id', 'name', 'width', 'height', 'minHeight', 'verticalAlign']))
 
         // Trigger property update immediately
         setActiveObjectProperties({
@@ -1162,7 +1137,7 @@ export function useCanvas(containerWidth: number = 0, containerHeight: number = 
             if (isNormalizingMultiSelectionRef.current) return
 
             const target = e?.target as any
-            if (!target || target.type !== 'activeSelection' || !Array.isArray(target._objects)) return
+            if (!target || target.type !== 'activeselection' || !Array.isArray(target._objects)) return
 
             const sx = Number(target.scaleX ?? 1)
             const sy = Number(target.scaleY ?? 1)
@@ -1245,7 +1220,7 @@ export function useCanvas(containerWidth: number = 0, containerHeight: number = 
 
             flushSync(() => {
                 // Save canvas state - this will complete before flushSync returns
-                setCanvasState(currentPageIndex, canvas.toJSON(['id', 'name', 'width', 'height', 'minHeight', 'verticalAlign']))
+                setCanvasState(currentPageIndex, canvas.toObject(['id', 'name', 'width', 'height', 'minHeight', 'verticalAlign']))
             })
 
             // Update properties panel if object is selected
@@ -1285,8 +1260,8 @@ export function useCanvas(containerWidth: number = 0, containerHeight: number = 
         if (!canvas) return
 
         const handleSaveCurrentPage = () => {
-            if (!canvas.getElement() || !canvas.getContext()) return
-            setCanvasState(currentPageIndex, canvas.toJSON(['id', 'name', 'width', 'height', 'minHeight', 'verticalAlign']))
+            if (canvas.disposed || canvas.destroyed || !canvas.getElement() || !canvas.getContext()) return
+            setCanvasState(currentPageIndex, canvas.toObject(['id', 'name', 'width', 'height', 'minHeight', 'verticalAlign']))
         }
 
         window.addEventListener('canvas:saveCurrentPage', handleSaveCurrentPage)

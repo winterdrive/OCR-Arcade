@@ -1,4 +1,5 @@
-import { fabric } from 'fabric'
+import * as fabric from 'fabric'
+import '@/domains/canvas/fabric/defaults'
 
 /**
  * VerticalTextbox - Custom Fabric.js Textbox with vertical alignment support
@@ -14,7 +15,9 @@ export class VerticalTextbox extends fabric.Textbox {
     verticalAlign: 'top' | 'middle' | 'bottom'
 
     constructor(text: string, options?: any) {
-        super(text, options)
+        // Fabric 7 exposes type as a read-only getter; serialized options include it.
+        const { type: _type, ...textboxOptions } = options || {}
+        super(text, textboxOptions)
         this.verticalAlign = options?.verticalAlign || 'top'
     }
 
@@ -47,21 +50,15 @@ export class VerticalTextbox extends fabric.Textbox {
         return baseOffset + this._getVerticalOffset()
     }
 
-    /**
-     * Override toObject to include verticalAlign and minHeight in serialization
-     */
-    toObject(propertiesToInclude?: string[]): any {
-        return super.toObject([...(propertiesToInclude || []), 'verticalAlign', 'minHeight'])
-    }
+    static customProperties = ['verticalAlign', 'minHeight']
 
     /**
      * Override initDimensions so that每次 Fabric 依據文字內容/寬度重算高度後，
      * 我們都會把高度鎖回 minHeight，避免使用者手動拉高的框在各種操作下被「縮回去」。
      */
-    initDimensions(options?: any) {
+    initDimensions() {
         // 先讓父類別完成文字排版與內部計算
-        // @ts-ignore - Fabric 型別定義可能略有差異
-        super.initDimensions(options)
+        super.initDimensions()
 
         const minHeight = (this as any).minHeight
         if (minHeight != null) {
@@ -69,30 +66,4 @@ export class VerticalTextbox extends fabric.Textbox {
         }
     }
 
-    /**
-     * Custom fromObject to ensure minHeight / verticalAlign are restored correctly
-     * when Fabric.js deserializes from JSON.
-     *
-     * Note: 因為我們仍然使用預設的 'textbox' type，此靜態方法主要是提供
-     * 類別層級的一致行為；實際的升級邏輯目前集中在 useCanvas 的 upgradeTextObject 內。
-     */
-    static fromObject(object: any, callback: (obj: VerticalTextbox) => any) {
-        const options = {
-            ...object,
-            verticalAlign: object.verticalAlign || 'top'
-        }
-
-        const instance = new VerticalTextbox(object.text || '', options)
-        ;(instance as any).minHeight =
-            object.minHeight != null
-                ? object.minHeight
-                : options.height != null
-                    ? options.height
-                    : instance.height || 0
-
-        if (callback) {
-            callback(instance)
-        }
-        return instance
-    }
 }
