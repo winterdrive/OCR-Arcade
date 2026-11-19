@@ -1,5 +1,5 @@
 import * as pdfjsLib from 'pdfjs-dist'
-import pdfjsWorker from 'pdfjs-dist/build/pdf.worker.min?url'
+import pdfjsWorker from 'pdfjs-dist/build/pdf.worker.min.mjs?url'
 
 // Use local worker bundled by Vite for offline use.
 pdfjsLib.GlobalWorkerOptions.workerSrc = pdfjsWorker
@@ -36,7 +36,7 @@ export const loadPDF = async (
         canvas.width = viewport.width
         canvas.height = viewport.height
 
-        await page.render({ canvasContext: ctx, viewport }).promise
+        await page.render({ canvas, canvasContext: ctx, viewport }).promise
 
         pages.push({
             imageData: canvas.toDataURL('image/png'),

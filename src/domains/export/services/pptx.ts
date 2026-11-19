@@ -1,5 +1,6 @@
 import PptxGenJS from 'pptxgenjs'
-import { fabric } from 'fabric'
+import * as fabric from 'fabric'
+import '@/domains/canvas/fabric/defaults'
 import { PPTX_EXPORT } from '@/shared/constants/canvas'
 import { OcrHotspotManager } from '@/domains/ocr/services/OcrHotspotManager'
 import { VerticalTextbox } from '@/domains/canvas/fabric/VerticalTextbox'
@@ -53,7 +54,7 @@ const upgradeTextObjectsForExport = (canvas: fabric.StaticCanvas) => {
         // 替換物件
         const index = objects.indexOf(obj)
         canvas.remove(obj)
-        canvas.insertAt(upgraded, Math.max(index, 0), false)
+        canvas.insertAt(Math.max(index, 0), upgraded)
     })
     canvas.renderAll()
 }
@@ -137,47 +138,26 @@ export const exportToPPTX = async ({ pages, canvasStates, mode }: ExportOptions)
         const slide = pptx.addSlide()
 
         // Create temporary canvas for rendering
-        const tempCanvas = new fabric.StaticCanvas(null, {
+        const tempCanvas = new fabric.StaticCanvas(undefined, {
             width: page.width,
             height: page.height
         })
 
-        // Load canvas state
-        await new Promise<void>((resolve) => {
-            if (state) {
-                tempCanvas.loadFromJSON(state, () => {
-                    // Force export canvas to original page size (undo any editor zoom dimensions)
-                    tempCanvas.setViewportTransform([1, 0, 0, 1, 0, 0])
-                    tempCanvas.setZoom(1)
-                    tempCanvas.setWidth(page.width)
-                    tempCanvas.setHeight(page.height)
-                    tempCanvas.calcOffset()
-
-                    // CRITICAL: 升級 textbox → VerticalTextbox，還原 minHeight / verticalAlign
-                    upgradeTextObjectsForExport(tempCanvas)
-
-                    fabric.Image.fromURL(page.imageData, (img) => {
-                        tempCanvas.setBackgroundImage(img, () => {
-                            tempCanvas.renderAll()
-                            resolve()
-                        }, {
-                            scaleX: page.width / (img.width || 1),
-                            scaleY: page.height / (img.height || 1)
-                        })
-                    })
-                })
-            } else {
-                fabric.Image.fromURL(page.imageData, (img) => {
-                    tempCanvas.setBackgroundImage(img, () => {
-                        tempCanvas.renderAll()
-                        resolve()
-                    }, {
-                        scaleX: page.width / (img.width || 1),
-                        scaleY: page.height / (img.height || 1)
-                    })
-                })
-            }
+        if (state) {
+            await tempCanvas.loadFromJSON(state)
+            tempCanvas.setViewportTransform([1, 0, 0, 1, 0, 0])
+            tempCanvas.setZoom(1)
+            tempCanvas.setDimensions({ width: page.width, height: page.height })
+            tempCanvas.calcOffset()
+            upgradeTextObjectsForExport(tempCanvas)
+        }
+        const background = await fabric.FabricImage.fromURL(page.imageData)
+        background.set({
+            scaleX: page.width / (background.width || 1),
+            scaleY: page.height / (background.height || 1)
         })
+        tempCanvas.backgroundImage = background
+        tempCanvas.renderAll()
 
         if (mode === 'image') {
             // Flat mode: Export entire canvas as single image
@@ -319,64 +299,40 @@ export const exportToPNG = async (
     const scaleY = exportHeight / page.height
 
     // Create temporary canvas for rendering
-    const tempCanvas = new fabric.StaticCanvas(null, {
+    const tempCanvas = new fabric.StaticCanvas(undefined, {
         width: exportWidth,
         height: exportHeight,
         enableRetinaScaling: false
     })
 
-    // Load canvas state with user edits
-    await new Promise<void>((resolve) => {
-        if (canvasState) {
-            tempCanvas.loadFromJSON(canvasState, () => {
-                // Normalize viewport and size to export dimensions
-                tempCanvas.setViewportTransform([1, 0, 0, 1, 0, 0])
-                tempCanvas.setZoom(1)
-                tempCanvas.setWidth(exportWidth)
-                tempCanvas.setHeight(exportHeight)
-                tempCanvas.calcOffset()
-
-                // CRITICAL: 升級 textbox → VerticalTextbox，還原 minHeight / verticalAlign
-                upgradeTextObjectsForExport(tempCanvas)
-
-                if (scaleX !== 1 || scaleY !== 1) {
-                    const scale = (scaleX + scaleY) / 2
-                    tempCanvas.getObjects().forEach((obj: any) => {
-                        obj.set({
-                            left: (obj.left || 0) * scaleX,
-                            top: (obj.top || 0) * scaleY,
-                            scaleX: (obj.scaleX || 1) * scaleX,
-                            scaleY: (obj.scaleY || 1) * scaleY
-                        })
-                        if (obj.fontSize) {
-                            obj.fontSize = obj.fontSize * scale
-                        }
-                        obj.setCoords?.()
-                    })
-                }
-
-                fabric.Image.fromURL(page.imageData, (img) => {
-                    tempCanvas.setBackgroundImage(img, () => {
-                        tempCanvas.renderAll()
-                        resolve()
-                    }, {
-                        scaleX: exportWidth / (img.width || 1),
-                        scaleY: exportHeight / (img.height || 1)
-                    })
+    if (canvasState) {
+        await tempCanvas.loadFromJSON(canvasState)
+        tempCanvas.setViewportTransform([1, 0, 0, 1, 0, 0])
+        tempCanvas.setZoom(1)
+        tempCanvas.setDimensions({ width: exportWidth, height: exportHeight })
+        tempCanvas.calcOffset()
+        upgradeTextObjectsForExport(tempCanvas)
+        if (scaleX !== 1 || scaleY !== 1) {
+            const scale = (scaleX + scaleY) / 2
+            tempCanvas.getObjects().forEach((obj: any) => {
+                obj.set({
+                    left: (obj.left || 0) * scaleX,
+                    top: (obj.top || 0) * scaleY,
+                    scaleX: (obj.scaleX || 1) * scaleX,
+                    scaleY: (obj.scaleY || 1) * scaleY
                 })
-            })
-        } else {
-            fabric.Image.fromURL(page.imageData, (img) => {
-                tempCanvas.setBackgroundImage(img, () => {
-                    tempCanvas.renderAll()
-                    resolve()
-                }, {
-                    scaleX: exportWidth / (img.width || 1),
-                    scaleY: exportHeight / (img.height || 1)
-                })
+                if (obj.fontSize) obj.fontSize = obj.fontSize * scale
+                obj.setCoords()
             })
         }
+    }
+    const background = await fabric.FabricImage.fromURL(page.imageData)
+    background.set({
+        scaleX: exportWidth / (background.width || 1),
+        scaleY: exportHeight / (background.height || 1)
     })
+    tempCanvas.backgroundImage = background
+    tempCanvas.renderAll()
 
     // Hide OCR hotspots before export
     OcrHotspotManager.hideAll(tempCanvas as any)

@@ -1,4 +1,5 @@
-import { fabric } from 'fabric'
+import * as fabric from 'fabric'
+import '@/domains/canvas/fabric/defaults'
 import type { SnapGuide, SpacingHint } from './alignmentEngine'
 
 type RenderState = {

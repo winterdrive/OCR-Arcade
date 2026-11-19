@@ -1,4 +1,5 @@
-import { fabric } from 'fabric'
+import * as fabric from 'fabric'
+import '@/domains/canvas/fabric/defaults'
 import { OcrHotspotManager } from '@/domains/ocr/services/OcrHotspotManager'
 
 export type AlignCommand =
@@ -11,28 +12,28 @@ export type AlignCommand =
 
 export type DistributeCommand = 'distributeHorizontally' | 'distributeVertically'
 
-const isEditableObject = (obj: fabric.Object) => {
+const isEditableObject = (obj: fabric.FabricObject) => {
   if (!obj.visible) return false
   if (OcrHotspotManager.isHotspot(obj)) return false
   return true
 }
 
-const getSelectionObjects = (canvas: fabric.Canvas): fabric.Object[] => {
+const getSelectionObjects = (canvas: fabric.Canvas): fabric.FabricObject[] => {
   const active = canvas.getActiveObject()
   if (!active) return []
 
-  if ((active as any).type === 'activeSelection' && Array.isArray((active as any)._objects)) {
-    return (active as any)._objects.filter((obj: fabric.Object) => isEditableObject(obj))
+  if ((active as any).type === 'activeselection' && Array.isArray((active as any)._objects)) {
+    return (active as any)._objects.filter((obj: fabric.FabricObject) => isEditableObject(obj))
   }
 
   if ((active as any).type === 'group' && Array.isArray((active as any)._objects)) {
-    return (active as any)._objects.filter((obj: fabric.Object) => isEditableObject(obj))
+    return (active as any)._objects.filter((obj: fabric.FabricObject) => isEditableObject(obj))
   }
 
   return isEditableObject(active) ? [active] : []
 }
 
-const getBounds = (obj: fabric.Object) => obj.getBoundingRect(false, false)
+const getBounds = (obj: fabric.FabricObject) => obj.getBoundingRect()
 
 export const applyAlignCommand = (canvas: fabric.Canvas, command: AlignCommand): boolean => {
   const objects = getSelectionObjects(canvas)
@@ -69,7 +70,8 @@ export const applyAlignCommand = (canvas: fabric.Canvas, command: AlignCommand):
   }
 
   canvas.requestRenderAll()
-  canvas.fire('object:modified', { target: canvas.getActiveObject() })
+  const active = canvas.getActiveObject()
+  if (active) canvas.fire('object:modified', { target: active })
   return true
 }
 
@@ -117,7 +119,8 @@ export const applyDistributeCommand = (canvas: fabric.Canvas, command: Distribut
   }
 
   canvas.requestRenderAll()
-  canvas.fire('object:modified', { target: canvas.getActiveObject() })
+  const active = canvas.getActiveObject()
+  if (active) canvas.fire('object:modified', { target: active })
   return true
 }
 
